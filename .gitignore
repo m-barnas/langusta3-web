@@ -1,0 +1,22 @@
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
+
+<<<<<<< HEAD
+# Derby DB
+=======
+>>>>>>> fa2f1740683e14b94d7f367375d5d87a6cb4cdd5
+derby.log
