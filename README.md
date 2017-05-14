@@ -23,6 +23,10 @@ Data is stored in [PostgreSQL](https://www.postgresql.org/). Actually, the datab
 
 The app makes heavy use of technologies such as [Java 8](http://www.oracle.com/technetwork/java/javase/overview/java8-2100321.html) ([Maven](https://maven.apache.org/) Project), the [Hibernate](http://hibernate.org/) framework as the persistence layer and the latest stable release of [Spring Boot](https://projects.spring.io/spring-boot/). It also uses [React.js](https://facebook.github.io/react/) coded in ES6.
 
+### UX backbone
+
+Design of our UX backbone is available for download [here](https://github.com/m-barnas/langusta3-web/issues/1#issuecomment-300812542).
+
 ### Support or Contact
 
 Having any trouble? Check out our documentation either for [developers](https://github.com/m-barnas/langusta3-web/wiki/For-developers) or for [users](https://github.com/m-barnas/langusta3-web/wiki/For-users). Feel free to contact [us](https://github.com/m-barnas/langusta3-web/wiki/About-authors) and we’ll help you sort it out.
