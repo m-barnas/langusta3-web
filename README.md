@@ -1,37 +1,28 @@
-## Welcome to GitHub Pages
+## Langusta3 Web Application
 
-You can use the [editor on GitHub](https://github.com/m-barnas/langusta3-web/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+_Convenient and easy to use UI for access to the morphological database_
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Functionality
 
-### Markdown
+A user is allowed to enter [word / sentence / regex / pattern] and use various filters in order to view a morhological analysis.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+**You can easily find out:**
 
-```markdown
-Syntax highlighted code block
+- How many words belong to a given pattern
+- How many words belong to [exactly one pattern / one or more pattterns / exact number of patterns]
+- All shapes for a given word
+- All words that belong to a given pattern
+- All patterns for a given word 
+- And much more
 
-# Header 1
-## Header 2
-### Header 3
+### A Database
 
-- Bulleted
-- List
+Data is stored in [PostgreSQL](https://www.postgresql.org/). Actually, the database contains over 1,5 M rows what is a direct result of more than 100,000 proccesed, the most frequently used, czech words.
 
-1. Numbered
-2. List
+### Technologies
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/m-barnas/langusta3-web/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+The app makes heavy use of technologies such as [Java 8](http://www.oracle.com/technetwork/java/javase/overview/java8-2100321.html) ([Maven](https://maven.apache.org/) Project), the [Hibernate](http://hibernate.org/) framework as the persistence layer and the latest stable release of [Spring Boot](https://projects.spring.io/spring-boot/). It also uses [React.js](https://facebook.github.io/react/) coded in ES6.
 
 ### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Having any trouble? Check out our documentation either for [developers](https://github.com/m-barnas/langusta3-web/wiki/For-developers) or for [users](https://github.com/m-barnas/langusta3-web/wiki/For-users). Feel free to contact [us](https://github.com/m-barnas/langusta3-web/wiki/About-authors) and we’ll help you sort it out.
