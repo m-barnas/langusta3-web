@@ -1,0 +1,17 @@
+.Container {
+  max-width: 64rem;
+  margin-right: auto;
+  margin-left: auto;
+
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.Main {
+  flex: 1 1 auto;
+}
