@@ -76,7 +76,7 @@ public class PersistenceApplicationContext {
         DriverManagerDataSource driver = new DriverManagerDataSource();
         driver.setDriverClassName("org.postgresql.Driver");
         driver.setUrl("jdbc:postgresql://localhost:5432/langusta3db");
-        driver.setUsername("langusta3db");
+        driver.setUsername("langusta3user");
         driver.setPassword("langusta3passwd");
 
         return driver;
