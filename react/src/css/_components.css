@@ -1,0 +1,68 @@
+
+
+.Container {
+    max-width: 64rem;
+    margin-right: auto;
+    margin-left: auto;
+
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.Main {
+    flex: 1 1 auto;
+}
+
+/**
+ * Forms and Form Components
+ */
+.FormLabel {
+    display: block;
+    padding: .5em 0 ;
+}
+.FormControl {
+    display: block;
+    padding: .5em .75em;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+
+    line-height: 1.5;
+    resize: none;
+    transition: all 150ms;
+}
+.FormControl:focus {
+    outline: none;
+    border-color: var(--black);
+    /*outline: 1px dotted currentColor;*/
+}
+
+/**
+ * Buttons
+ */
+.Button {
+    padding: .5em 1em;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    line-height: 1.5;
+}
+.Button:focus {
+    /*outline: 1px dotted currentColor;*/
+}
+.Button--primary {
+    background: var(--primary);
+    color: #fff;
+}
+
+/**
+ * Analysis
+ */
+
+.AnalysisResult {
+    border-color: transparent;
+}

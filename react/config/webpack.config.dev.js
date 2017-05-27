@@ -1,6 +1,8 @@
 'use strict';
 
 var autoprefixer = require('autoprefixer');
+var postcssImport = require('postcss-import');
+var cssnext = require('postcss-cssnext');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
@@ -81,7 +83,7 @@ module.exports = {
       'react-native': 'react-native-web'
     }
   },
-  
+
   module: {
     // First, run the linter.
     // It's important to do this before Babel processes the JS.
@@ -127,7 +129,7 @@ module.exports = {
         include: paths.appSrc,
         loader: 'babel',
         query: {
-          
+
           // This is a feature of `babel-loader` for webpack (not Babel itself).
           // It enables caching results in ./node_modules/.cache/babel-loader/
           // directory for faster rebuilds.
@@ -161,7 +163,7 @@ module.exports = {
       // Remember to add the new extension(s) to the "url" loader exclusion list.
     ]
   },
-  
+
   // We use PostCSS for autoprefixing only.
   postcss: function() {
     return [
@@ -172,6 +174,10 @@ module.exports = {
           'Firefox ESR',
           'not ie < 9', // React doesn't support IE8 anyway
         ]
+      }),
+      postcssImport({
+      }),
+      cssnext({
       }),
     ];
   },
