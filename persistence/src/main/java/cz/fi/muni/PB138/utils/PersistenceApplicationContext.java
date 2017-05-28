@@ -72,14 +72,14 @@ public class PersistenceApplicationContext {
     public DataSource db() {
         DriverManagerDataSource driver = new DriverManagerDataSource();
         driver.setDriverClassName("org.postgresql.Driver");
-        driver.setUrl("jdbc:postgresql://localhost:5432/langusta3db");
         driver.setUsername("langusta3db");
         driver.setPassword("langusta3passwd");
+        driver.setUrl("jdbc:postgresql://localhost:5432/langusta3db");
 
         return driver;
     }
 
-    Properties additionalProperties() {
+    private Properties additionalProperties() {
         Properties properties = new Properties();
         properties.getProperty("hibernate.cache.provider_class", "org.hibernate.cache.NoCacheProvider");
         properties.setProperty("hibernate.hbm2ddl.auto", "validate");
