@@ -1,4 +1,4 @@
-package cz.fi.muni.PB138.entity.xml.entities;
+package cz.fi.muni.PB138.entity.xml.util;
 
 import cz.fi.muni.PB138.enums.TypeOfCondition;
 import cz.fi.muni.PB138.utils.adapters.CharnoAdapter;
@@ -38,7 +38,7 @@ public class Condition {
     @XmlAttribute(name = "value")
     private String value;
 
-    public int getCharno() {
+    public Integer getCharno() {
         return charno;
     }
 

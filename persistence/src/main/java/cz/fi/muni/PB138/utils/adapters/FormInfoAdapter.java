@@ -1,6 +1,6 @@
 package cz.fi.muni.PB138.utils.adapters;
 
-import cz.fi.muni.PB138.entity.xml.entities.FormInfo;
+import cz.fi.muni.PB138.entity.xml.util.FormInfo;
 import cz.fi.muni.PB138.enums.GrammaticalCase;
 import cz.fi.muni.PB138.enums.GrammaticalGender;
 import cz.fi.muni.PB138.enums.Number;

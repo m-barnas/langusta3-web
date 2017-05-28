@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<condition-list lemma="yes">
+    <condition charno="-1" type="equal" value="s" />
+    <condition charno="-2" type="equal" value="u,a,o,e" />
+    <condition charno="-3" type="class" value="souhláska" />
+
+    <basechange no="2" operation="chop" />
+    <basechange no="2" operation="chop" />
+</condition-list>

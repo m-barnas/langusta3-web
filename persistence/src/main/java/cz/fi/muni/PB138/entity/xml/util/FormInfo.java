@@ -1,4 +1,4 @@
-package cz.fi.muni.PB138.entity.xml.entities;
+package cz.fi.muni.PB138.entity.xml.util;
 
 import cz.fi.muni.PB138.enums.GrammaticalCase;
 import cz.fi.muni.PB138.enums.GrammaticalGender;
