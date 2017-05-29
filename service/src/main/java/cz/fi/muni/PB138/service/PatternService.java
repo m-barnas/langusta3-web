@@ -1,8 +1,7 @@
-package cz.fi.muni.PB138.dao;
+package cz.fi.muni.PB138.service;
 
 import cz.fi.muni.PB138.entity.xml.Pattern;
 
-import javax.xml.bind.JAXBException;
 import java.util.List;
 
 /**
@@ -10,7 +9,7 @@ import java.util.List;
  *
  * @author Erik Macej 433744
  */
-public interface PatternDao {
+public interface PatternService {
 
     /**
      * Finds pattern by mame
@@ -26,4 +25,5 @@ public interface PatternDao {
      * @return list of all patterns
      */
     List<Pattern> findAllPatterns();
+
 }
