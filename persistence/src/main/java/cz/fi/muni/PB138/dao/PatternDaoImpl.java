@@ -25,7 +25,7 @@ public class PatternDaoImpl implements PatternDao {
     }
 
     @Override
-    public Pattern findByName(String name) throws JAXBException {
+    public Pattern findByName(String name) {
         if(name != null) {
             for (Pattern pattern : repository.getPatternList()) {
                 if (name.equals(pattern.getId())) {
