@@ -21,7 +21,7 @@ public class PatternServiceTest extends AbstractTestNGSpringContextTests {
 
     @Inject
     private PatternService patternService;
-
+    /*
     @Test
     public void getPatternByNameTest() throws JAXBException {
         Pattern pattern = patternService.findByName("tetanus");
@@ -31,5 +31,5 @@ public class PatternServiceTest extends AbstractTestNGSpringContextTests {
     public void getAllPatternsTest(){
         List<Pattern> patterns = patternService.findAllPatterns();
     }
-
+    */
 }

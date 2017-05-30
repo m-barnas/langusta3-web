@@ -13,11 +13,19 @@ import java.util.List;
  */
 public interface WordDao {
 
+
+    /**
+     * Creates entity word
+     *
+     * @param word to create
+     */
+    void create(Word word);
+
     /**
      * Finds word by id
      *
-     * @param id id to be searched
-     * @return word or null for invalid id
+     * @param id to be searched
+     * @return word or null for non-existing id
     */
     Word findById(Long id);
 
@@ -42,7 +50,7 @@ public interface WordDao {
      * @param pattern to be searched
      * @return list of words with given pattern or null if none exists
      */
-    List<Word> findByPattern(String pattern);
+    List<Word> findWordsByPattern(String pattern);
 
     /**
      * Finds words by given declined value
@@ -84,6 +92,11 @@ public interface WordDao {
      */
     List<Word> findByGrammaticalCase(GrammaticalCase grammaticalCase);
 
-
-
+    /**
+     * Finds words by number of patterns
+     *
+     * @param  numberOfPatterns of a word
+     * @return list of words with given number of patterns or null if none exists
+     */
+    List<Word> findByNumberOfPattern(int numberOfPatterns);
 }
