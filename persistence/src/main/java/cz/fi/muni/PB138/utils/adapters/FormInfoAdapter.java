@@ -22,7 +22,7 @@ public class FormInfoAdapter extends XmlAdapter<String, FormInfo> {
         formInfo.setWordClass(wordClassResolver(s.substring(0, 2)));
         formInfo.setGrammaticalGender(grammaticalGenderResolver(s.substring(2,4)));
         formInfo.setNumber(numberResolver(s.substring(4, 6)));
-        formInfo.setGrammaticalCase(grammaticalCaseResolver(s.substring(7)));
+        formInfo.setGrammaticalCase(grammaticalCaseResolver(s.substring(7,8)));
 
         return formInfo;
     }

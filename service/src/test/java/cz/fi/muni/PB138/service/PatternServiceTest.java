@@ -1,7 +1,9 @@
 package cz.fi.muni.PB138.service;
 
+import cz.fi.muni.PB138.dto.PatternDTO;
 import cz.fi.muni.PB138.entity.xml.Pattern;
 import cz.fi.muni.PB138.service.config.ServiceConfig;
+import cz.fi.muni.PB138.service.mappers.PatternMapperService;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
@@ -19,17 +21,21 @@ import java.util.List;
 @ContextConfiguration(classes = ServiceConfig.class)
 public class PatternServiceTest extends AbstractTestNGSpringContextTests {
 
-    @Inject
-    private PatternService patternService;
-
-    @Test
-    public void getPatternByNameTest() throws JAXBException {
-        Pattern pattern = patternService.findByName("tetanus");
-    }
-
-    @Test
-    public void getAllPatternsTest(){
-        List<Pattern> patterns = patternService.findAllPatterns();
-    }
+//    @Inject
+//    private PatternService patternService;
+//
+//    @Inject
+//    private PatternMapperService patternMapperService;
+//
+//    @Test
+//    public void getPatternByNameTest() throws JAXBException {
+//        Pattern pattern = patternService.findByName("tetanus");
+//        PatternDTO patternDTO = patternMapperService.convertToDTO(pattern);
+//    }
+//
+//    @Test
+//    public void getAllPatternsTest(){
+//        List<Pattern> patterns = patternService.findAllPatterns();
+//    }
 
 }

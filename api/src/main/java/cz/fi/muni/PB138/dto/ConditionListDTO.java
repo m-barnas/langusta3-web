@@ -1,5 +1,6 @@
 package cz.fi.muni.PB138.dto;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +12,8 @@ import java.util.Map;
 public class ConditionListDTO {
 
     private String conditionString;
-    private Map<Integer, List<BaseChangeDTO>> basechanges;
+    private Map<Integer, List<BaseChangeDTO>> basechanges = new HashMap<>();
+    private Boolean lemma;
 
     public String getConditionString() {
         return conditionString;
@@ -29,4 +31,11 @@ public class ConditionListDTO {
         this.basechanges = basechanges;
     }
 
+    public Boolean getLemma() {
+        return lemma;
+    }
+
+    public void setLemma(Boolean lemma) {
+        this.lemma = lemma;
+    }
 }
