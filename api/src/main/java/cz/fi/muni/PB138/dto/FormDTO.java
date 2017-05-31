@@ -7,18 +7,10 @@ package cz.fi.muni.PB138.dto;
  */
 public class FormDTO {
 
-    private Integer baseId;
-    private String base;
+    private Integer base;
     private String suffix;
     private FormInfoDTO formInfo;
 
-    public String getBase() {
-        return base;
-    }
-
-    public void setBase(String base) {
-        this.base = base;
-    }
 
     public String getSuffix() {
         return suffix;
@@ -36,11 +28,11 @@ public class FormDTO {
         this.formInfo = formInfo;
     }
 
-    public Integer getBaseId() {
-        return baseId;
+    public Integer getBase() {
+        return base;
     }
 
-    public void setBaseId(Integer baseId) {
-        this.baseId = baseId;
+    public void setBase(Integer base) {
+        this.base = base;
     }
 }

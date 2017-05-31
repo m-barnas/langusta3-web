@@ -19,11 +19,11 @@
             <artifactId>persistence</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>cz.fi.muni.PB138</groupId>-->
-            <!--<artifactId>api</artifactId>-->
-            <!--<version>${project.parent.version}</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>cz.fi.muni.PB138</groupId>
+            <artifactId>api</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>javax.inject</groupId>
