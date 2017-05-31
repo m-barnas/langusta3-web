@@ -21,6 +21,7 @@ import java.util.List;
 @ContextConfiguration(classes = ServiceConfig.class)
 public class PatternServiceTest extends AbstractTestNGSpringContextTests {
 
+
 //    @Inject
 //    private PatternService patternService;
 //
@@ -37,5 +38,6 @@ public class PatternServiceTest extends AbstractTestNGSpringContextTests {
 //    public void getAllPatternsTest(){
 //        List<Pattern> patterns = patternService.findAllPatterns();
 //    }
+
 
 }

@@ -13,18 +13,26 @@ import java.util.List;
  */
 public interface WordDao {
 
+
+    /**
+     * Creates entity word
+     *
+     * @param word to create
+     */
+    void create(Word word);
+
     /**
      * Finds word by id
      *
-     * @param id id to be searched
-     * @return word or null for invalid id
+     * @param id to be searched
+     * @return word or null for non-existing id
     */
     Word findById(Long id);
 
     /**
      * Finds all words
      *
-     * @return - list of all words or null if none exists
+     * @return - list of all words or empty list if none exists
      */
     List<Word> findAll();
 
@@ -32,7 +40,7 @@ public interface WordDao {
      * Finds words by given infinitive
      *
      * @param infinitive to be searched
-     * @return list of words with given infinitive or null if none exists
+     * @return list of words with given infinitive or empty list if none exists
      */
     List<Word> findByInfinitive(String infinitive);
 
@@ -40,15 +48,15 @@ public interface WordDao {
      * Finds words by given pattern
      *
      * @param pattern to be searched
-     * @return list of words with given pattern or null if none exists
+     * @return list of words with given pattern or empty list if none exists
      */
-    List<Word> findByPattern(String pattern);
+    List<Word> findWordsByPattern(String pattern);
 
     /**
      * Finds words by given declined value
      *
      * @param declinedValue to be searched
-     * @return list of words with given declined value or null if none exists
+     * @return list of words with given declined value or empty list if none exists
      */
     List<Word> findByDeclinedValue(String declinedValue);
 
@@ -56,7 +64,7 @@ public interface WordDao {
      * Finds words by given word class
      *
      * @param  wordClass to be searched
-     * @return list of words with given word class or null if none exists
+     * @return list of words with given word class or empty list if none exists
      */
     List<Word> findByWordClass(String wordClass);
 
@@ -64,7 +72,7 @@ public interface WordDao {
      * Finds words by given grammatical gender
      *
      * @param  grammaticalGender to be searched
-     * @return list of words with given grammatical gender or null if none exists
+     * @return list of words with given grammatical gender or empty list if none exists
      */
     List<Word> findByGrammaticalGender(GrammaticalGender grammaticalGender);
 
@@ -72,7 +80,7 @@ public interface WordDao {
      * Finds words by given number
      *
      * @param  number to be searched
-     * @return list of words with given number or null if none exists
+     * @return list of words with given number or empty list if none exists
      */
     List<Word> findByNumber(Number number);
 
@@ -80,10 +88,15 @@ public interface WordDao {
      * Finds words by given grammatical case
      *
      * @param  grammaticalCase to be searched
-     * @return list of words with given grammatical case or null if none exists
+     * @return list of words with given grammatical case or empty list if none exists
      */
     List<Word> findByGrammaticalCase(GrammaticalCase grammaticalCase);
 
-
-
+    /**
+     * Finds words by number of patterns
+     *
+     * @param  numberOfPatterns of a word
+     * @return list of words with given number of patterns or empty list if none exists
+     */
+    List<Word> findByNumberOfPattern(int numberOfPatterns);
 }
