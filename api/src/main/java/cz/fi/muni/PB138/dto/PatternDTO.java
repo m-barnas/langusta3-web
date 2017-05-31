@@ -2,6 +2,8 @@ package cz.fi.muni.PB138.dto;
 
 import cz.fi.muni.PB138.enums.WordClass;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,9 +17,10 @@ public class PatternDTO {
     private WordClass wordClass;
     private String id;
     private String parent;
-    private List<ConditionListDTO> conditionLists;
-    private List<FormDTO> formList;
-    private Map<Integer, String> baseChangesForPattern;
+    private List<ConditionListDTO> conditionLists = new ArrayList<>();
+    private List<FormDTO> formList = new ArrayList<>();
+    private Map<Integer, List<BaseChangeDTO>> allPossibleBasechanges =
+            new HashMap<>();
 
     public WordClass getWordClass() {
         return wordClass;
@@ -59,11 +62,11 @@ public class PatternDTO {
         this.formList = formList;
     }
 
-    public Map<Integer, String> getBaseChangesForPattern() {
-        return baseChangesForPattern;
+    public Map<Integer, List<BaseChangeDTO>> getAllPossibleBasechanges() {
+        return allPossibleBasechanges;
     }
 
-    public void setBaseChangesForPattern(Map<Integer, String> baseChangesForPattern) {
-        this.baseChangesForPattern = baseChangesForPattern;
+    public void setAllPossibleBasechanges(Map<Integer, List<BaseChangeDTO>> allPossibleBasechanges) {
+        this.allPossibleBasechanges = allPossibleBasechanges;
     }
 }

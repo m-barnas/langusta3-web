@@ -4,6 +4,7 @@ import cz.fi.muni.PB138.utils.adapters.LemmaAdapter;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,10 +19,10 @@ import java.util.List;
 public class ConditionList {
 
     @XmlElement(name = "condition")
-    private List<Condition> conditions;
+    private List<Condition> conditions = new ArrayList<>();
 
     @XmlElement(name = "basechange")
-    private List<BaseChange> baseChange;
+    private List<BaseChange> baseChange = new ArrayList<>();
 
     @XmlAttribute(name = "lemma")
     @XmlJavaTypeAdapter(type = String.class, value = LemmaAdapter.class)

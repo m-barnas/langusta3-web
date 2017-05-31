@@ -8,6 +8,8 @@ import cz.fi.muni.PB138.utils.adapters.WordClassAdapter;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -31,13 +33,13 @@ public class Pattern {
     private String parent;
 
     @XmlElement(name = "condition-list")
-    private List<ConditionList> conditionLists;
+    private List<ConditionList> conditionLists = new ArrayList<>();
 
     @XmlElement(name = "form")
-    private List<Form> formList;
+    private List<Form> formList = new ArrayList<>();
 
     @XmlElement(name = "basechange")
-    private List<BaseChange> baseChangeList;
+    private List<BaseChange> baseChangeList = new ArrayList<>();
 
     public WordClass getWordClass() {
         return wordClass;
@@ -72,7 +74,7 @@ public class Pattern {
     }
 
     public List<Form> getFormList() {
-        return formList;
+        return Collections.unmodifiableList(formList);
     }
 
     public void setFormList(List<Form> formList) {
@@ -80,7 +82,7 @@ public class Pattern {
     }
 
     public List<BaseChange> getBaseChangeList() {
-        return baseChangeList;
+        return Collections.unmodifiableList(baseChangeList);
     }
 
     public void setBaseChangeList(List<BaseChange> baseChangeList) {

@@ -4672,7 +4672,16 @@
 
 			<basechange no="2" operation="chop" />
 			<basechange no="2" operation="chop" />
+
+            <basechange no="3" operation="append" />
+            <basechange no="3" operation="append" />
         </condition-list>
+
+        <basechange no="4" operation="chop" />
+        <basechange no="4" operation="chop" />
+
+        <basechange no="5" operation="chop" />
+        <basechange no="5" operation="chop" />
 
 		<condition-list lemma="yes">
 	    	<condition charno="-1" type="equal" value="f" />
