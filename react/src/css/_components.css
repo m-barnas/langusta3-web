@@ -1,4 +1,4 @@
-
+@import 'react-dd-menu/dist/react-dd-menu.css';
 
 .Container {
     max-width: 64rem;
@@ -57,8 +57,12 @@
 .Button:focus {
     /*outline: 1px dotted currentColor;*/
 }
+.Button-icon {
+    margin-top: -2px;
+}
 
 .Button--primary {
+    border-color: var(--primary);
     background: var(--primary);
     color: #fff;
 }
@@ -74,4 +78,8 @@
 
 .AnalysisResult {
     border-color: transparent;
+    overflow-y: auto;
+}
+.AnalysisResult-inner {
+    height: 4.5em;
 }
