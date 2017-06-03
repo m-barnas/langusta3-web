@@ -50,14 +50,23 @@
     border: 1px solid #ccc;
     border-radius: 3px;
     line-height: 1.5;
+    cursor: pointer;
+
+    transition: all 150ms;
 }
 .Button:focus {
     /*outline: 1px dotted currentColor;*/
 }
+
 .Button--primary {
     background: var(--primary);
     color: #fff;
 }
+.Button--primary:hover,
+.Button--primary:focus {
+    background: #49494a;
+}
+
 
 /**
  * Analysis
