@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pattern pos="noun" id="tetanus" parent="tetanus" >
+    <!--tetanus (-tetan(us), -tyf(us), detrit(us))-->
+    <condition-list lemma="yes">
+        <condition charno="-1" type="equal" value="s" />
+        <condition charno="-2" type="equal" value="u" />
+        <condition charno="-3" type="equal" value="f" />
+        <condition charno="-4" type="equal" value="y" />
+        <condition charno="-5" type="equal" value="t" />
+
+        <basechange no="2" operation="chop" />
+        <basechange no="2" operation="chop" />
+    </condition-list>
+
+    <condition-list lemma="yes">
+        <condition charno="-1" type="equal" value="f" />
+        <condition charno="-2" type="equal" value="y" />
+        <condition charno="-3" type="equal" value="t" />
+
+        <basechange no="1" operation="append" value="u"/>
+        <basechange no="1" operation="append" value="s"/>
+    </condition-list>
+
+    <condition-list lemma="yes">
+        <condition charno="-1" type="equal" value="s" />
+        <condition charno="-2" type="equal" value="u" />
+        <condition charno="-3" type="equal" value="n" />
+        <condition charno="-4" type="equal" value="a" />
+        <condition charno="-5" type="equal" value="t" />
+        <condition charno="-6" type="equal" value="e" />
+        <condition charno="-7" type="equal" value="t" />
+
+        <basechange no="2" operation="chop" />
+        <basechange no="2" operation="chop" />
+    </condition-list>
+
+    <condition-list lemma="yes">
+        <condition charno="-1" type="equal" value="n" />
+        <condition charno="-2" type="equal" value="a" />
+        <condition charno="-3" type="equal" value="t" />
+        <condition charno="-4" type="equal" value="e" />
+        <condition charno="-5" type="equal" value="t" />
+
+        <basechange no="1" operation="append" value="u"/>
+        <basechange no="1" operation="append" value="s"/>
+    </condition-list>
+
+    <condition-list lemma="yes">
+        <condition charno="-1" type="equal" value="s" />
+        <condition charno="-2" type="equal" value="u" />
+        <condition charno="-3" type="equal" value="t" />
+        <condition charno="-4" type="equal" value="i" />
+        <condition charno="-5" type="equal" value="r" />
+        <condition charno="-6" type="equal" value="t" />
+        <condition charno="-7" type="equal" value="e" />
+        <condition charno="-8" type="equal" value="d" />
+
+        <basechange no="2" operation="chop" />
+        <basechange no="2" operation="chop" />
+    </condition-list>
+
+    <condition-list lemma="yes">
+        <condition charno="-1" type="equal" value="t" />
+        <condition charno="-2" type="equal" value="i" />
+        <condition charno="-3" type="equal" value="r" />
+        <condition charno="-4" type="equal" value="t" />
+        <condition charno="-5" type="equal" value="e" />
+        <condition charno="-6" type="equal" value="d" />
+
+        <basechange no="1" operation="append" value="u"/>
+        <basechange no="1" operation="append" value="s"/>
+    </condition-list>
+
+    <form base="1" lemma="yes"><suffix></suffix><tag>k1gInSc1-a</tag></form>
+    <form base="2" lemma="yes"><suffix></suffix><tag>k1gInSc1-b</tag></form>
+    <form base="2"><suffix>u</suffix><tag>k1gInSc2</tag></form>
+    <form base="2"><suffix>u</suffix><tag>k1gInSc3</tag></form>
+    <form base="2"><suffix></suffix><tag>k1gInSc4-a</tag></form>
+    <form base="2"><suffix>u,s</suffix><tag>k1gInSc4-b</tag></form>
+    <form base="2"><suffix>e</suffix><tag>k1gInSc5</tag></form>
+    <form base="2"><suffix>u</suffix><tag>k1gInSc6</tag></form>
+    <form base="2"><suffix>e,m</suffix><tag>k1gInSc7</tag></form>
+    <form base="2"><suffix>y</suffix><tag>k1gInPc1</tag></form>
+    <form base="2"><suffix>ů</suffix><tag>k1gInPc2</tag></form>
+    <form base="2"><suffix>ů,m</suffix><tag>k1gInPc3</tag></form>
+    <form base="2"><suffix>y</suffix><tag>k1gInPc4</tag></form>
+    <form base="2"><suffix>y</suffix><tag>k1gInPc5</tag></form>
+    <form base="2"><suffix>e,c,h</suffix><tag>k1gInPc6</tag></form>
+    <form base="2"><suffix>y</suffix><tag>k1gInPc7</tag></form>
+</pattern>
