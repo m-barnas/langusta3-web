@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 // import ReactDOM from 'react-dom';
-import AnalysisData from './AnalysisData';
-// import Highlighter from 'react-highlight-words';
-import CustomHighlighter from './CustomHighlighter';
+import WordAnalysis from './WordAnalysis';
+import WordForms from './WordForms';
 import Highlighter from './Highlighter';
-import {MdRefresh} from 'react-icons/lib/md';
+import {MdRefresh, MdMailOutline} from 'react-icons/lib/md';
 
 class Analysis extends Component {
   constructor(props) {
@@ -65,10 +64,18 @@ class Analysis extends Component {
             <button className="Button Button--primary fr" type="submit"><MdRefresh className="Button-icon" /> Analyze</button>
           </form>
 
-          <div className="mw7 center cf">
-            <AnalysisData />
+          <div className="mw6 center cf">
+            <div className="fl w-50 pr3">
+              <WordAnalysis />
+            </div>
+            <div className="fl w-50 pl3">
+              <WordForms />
+            </div>
           </div>
 
+          <div className="mw6 center tc mt5 f6">
+            <a className="link gray underline-hover" href="#"><MdMailOutline className="Button-icon" /> Nahlásit chybu/požádat o doplnění</a>
+          </div>
         </div>
       </main>
     );

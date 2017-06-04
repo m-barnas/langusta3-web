@@ -28,7 +28,8 @@ class Highlighter extends Component {
     this.handleHighlightClick = this.handleHighlightClick.bind(this);
   }
   handleHighlightClick(event) {
-    console.log(event.target);
+    let target = event.target;
+    console.log(target);
   }
   render() {
 

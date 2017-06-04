@@ -46,19 +46,26 @@
  * Buttons
  */
 .Button {
+    display: inline-block;
     padding: .5em 1em;
     border: 1px solid #ccc;
     border-radius: 3px;
+    background: var(--near-white);
+
     line-height: 1.5;
+    text-decoration: none;
+    color: var(--black);
     cursor: pointer;
 
     transition: all 150ms;
 }
+.Button:hover,
 .Button:focus {
     /*outline: 1px dotted currentColor;*/
+    background: #EEEEEE;
 }
 .Button-icon {
-    margin-top: -2px;
+    margin-top: -3px;
 }
 
 .Button--primary {
