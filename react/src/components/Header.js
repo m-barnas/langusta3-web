@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './../logo.svg';
 import DropdownMenu from 'react-dd-menu';
 import {MdExpandMore, MdExpandLess} from 'react-icons/lib/md';
 
@@ -34,6 +33,7 @@ class Header extends Component {
       close: this.close,
       toggle: <a className="link black underline-hover" href="#" onClick={this.toggle}>Hledat {menuIcon}</a>,
       align: 'center',
+      animate: false
     };
     return (
       <header className="Header bb b--black-10">

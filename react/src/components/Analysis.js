@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+// import ReactDOM from 'react-dom';
 import AnalysisData from './AnalysisData';
+// import Highlighter from 'react-highlight-words';
+import CustomHighlighter from './CustomHighlighter';
+import Highlighter from './Highlighter';
 import {MdRefresh} from 'react-icons/lib/md';
 
 class Analysis extends Component {
@@ -7,7 +11,8 @@ class Analysis extends Component {
     super(props);
     this.state = {
       value: 'Příliš žluťoučký kůň úpěl ďábelské ódy',
-      words: []
+      words: ['příliš', 'kůň', 'ódy'],
+      highlighter: null
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -26,14 +31,13 @@ class Analysis extends Component {
   }
 
   parse() {
-    let string = this.state.value;
-    let words = string.trim().split(/[\s,]+/);
+    // let string = this.state.value;
+    // let words = string.trim().split(/[\s,]+/);
 
-    this.setState({
-      words: words
-    })
+    // this.setState({
+    //   words: words
+    // })
   }
-
 
   render() {
     return (
@@ -47,7 +51,13 @@ class Analysis extends Component {
               </div>
               <div className="fl w-50 pl3">
                 <div className="AnalysisResult FormControl bg-near-white">
-                  <div className="AnalysisResult-inner">{ this.state.value }</div>
+                  <Highlighter
+                    className="AnalysisResult-inner"
+                    highlightClassName='Highlight js-highlight'
+                    searchWords={this.state.words}
+                    textToHighlight={this.state.value}
+                    highlightTag='mark'
+                  />
                 </div>
               </div>
             </div>

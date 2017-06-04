@@ -81,5 +81,34 @@
     overflow-y: auto;
 }
 .AnalysisResult-inner {
+    display: block;
     height: 4.5em;
 }
+
+
+/**
+ * Highlight words
+ */
+.Highlight {
+    background: #FBF1A9;
+    cursor: pointer;
+}
+
+/**
+ * Dropdown Menu
+ */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -10%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/*.dd-menu .dd-menu-items ul,
+.dd-menu .dd-menu-items ol {
+    animation: 150ms linear 0s fadeInDown;
+}*/
