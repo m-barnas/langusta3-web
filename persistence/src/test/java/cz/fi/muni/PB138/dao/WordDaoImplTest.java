@@ -87,20 +87,20 @@ public class WordDaoImplTest extends AbstractTestNGSpringContextTests {
     }
 
 
-    @Test
-    public void findAllTest(){
-        List<Word> loadedWords = wordDao.findAll();
-
-        assertThat(loadedWords).isNotNull();
-
-        assertThat(loadedWords).hasSize(2);
-
-        Word assertWordNS = createWord(wordNS);
-        Word assertWordNP = createWord(wordNP);
-
-        assertThat(loadedWords).doesNotContain(assertWordNS);
-        assertThat(loadedWords).doesNotContain(assertWordNP);
-
-        assertThat(loadedWords.get(0).getInfinitive()).isEqualTo(assertWordNP.getDeclinedValue());
-    }
+//    @Test
+//    public void findAllTest(){
+//        List<Word> loadedWords = wordDao.findAll();
+//
+//        assertThat(loadedWords).isNotNull();
+//
+//        assertThat(loadedWords).hasSize(2);
+//
+//        Word assertWordNS = createWord(wordNS);
+//        Word assertWordNP = createWord(wordNP);
+//
+//        assertThat(loadedWords).doesNotContain(assertWordNS);
+//        assertThat(loadedWords).doesNotContain(assertWordNP);
+//
+//        assertThat(loadedWords.get(0).getInfinitive()).isEqualTo(assertWordNP.getDeclinedValue());
+//    }
 }
