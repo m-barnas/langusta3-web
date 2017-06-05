@@ -5,6 +5,8 @@ import cz.fi.muni.PB138.entity.xml.Pattern;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import javax.xml.bind.JAXBException;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -25,6 +27,6 @@ public class PatternServiceImpl implements PatternService {
 
     @Override
     public List<Pattern> findAllPatterns() {
-        return patternDao.findAllPatterns();
+        return Collections.unmodifiableList(patternDao.findAllPatterns());
     }
 }

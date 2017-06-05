@@ -77,6 +77,7 @@ public class XmlUnmarshallingTests {
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
         PatternList patternList = (PatternList) jaxbUnmarshaller.unmarshal(
-                new File(this.getClass().getClassLoader().getResource("patterns-k1.xml").getFile()) );
+                new File(this.getClass().getClassLoader()
+                        .getResource("cz/fi/muni/dictionary/src/patterns-k1.xml").getFile()) );
     }
 }

@@ -7,6 +7,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
+import java.io.InputStream;
 
 /**
  * Created by Erik Macej 433744 , on 28.5.17.
@@ -17,7 +18,7 @@ import java.io.File;
 @Component
 public class XmlLoader {
 
-    private static String PATH_TO_FILE = "cz/fi/muni/PB138/dictionary/src/patterns-k1.xml";
+    private static String PATH_TO_FILE = "patterns-k1.xml";
 
     public static PatternList patternListLoader() throws JAXBException {
 
@@ -28,11 +29,10 @@ public class XmlLoader {
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
             repository = (PatternList) jaxbUnmarshaller.unmarshal(
-                    new File(XmlLoader.class.getClassLoader()
-                            .getResource(PATH_TO_FILE).getFile()));
+                    XmlLoader.class.getResourceAsStream(PATH_TO_FILE));
 
         }catch (JAXBException ex){
-            throw new JAXBException("Fatal error: problem with loading patterns from xml");
+            throw ex;
         }
 
         return repository;

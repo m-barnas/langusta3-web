@@ -20,7 +20,6 @@ import java.util.List;
 @ContextConfiguration(classes = PersistenceApplicationContext.class)
 public class PatternDaoImplTest extends AbstractTestNGSpringContextTests
 {
-
     @Inject
     private PatternDao patternDao;
 
