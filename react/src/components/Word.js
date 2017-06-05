@@ -1,0 +1,36 @@
+import React, {Component} from 'react';
+
+export default class Word extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isSelected: false,
+      data: this.props.data
+    }
+
+    this.handleClick = this.handleClick.bind(this);
+    this.deselect = this.deselect.bind(this);
+  }
+  handleClick(event) {
+    this.props.onClick();
+    this.setState({
+        isSelected: !this.state.isSelected
+    });
+  }
+  deselect() {
+      this.setState({
+          isSelected: false
+      })
+  }
+  render() {
+      let className = this.props.className + (this.state.isSelected ? " is-selected" : " ");
+    return (
+      <span 
+        className={className}
+        tabIndex='0'
+        onClick={this.handleClick}>{ this.props.children }
+      </span>
+    )
+  }
+}

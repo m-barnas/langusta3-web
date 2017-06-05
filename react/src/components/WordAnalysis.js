@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ReactTooltip from 'react-tooltip';
 
 class WordAnalysis extends Component {
   // constructor(props) {
@@ -33,9 +34,10 @@ class WordAnalysis extends Component {
             <td className="w-60 v-top pv1 b">
               <ul className="list pl0 mv0 overflow-y-auto">
                 {patterns.map((item, index) => (
-                  <li key={index}><a className="link underline-hover black" href="#">{item}</a></li>
+                  <li key={index}><a className="dib link underline-hover black" href="#" data-tip="Just the tip">{item}</a></li>
                 ))}
               </ul>
+              <ReactTooltip class="Tooltip" effect="solid"/>
             </td>
           </tr>
         </tbody>

@@ -84,12 +84,13 @@
  */
 
 .AnalysisResult {
+    box-sizing: content-box;
+    width: auto;
+    height: 4.5em;
     border-color: transparent;
     overflow-y: auto;
 }
 .AnalysisResult-inner {
-    display: block;
-    height: 4.5em;
 }
 
 
@@ -99,6 +100,19 @@
 .Highlight {
     background: #FBF1A9;
     cursor: pointer;
+    transition: all 150ms;
+}
+.Highlight:hover,
+.Highlight.is-selected {
+    background: #FF725C;
+}
+.Highlight:focus {
+    /*outline: 1px dotted;*/
+    outline: none;
+}
+
+.Tooltip {
+    opacity: 1;
 }
 
 /**

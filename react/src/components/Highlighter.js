@@ -5,6 +5,7 @@
 import { findAll } from 'highlight-words-core';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import Word from './Word';
 
 /**
  * Highlights all occurrences of search terms (searchText) within a string (textToHighlight).
@@ -25,11 +26,16 @@ class Highlighter extends Component {
       sanitize: this.props.sanitize,
     }
 
-    this.handleHighlightClick = this.handleHighlightClick.bind(this);
+    this.words = new Map();
+
+    this.handleWordClick = this.handleWordClick.bind(this);
   }
-  handleHighlightClick(event) {
-    let target = event.target;
-    console.log(target);
+  handleWordClick() {
+    Array.from(this.words.values())
+      .filter(word => word != null)
+      .forEach(word => {
+        word.deselect();
+      });
   }
   render() {
 
@@ -58,19 +64,19 @@ class Highlighter extends Component {
           const text = textToHighlight.substr(chunk.start, chunk.end - chunk.start)
 
           if (chunk.highlight) {
-            highlightCount++
-            highlightClassNames = `${this.state.highlightClassName} ${highlightCount === +this.stateactiveIndex ? this.state.activeClassName : ''}`
-
-            return (
-              <HighlightTag
-                className={highlightClassNames}
-                key={index}
-                style={this.state.highlightStyle}
-                tabIndex='0'
-                onClick={this.handleHighlightClick}
-              >
+            highlightCount++;
+            highlightClassNames = `${this.state.highlightClassName} ${highlightCount === +this.stateactiveIndex ? this.state.activeClassName : ''}`;
+            let word = (<Word 
+              className="Highlight js-highlight"
+              key={ index }
+              style={ this.state.highlightStyle }
+              onClick={ this.handleWordClick }
+              ref={ (word) => {this.words.set(index, word)} }>
                 {text}
-              </HighlightTag>
+              </Word>);
+            
+            return (
+              word
             )
           } else {
             return (
@@ -89,7 +95,7 @@ Highlighter.propTypes = {
   autoEscape: PropTypes.bool,
   className: PropTypes.string,
   highlightClassName: PropTypes.string,
-  highlightTag: PropTypes.string,
+//   highlightTag: PropTypes.string,
   highlightStyle: PropTypes.object,
   searchWords: PropTypes.arrayOf(PropTypes.string).isRequired,
   textToHighlight: PropTypes.string.isRequired,
@@ -103,7 +109,7 @@ Highlighter.defaultProps = {
   className: '',
   highlightClassName: '',
   highlightStyle: {},
-  highlightTag: 'mark',
+//   highlightTag: 'mark',
 };
 
 export default Highlighter;

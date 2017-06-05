@@ -49,13 +49,11 @@ class Analysis extends Component {
                 <textarea className="AnalysisInput FormControl" rows="3" onChange={this.handleChange} value={this.state.value} />
               </div>
               <div className="fl w-50 pl3">
-                <div className="AnalysisResult FormControl bg-near-white">
+                <div className="AnalysisResult FormControl overflow-y-auto bg-near-white">
                   <Highlighter
-                    className="AnalysisResult-inner"
-                    highlightClassName='Highlight js-highlight'
+                    className="AnalysisResult-inner db"
                     searchWords={this.state.words}
                     textToHighlight={this.state.value}
-                    highlightTag='mark'
                   />
                 </div>
               </div>
