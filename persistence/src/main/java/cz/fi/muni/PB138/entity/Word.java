@@ -122,7 +122,7 @@ public class Word {
 
     @Override
     public int hashCode() {
-        return getId().hashCode();
+        return id != null ? getId().hashCode() : 0;
     }
 
     @Override

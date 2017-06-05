@@ -10,18 +10,18 @@ A user is allowed to enter [word / sentence / regex / pattern] and use various f
 
 - How many words belong to a given pattern
 - How many words belong to [exactly one pattern / one or more pattterns / exact number of patterns]
-- All shapes for a given word
+- All declined forms of a given word
 - All words that belong to a given pattern
 - All patterns for a given word 
 - And much more
 
 ### A Database
 
-Data is stored in [PostgreSQL](https://www.postgresql.org/). Actually, the database contains over 1,5 M rows what is a direct result of more than 100,000 proccesed, the most frequently used, czech words.
+Data is stored in [PostgreSQL](https://www.postgresql.org/). Actually, the database contains over 1,3 M rows what is a direct result of more than 100,000 proccesed, the most frequently used, czech words (basically nouns and adjectives).
 
 ### Technologies
 
-The app makes heavy use of technologies such as [Java 8](http://www.oracle.com/technetwork/java/javase/overview/java8-2100321.html) ([Maven](https://maven.apache.org/) Project), the [Hibernate](http://hibernate.org/) framework as the persistence layer and the latest stable release of [Spring Boot](https://projects.spring.io/spring-boot/). It also uses [React.js](https://facebook.github.io/react/) coded in ES6.
+The app makes heavy use of technologies such as [Java 8](http://www.oracle.com/technetwork/java/javase/overview/java8-2100321.html) ([Maven](https://maven.apache.org/) Project), the [Hibernate](http://hibernate.org/) framework as the persistence layer and the latest stable release of [Spring Framework](https://projects.spring.io/spring-framework/). It also uses [React.js](https://facebook.github.io/react/) coded in ES6.
 
 ### UX backbone
 
