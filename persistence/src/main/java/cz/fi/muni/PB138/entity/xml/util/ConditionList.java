@@ -33,9 +33,7 @@ public class ConditionList {
     }
 
     public void setConditions(List<Condition> conditions) {
-        this.conditions = conditions;
-        Collections.sort(this.conditions,
-                (Condition c1, Condition c2) -> c1.getCharno().compareTo(c2.getCharno()) );
+        this.conditions = conditions;;
     }
 
     public Boolean isLemma() {
@@ -47,7 +45,7 @@ public class ConditionList {
     }
 
     public List<BaseChange> getBaseChange() {
-        return baseChange;
+        return Collections.unmodifiableList(baseChange);
     }
 
     public void setBaseChange(List<BaseChange> baseChange) {

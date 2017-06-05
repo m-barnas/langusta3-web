@@ -2,6 +2,7 @@ package cz.fi.muni.PB138.service;
 
 import cz.fi.muni.PB138.entity.xml.Pattern;
 
+import javax.xml.bind.JAXBException;
 import java.util.List;
 
 /**

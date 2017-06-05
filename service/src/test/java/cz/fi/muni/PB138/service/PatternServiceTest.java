@@ -20,24 +20,22 @@ import java.util.List;
 
 @ContextConfiguration(classes = ServiceConfig.class)
 public class PatternServiceTest extends AbstractTestNGSpringContextTests {
+  
+    @Inject
+    private PatternService patternService;
 
+    @Inject
+    private PatternMapperService patternMapperService;
 
-//    @Inject
-//    private PatternService patternService;
-//
-//    @Inject
-//    private PatternMapperService patternMapperService;
-//
-//    @Test
-//    public void getPatternByNameTest() throws JAXBException {
-//        Pattern pattern = patternService.findByName("tetanus");
-//        PatternDTO patternDTO = patternMapperService.convertToDTO(pattern);
-//    }
-//
-//    @Test
-//    public void getAllPatternsTest(){
-//        List<Pattern> patterns = patternService.findAllPatterns();
-//    }
+    @Test
+    public void getPatternByNameTest() throws JAXBException {
+        Pattern pattern = patternService.findByName("tetanus");
+        PatternDTO patternDTO = patternMapperService.convertToDTO(pattern);
+    }
 
-
+    @Test
+    public void getAllPatternsTest(){
+        List<Pattern> patterns = patternService.findAllPatterns();
+        List<PatternDTO> patternDTOs = patternMapperService.convertToDTO(patterns);
+    }
 }

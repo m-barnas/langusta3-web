@@ -6,6 +6,7 @@ import cz.fi.muni.PB138.entity.xml.repository.PatternList;
 import org.springframework.stereotype.Repository;
 
 import javax.xml.bind.JAXBException;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -17,11 +18,10 @@ import java.util.List;
 @Repository
 public class PatternDaoImpl implements PatternDao {
 
-    private static String PATH_TO_FILE = "cz/fi/muni/PB138/dictionary/src/patterns-k1.xml";
     private static PatternList repository;
 
     public PatternDaoImpl() throws JAXBException{
-        this.repository = XmlLoader.patternListLoader();
+       repository = XmlLoader.patternListLoader();
     }
 
     @Override
@@ -39,6 +39,6 @@ public class PatternDaoImpl implements PatternDao {
 
     @Override
     public List<Pattern> findAllPatterns() {
-        return repository.getPatternList();
+        return Collections.unmodifiableList(repository.getPatternList());
     }
 }

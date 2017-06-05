@@ -2,10 +2,7 @@ package cz.fi.muni.PB138.dto;
 
 import cz.fi.muni.PB138.enums.WordClass;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Erik Macej 433744 , on 29.5.17.
@@ -47,7 +44,7 @@ public class PatternDTO {
     }
 
     public List<ConditionListDTO> getConditionLists() {
-        return conditionLists;
+        return Collections.unmodifiableList(conditionLists);
     }
 
     public void setConditionLists(List<ConditionListDTO> conditionLists) {
@@ -55,7 +52,7 @@ public class PatternDTO {
     }
 
     public List<FormDTO> getFormList() {
-        return formList;
+        return Collections.unmodifiableList(formList);
     }
 
     public void setFormList(List<FormDTO> formList) {
@@ -63,7 +60,7 @@ public class PatternDTO {
     }
 
     public Map<Integer, List<BaseChangeDTO>> getAllPossibleBasechanges() {
-        return allPossibleBasechanges;
+        return Collections.unmodifiableMap(allPossibleBasechanges);
     }
 
     public void setAllPossibleBasechanges(Map<Integer, List<BaseChangeDTO>> allPossibleBasechanges) {

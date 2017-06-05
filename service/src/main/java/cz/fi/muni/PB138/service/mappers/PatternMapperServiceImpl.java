@@ -6,10 +6,7 @@ import cz.fi.muni.PB138.entity.xml.util.*;
 import cz.fi.muni.PB138.service.utils.FormComparator;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Erik Macej 433744 , on 29.5.17.
@@ -62,9 +59,12 @@ public class PatternMapperServiceImpl implements PatternMapperService {
 
         FormDTO dto = new FormDTO();
 
-        dto.setBase(entity.getBase());
-        dto.setFormInfo(convertToDTO(entity.getFormInfo()));
         dto.setSuffix(entity.getSuffix());
+        dto.setBase(entity.getBase());
+
+        if(entity.getFormInfo() != null) {
+            dto.setFormInfo(convertToDTO(entity.getFormInfo()));
+        }
 
         return dto;
     }
@@ -92,7 +92,7 @@ public class PatternMapperServiceImpl implements PatternMapperService {
             result.add(convertToDTO(pattern));
         }
 
-        return result;
+        return Collections.unmodifiableList(result);
     }
 
     private Map<Integer, List<BaseChangeDTO>> extractAllPossibleBaseChanges(Pattern entity){
@@ -115,7 +115,7 @@ public class PatternMapperServiceImpl implements PatternMapperService {
             }
         }
 
-        return result;
+        return Collections.unmodifiableMap(result);
     }
 
     private List<FormDTO> convertToDTOFormList(List<Form> entity){
@@ -128,7 +128,7 @@ public class PatternMapperServiceImpl implements PatternMapperService {
 
         result.sort(new FormComparator());
 
-        return result;
+        return Collections.unmodifiableList(result);
     }
 
     private List<ConditionListDTO> convertToDTOConditionList(List<ConditionList> entity){
@@ -139,15 +139,16 @@ public class PatternMapperServiceImpl implements PatternMapperService {
             dto.add(convertToDTO(conditionList));
         }
 
-        return dto;
+        return Collections.unmodifiableList(dto);
     }
 
     private String extractConditionString(List<Condition> conditions){
 
         String result = "";
 
-        for (Condition condition : conditions) {
-            result.concat( " + " + condition.getValue());
+        for (int i = conditions.size() - 1; i >= 0; i--) {
+            result = result.length() == 0 ?
+                    conditions.get(i).getValue() : result + " + " + conditions.get(i).getValue();
         }
 
         return result;
@@ -169,6 +170,6 @@ public class PatternMapperServiceImpl implements PatternMapperService {
             }
         }
 
-        return result;
+        return Collections.unmodifiableMap(result);
     }
 }

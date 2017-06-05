@@ -1,5 +1,6 @@
 package cz.fi.muni.PB138.dto;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +25,7 @@ public class ConditionListDTO {
     }
 
     public Map<Integer, List<BaseChangeDTO>> getBasechanges() {
-        return basechanges;
+        return Collections.unmodifiableMap(basechanges);
     }
 
     public void setBasechanges(Map<Integer, List<BaseChangeDTO>> basechanges) {
