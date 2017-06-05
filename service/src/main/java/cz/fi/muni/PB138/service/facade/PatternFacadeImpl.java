@@ -7,6 +7,8 @@ import cz.fi.muni.PB138.service.mappers.PatternMapperService;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import javax.xml.bind.JAXBException;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -32,6 +34,7 @@ public class PatternFacadeImpl implements PatternFacade {
 
     @Override
     public List<PatternDTO> findAllPatterns() {
-        return patternMapperService.convertToDTO(patternService.findAllPatterns());
+        return Collections.unmodifiableList(
+                patternMapperService.convertToDTO(patternService.findAllPatterns()));
     }
 }

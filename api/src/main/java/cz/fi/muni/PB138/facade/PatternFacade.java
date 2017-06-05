@@ -2,6 +2,7 @@ package cz.fi.muni.PB138.facade;
 
 import cz.fi.muni.PB138.dto.PatternDTO;
 
+import javax.xml.bind.JAXBException;
 import java.util.List;
 
 /**
