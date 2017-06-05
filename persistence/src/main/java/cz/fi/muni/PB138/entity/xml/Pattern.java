@@ -66,7 +66,7 @@ public class Pattern {
     }
 
     public List<ConditionList> getConditionLists() {
-        return conditionLists;
+        return Collections.unmodifiableList(conditionLists);
     }
 
     public void setConditionLists(List<ConditionList> conditionLists) {

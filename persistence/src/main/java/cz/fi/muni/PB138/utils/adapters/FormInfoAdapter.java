@@ -14,15 +14,22 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
  * @author Erik Macej 433744
  */
 public class FormInfoAdapter extends XmlAdapter<String, FormInfo> {
+
     @Override
     public FormInfo unmarshal(String s) throws Exception {
         FormInfo formInfo = new FormInfo();
 
-        formInfo.setCode(s);
-        formInfo.setWordClass(wordClassResolver(s.substring(0, 2)));
-        formInfo.setGrammaticalGender(grammaticalGenderResolver(s.substring(2,4)));
-        formInfo.setNumber(numberResolver(s.substring(4, 6)));
-        formInfo.setGrammaticalCase(grammaticalCaseResolver(s.substring(7,8)));
+        String code = s;
+
+        if(code.charAt(0) == '+' || code.charAt(0) == '-'){
+            code = code.substring(1);
+        }
+
+        formInfo.setCode(code);
+        formInfo.setWordClass(wordClassResolver(code.substring(0, 2)));
+        formInfo.setGrammaticalGender(grammaticalGenderResolver(code.substring(2,4)));
+        formInfo.setNumber(numberResolver(code.substring(4, 6)));
+        formInfo.setGrammaticalCase(grammaticalCaseResolver(code.substring(7,8)));
 
         return formInfo;
     }
