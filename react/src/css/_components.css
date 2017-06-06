@@ -1,5 +1,10 @@
 @import 'react-dd-menu/dist/react-dd-menu.css';
 
+.link[type="button"] {
+    appearance: none;
+    cursor: pointer;
+}
+
 .Container {
     max-width: 64rem;
     margin-right: auto;
@@ -95,20 +100,26 @@
 
 
 /**
- * Highlight words
+ * Word
  */
-.Highlight {
-    background: #FBF1A9;
+.Word {
+    appearance: none;
+    padding: 0;
+    border: none;
+    background: none;
     cursor: pointer;
     transition: all 150ms;
 }
-.Highlight:hover,
-.Highlight.is-selected {
+.Word--highlighted {
+    background: #FBF1A9;
+}
+.Word:hover,
+.Word.is-selected {
     background: #FF725C;
 }
-.Highlight:focus {
-    /*outline: 1px dotted;*/
-    outline: none;
+.Word:focus {
+    outline: 1px dotted;
+    /*outline: none;*/
 }
 
 .Tooltip {

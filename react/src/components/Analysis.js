@@ -42,7 +42,7 @@ class Analysis extends Component {
     return (
       <main className="Analysis">
         <div className="Container pv5">
-
+          <h1 className="mt0 tc">Analýza</h1>
           <form className="cf mb3" onSubmit={this.handleSubmit}>
             <div className="cf mb2">
               <div className="fl w-50 pr3">
@@ -59,7 +59,9 @@ class Analysis extends Component {
               </div>
             </div>
 
-            <button className="Button Button--primary fr" type="submit"><MdRefresh className="Button-icon" /> Analyze</button>
+            <button className="Button Button--primary fr" type="submit">
+              <MdRefresh className="Button-icon" /> Analyze
+            </button>
           </form>
 
           <div className="mw6 center cf">

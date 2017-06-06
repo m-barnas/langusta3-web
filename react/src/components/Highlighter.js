@@ -6,6 +6,7 @@ import { findAll } from 'highlight-words-core';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Word from './Word';
+import Words from './Words'
 
 /**
  * Highlights all occurrences of search terms (searchText) within a string (textToHighlight).
@@ -20,22 +21,9 @@ class Highlighter extends Component {
       activeIndex: this.props.activeIndex,
       autoEscape: this.props.autoEscape,
       className: this.props.className,
-      highlightClassName: this.props.highlightClassName,
-      highlightTag: this.props.highlightTag,
       highlightStyle: this.props.highlightStyle,
       sanitize: this.props.sanitize,
     }
-
-    this.words = new Map();
-
-    this.handleWordClick = this.handleWordClick.bind(this);
-  }
-  handleWordClick() {
-    Array.from(this.words.values())
-      .filter(word => word != null)
-      .forEach(word => {
-        word.deselect();
-      });
   }
   render() {
 
@@ -54,29 +42,25 @@ class Highlighter extends Component {
       searchWords,
       textToHighlight
     })
-    const HighlightTag = this.state.highlightTag
-    let highlightCount = -1
-    let highlightClassNames = ''
+
+    const wordRefs = new Map();
 
     return (
-      <span className={this.state.className}>
+      <Words className={this.state.className} wordRefs={wordRefs} ref={(words) => {this.words = words}}>
         {chunks.map((chunk, index) => {
           const text = textToHighlight.substr(chunk.start, chunk.end - chunk.start)
 
           if (chunk.highlight) {
-            highlightCount++;
-            highlightClassNames = `${this.state.highlightClassName} ${highlightCount === +this.stateactiveIndex ? this.state.activeClassName : ''}`;
-            let word = (<Word 
-              className="Highlight js-highlight"
+          
+            return (
+              <Word 
+              className="Word Word--highlighted js-word"
               key={ index }
               style={ this.state.highlightStyle }
-              onClick={ this.handleWordClick }
-              ref={ (word) => {this.words.set(index, word)} }>
+              onClick={ () => this.words.handleWordClick() }
+              ref={ (word) => wordRefs.set(index, word) }>
                 {text}
-              </Word>);
-            
-            return (
-              word
+              </Word>
             )
           } else {
             return (
@@ -84,7 +68,7 @@ class Highlighter extends Component {
             )
           }
         })}
-      </span>
+      </Words>
     )
   }
 }
@@ -94,8 +78,6 @@ Highlighter.propTypes = {
   activeIndex: PropTypes.string,
   autoEscape: PropTypes.bool,
   className: PropTypes.string,
-  highlightClassName: PropTypes.string,
-//   highlightTag: PropTypes.string,
   highlightStyle: PropTypes.object,
   searchWords: PropTypes.arrayOf(PropTypes.string).isRequired,
   textToHighlight: PropTypes.string.isRequired,
@@ -107,9 +89,7 @@ Highlighter.defaultProps = {
   activeIndex: '-1',
   autoEscape: false,
   className: '',
-  highlightClassName: '',
   highlightStyle: {},
-//   highlightTag: 'mark',
 };
 
 export default Highlighter;

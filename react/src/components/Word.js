@@ -15,7 +15,7 @@ export default class Word extends Component {
   handleClick(event) {
     this.props.onClick();
     this.setState({
-        isSelected: !this.state.isSelected
+        isSelected: true
     });
   }
   deselect() {
@@ -26,11 +26,11 @@ export default class Word extends Component {
   render() {
       let className = this.props.className + (this.state.isSelected ? " is-selected" : " ");
     return (
-      <span 
+      <button
         className={className}
-        tabIndex='0'
+        type="button"
         onClick={this.handleClick}>{ this.props.children }
-      </span>
+      </button>
     )
   }
 }

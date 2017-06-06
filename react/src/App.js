@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import AnalysisContainer from './containers/AnalysisContainer';
+import RegexContainer from './containers/RegexContainer';
 
 import './../tachyons/css/tachyons.css';
 import './css/App.css';
@@ -17,7 +18,8 @@ class App extends Component {
           <Header />
 
           <div className="Main">
-            <Route exact path="/" component={AnalysisContainer}/>
+            <Route exact={true} path="/" component={AnalysisContainer}/>
+            <Route path="/regex" component={RegexContainer}/>
           </div>
 
           <Footer />

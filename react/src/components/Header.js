@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import DropdownMenu from 'react-dd-menu';
-import Analysis from './Analysis';
 import {Link} from 'react-router-dom';
 import {MdExpandMore, MdExpandLess} from 'react-icons/lib/md';
 
@@ -15,7 +14,8 @@ class Header extends Component {
     this.close = this.close.bind(this);
   }
 
-  toggle() {
+  toggle(event) {
+    event.preventDefault();
     this.setState({ isMenuOpen: !this.state.isMenuOpen });
   };
 
@@ -50,7 +50,7 @@ class Header extends Component {
                 <li className="dib mr3">
                   <DropdownMenu {...menuOptions}>
                     <li><Link to="/">Podle vzoru</Link></li>
-                    <li><Link to="/">Regex</Link></li>
+                    <li><Link to="/regex">Regex</Link></li>
                     <li><Link to="/">Počet slov podle vzoru</Link></li>
                   </DropdownMenu>
                 </li>
