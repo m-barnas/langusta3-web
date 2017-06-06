@@ -34,14 +34,15 @@
     display: block;
     padding: .5em .75em;
     width: 100%;
-    border: 1px solid #ccc;
+    border: 1px solid var(--moon-gray);
     border-radius: 3px;
 
     line-height: 1.5;
     resize: none;
     transition: all 150ms;
 }
-.FormControl:focus {
+.FormControl:focus,
+.FormControl.is-focused {
     outline: none;
     border-color: var(--black);
     /*outline: 1px dotted currentColor;*/
@@ -122,8 +123,76 @@
     /*outline: none;*/
 }
 
+/**
+ * Tooltip
+ */
 .Tooltip {
     opacity: 1;
+}
+
+/**
+ * TagPicker
+ */
+.TagPicker {
+    padding-bottom: 0;
+}
+.TagPicker-input {
+    margin-bottom: .5em;
+}
+.TagPicker-input input {
+    padding: .25em .5em;
+    border: none;
+    line-height: 1.5;
+    outline: none;
+}
+
+/**
+ * Tag
+ */
+.Tag {
+    display: inline-block;
+    padding: .25em .5em;
+    margin-right: .5em;
+    margin-bottom: .5em;
+    background: var(--light-gray);
+    border-radius: 3px;
+    color: var(--black);
+
+    transition: all 150ms;
+}
+.Tag:hover {
+    background: var(--moon-gray);
+}
+.Tag-remove {
+    position: relative;
+    top: -.1em;
+    margin-left: .25em;
+    cursor: pointer;
+}
+
+/**
+ * React autosuggest
+ */
+.react-autosuggest__container {
+    display: inline;
+}
+.react-autosuggest__suggestions-container {
+    margin: 0 -.75em;
+}
+.react-autosuggest__suggestions-list {
+    border-top: 1px solid var(--moon-gray);
+    padding: .5em 0;
+    margin: 0;
+    list-style: none;
+}
+
+.react-autosuggest__suggestion {
+    padding: 0 .75em;
+    cursor: pointer;
+    transition: all 150ms;
+}
+.react-autosuggest__suggestion--highlighted {
+    background: var(--light-gray);
 }
 
 /**

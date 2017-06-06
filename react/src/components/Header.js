@@ -46,15 +46,15 @@ class Header extends Component {
             </div>
             <div className="dtc-ns v-mid tc tr-ns">
               <ul className="Nav-menu list mv0 pa0 pv2">
-                <li className="dib mr3"><Link to="/" className="pv2 db link black underline-hover">Analýza</Link></li>
-                <li className="dib mr3">
+                <li className="dib mr3 mr4-l"><Link to="/" className="pv2 db link black underline-hover">Analýza</Link></li>
+                <li className="dib mr3 mr4-l">
                   <DropdownMenu {...menuOptions}>
-                    <li><Link to="/">Podle vzoru</Link></li>
+                    <li><Link to="/pattern-search">Podle vzoru</Link></li>
                     <li><Link to="/regex">Regex</Link></li>
                     <li><Link to="/">Počet slov podle vzoru</Link></li>
                   </DropdownMenu>
                 </li>
-                <li className="dib mr3"><Link to="/" className="pv2 db link black underline-hover">O projektu</Link></li>
+                <li className="dib mr3 mr4-l"><Link to="/" className="pv2 db link black underline-hover">O projektu</Link></li>
                 <li className="dib"><Link to="/" className="pv2 db link black underline-hover">Kontakt</Link></li>
               </ul>
             </div>
