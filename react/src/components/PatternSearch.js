@@ -16,6 +16,8 @@ export default class PatternSearch extends Component {
     }
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.focus = this.focus.bind(this);
     this.autosizingRenderInput = this.autosizingRenderInput.bind(this);
     this.renderTag = this.renderTag.bind(this);
     this.autosuggestRenderInput = this.autosuggestRenderInput.bind(this);
@@ -36,10 +38,15 @@ export default class PatternSearch extends Component {
   handleChange(tags) {
     this.setState({tags})
   }
+  handleClick(event) {
+  }
+  focus(event) {
+    this.input.refs.input.input.focus();
+  }
   autosizingRenderInput ({addTag, ...props}) {
     let {onChange, value, ...other} = props
     return (
-      <AutosizeInput type='text' onChange={onChange} value={value} {...other} />
+      <AutosizeInput ref={props.ref} type='text' onChange={onChange} value={value} {...other} />
     )
   }
   renderTag (props) {
@@ -103,13 +110,15 @@ export default class PatternSearch extends Component {
               focusedClassName="is-focused"
               inputProps={{
                 className: "TagPicker-input",
-                placeholder: "Add a pattern "
+                placeholder: "Add a pattern ",
+                onFocus: this.focus
               }}
               tagProps={{
                 className: 'Tag', 
                 classNameRemove: 'Tag-remove'
               }}
               onlyUnique={true}
+              ref={(input) => {this.input = input}}
             />
             </div>
         </div>

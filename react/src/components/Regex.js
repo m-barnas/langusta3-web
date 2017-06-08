@@ -6,9 +6,9 @@ import Words from './Words';
 import {MdRefresh} from 'react-icons/lib/md';
 
 export default class Regex extends Component {
-  constructor() {
-    super();
-  }
+  // constructor() {
+  //   super();
+  // }
   render() {
     let wordsData = 'Příliš žluťoučký kůň úpěl ďábelské ódy'.split(' ');
 
