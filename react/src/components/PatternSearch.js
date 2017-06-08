@@ -70,13 +70,28 @@ export default class PatternSearch extends Component {
         props.onChange(e)
       }
     }
+
+    const filterSelected = (item) => {
+      // react doesn't add empty array to state when mounting component
+      // check if state contains tags and if they're not empty
+      if (typeof this.state.tags !== 'undefined' && this.state.tags.length) {
+        for (let tag of this.state.tags) {
+          if (item === tag) {
+            return false
+          }
+        }
+      }
+      
+      return true;
+    }
   
     const inputValue = (props.value && props.value.trim().toLowerCase()) || ''
     const inputLength = inputValue.length
   
     let suggestions = this.state.patterns.filter((item) => {
-      return item.toLowerCase().slice(0, inputLength) === inputValue
-    });
+      return (item.toLowerCase().slice(0, inputLength) === inputValue &&
+        filterSelected(item))
+    })
   
     return (
       <Autosuggest
