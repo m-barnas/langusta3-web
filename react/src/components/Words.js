@@ -7,18 +7,25 @@ export default class Words extends Component {
   constructor(props) {
     super(props);
 
-    this.wordRefs = this.props.wordRefs;
+    this.state = {
+      selectedWord: null
+    }
+
     this.handleWordClick = this.handleWordClick.bind(this);
   }
   /**
-   * Deselects all words so that only one can be selected at once.
+   * Deselects all words so that only one can be selected at once§.
    */
-  handleWordClick() {
-    Array.from(this.wordRefs.values())
-      .filter(word => word != null)
-      .forEach(word => {
-        word.deselect();
-      });
+  handleWordClick(selectedWord) {
+    let currentlySelectedWord = this.state.selectedWord;
+
+    if (currentlySelectedWord !== null) {
+      currentlySelectedWord.deselect();
+    }
+
+    this.setState({
+      selectedWord: selectedWord
+    });
   }
   render() {
     return (

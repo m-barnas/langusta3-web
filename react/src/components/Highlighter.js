@@ -43,10 +43,8 @@ class Highlighter extends Component {
       textToHighlight
     })
 
-    const wordRefs = new Map();
-
     return (
-      <Words className={this.state.className} wordRefs={wordRefs} ref={(words) => {this.words = words}}>
+      <Words className={this.state.className} ref={(words) => {this.words = words}}>
         {chunks.map((chunk, index) => {
           const text = textToHighlight.substr(chunk.start, chunk.end - chunk.start)
 
@@ -57,8 +55,7 @@ class Highlighter extends Component {
               className="Word Word--highlighted js-word"
               key={ index }
               style={ this.state.highlightStyle }
-              onClick={ () => this.words.handleWordClick() }
-              ref={ (word) => wordRefs.set(index, word) }>
+              onClick={ (selectedWord) => this.words.handleWordClick(selectedWord) }>
                 {text}
               </Word>
             )

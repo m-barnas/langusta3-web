@@ -4,6 +4,7 @@ import WordAnalysis from './WordAnalysis';
 import WordForms from './WordForms';
 import Highlighter from './Highlighter';
 import {MdRefresh, MdMailOutline} from 'react-icons/lib/md';
+import { fetchAllPatterns } from './../util/api';
 
 class Analysis extends Component {
   constructor(props) {
@@ -25,8 +26,13 @@ class Analysis extends Component {
     });
   }
   handleSubmit(event) {
-    this.parse();
+    // this.parse();
     event.preventDefault();
+    let data = fetchAllPatterns();
+
+    data.then((data) => {
+      console.log(data);
+    })
   }
 
   parse() {

@@ -11,7 +11,6 @@ export default class Regex extends Component {
   }
   render() {
     let wordsData = 'Příliš žluťoučký kůň úpěl ďábelské ódy'.split(' ');
-    let wordRefs = new Map();
 
     return (
       <main className="Regex">
@@ -28,13 +27,12 @@ export default class Regex extends Component {
             </form>
             <div className="mt3">
               <div className="AnalysisResult FormControl overflow-y-auto bg-near-white">
-                <Words wordRefs={wordRefs} ref={(words) => {this.words = words}}>
+                <Words ref={(words) => {this.words = words}}>
                   {wordsData.map((word, index) => (
                     <Word 
                     className="Word js-word mr2"
                     key={ index }
-                    onClick={ () => this.words.handleWordClick() }
-                    ref={ (word) => {wordRefs.set(index, word)} }>
+                    onClick={ (selectedWord) => this.words.handleWordClick(selectedWord) }>
                       {word}
                     </Word>
                   ))}

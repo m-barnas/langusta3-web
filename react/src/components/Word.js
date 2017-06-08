@@ -13,7 +13,7 @@ export default class Word extends Component {
     this.deselect = this.deselect.bind(this);
   }
   handleClick(event) {
-    this.props.onClick();
+    this.props.onClick(this);
     this.setState({
         isSelected: true
     });

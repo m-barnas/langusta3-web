@@ -2,6 +2,7 @@
   "name": "langusta3-web",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8080/",
   "dependencies": {
     "eslint": "^3.19.0",
     "highlight-words-core": "^1.0.3",

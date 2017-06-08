@@ -180,10 +180,12 @@
     margin: 0 -.75em;
 }
 .react-autosuggest__suggestions-list {
+    max-height: 7.5em;
     border-top: 1px solid var(--moon-gray);
     padding: .5em 0;
     margin: 0;
     list-style: none;
+    overflow-y: auto;
 }
 
 .react-autosuggest__suggestion {
