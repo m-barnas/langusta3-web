@@ -10,4 +10,6 @@ public class Uri {
     public static final String ROOT_URI = "/langusta3";
 
     public static final String ROOT_URI_PATTERN = ROOT_URI + "/pattern";
+
+    public static final String ROOT_URI_WORD = ROOT_URI + "/word";
 }

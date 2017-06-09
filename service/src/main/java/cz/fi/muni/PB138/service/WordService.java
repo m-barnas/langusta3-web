@@ -1,4 +1,4 @@
-package cz.fi.muni.PB138.dao;
+package cz.fi.muni.PB138.service;
 
 import cz.fi.muni.PB138.entity.Word;
 import cz.fi.muni.PB138.enums.GrammaticalCase;
@@ -8,12 +8,11 @@ import cz.fi.muni.PB138.enums.WordClass;
 import java.util.List;
 
 /**
- * Created by Martin on 26.5.2017.
+ * Created by Martin on 7.6.2017.
  *
  * @author Martin Barnas 433523
  */
-public interface WordDao {
-
+public interface WordService {
 
     /**
      * Creates entity word
@@ -27,7 +26,7 @@ public interface WordDao {
      *
      * @param id to be searched
      * @return word or null for non-existing id
-    */
+     */
     Word findById(Long id);
 
     /**
@@ -38,7 +37,7 @@ public interface WordDao {
     List<Word> findAll();
 
     /**
-     * 1/4/ Finds infinitives represented by given pattern
+     * 1/ Finds infinitives represented by given pattern
      *
      * @param pattern to be searched
      * @return list of words with given pattern or empty list if none exists
@@ -77,6 +76,9 @@ public interface WordDao {
      * @return list of forms or empty list if none exists
      */
     List<Word> findAllForms(String infinitive, String pattern);
+
+
+
 
     /**
      * Finds words by given word class

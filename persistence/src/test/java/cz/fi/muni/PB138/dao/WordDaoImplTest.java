@@ -73,18 +73,18 @@ public class WordDaoImplTest extends AbstractTestNGSpringContextTests {
                 word.getGrammaticalGender(), word.getNumber(), word.getGrammaticalCase());
     }
 
-    @Test
-    public void createWordTest(){
-
-        Word wordForCreate = createWord("TEST_WORD", "TEST_PATTERN",
-                "TEST_WORD", WordClass.Noun, GrammaticalGender.MasculineAnimate,
-                Number.Singular, GrammaticalCase.Nominative);
-
-        wordDao.create(wordForCreate);
-        Word foundWord = wordDao.findById(wordForCreate.getId());
-
-        assertThat(foundWord.getDeclinedValue()).isEqualTo(wordForCreate.getDeclinedValue());
-    }
+//    @Test
+//    public void createWordTest(){
+//
+//        Word wordForCreate = createWord("TEST_WORD", "TEST_PATTERN",
+//                "TEST_WORD", WordClass.Noun, GrammaticalGender.MasculineAnimate,
+//                Number.Singular, GrammaticalCase.Nominative);
+//
+//        wordDao.create(wordForCreate);
+//        Word foundWord = wordDao.findById(wordForCreate.getId());
+//
+//        assertThat(foundWord.getDeclinedValue()).isEqualTo(wordForCreate.getDeclinedValue());
+//    }
 
 
 //    @Test
