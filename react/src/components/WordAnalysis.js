@@ -7,41 +7,72 @@ class WordAnalysis extends Component {
   // }
 
   render() {
-    let patterns = ['dub', 'stroj', 'chlap'];
-    patterns = [...patterns, ...patterns];
+    let patterns = ['atašé', 'admirál', 'lord', 'lady', 'tetanus', 'chlápek', 'cyklus'];
+    patterns = [...patterns];
 
     return (
-      <table className="w-100 collapse tl">
-        <tbody>
-          <tr className="">
-            <th className="w-40 v-top pv1 normal">Pád:</th>
-            <td className="w-60 v-top pv1 b">nominatív</td>
-          </tr>
-          <tr className="">
-            <th className="w-40 v-top pv1 normal">Rod:</th>
-            <td className="w-60 v-top pv1 b">mužský</td>
-          </tr>
-          <tr className="">
-            <th className="w-40 v-top pv1 normal">Číslo:</th>
-            <td className="w-60 v-top pv1 b">singulár</td>
-          </tr>
-          <tr className="">
-            <th className="w-40 v-top pv1 normal">Infinitiv:</th>
-            <td className="w-60 v-top pv1 b">huh</td>
-          </tr>
-          <tr className="">
-            <th className="w-40 v-top pv1 normal">Vzory:</th>
-            <td className="w-60 v-top pv1 b">
+      <div>
+        <table className="w-100 collapse tl">
+          <tbody>
+            <tr className="">
+              <th className=" v-top pv1 normal">Pád:</th>
+              <td className="w-100 pl3 v-top pv1 b">nominatív</td>
+            </tr>
+            <tr className="">
+              <th className=" v-top pv1 normal">Rod:</th>
+              <td className="w-100 pl3 v-top pv1 b">mužský</td>
+            </tr>
+            <tr className="">
+              <th className=" v-top pv1 normal">Číslo:</th>
+              <td className="w-100 pl3 v-top pv1 b">singulár</td>
+            </tr>
+            <tr className="">
+              <th className=" v-top pv1 normal">Infinitiv:</th>
+              <td className="w-100 pl3 v-top pv1 b">huh</td>
+            </tr>
+            <tr className="">
+              <th className=" v-top pv1 normal">Vzory:</th>
+              <td className="w-100 pl3 v-top pv1 b">
+                <ul className="list pl0 mv0 overflow-y-auto">
+                  {patterns.map((item, index) => (
+                    <li key={index}><a className="dib link underline-hover black" href="#" data-tip="Just the tip">{item}</a></li>
+                  ))}
+                </ul>
+                <ReactTooltip class="Tooltip" effect="solid"/>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        {/*<div className="cf">
+          <dl className="fl w-50 lh-title mt0 mb3">
+            <dt className="f6 fw4 ml0">Pád</dt>
+            <dd className="f3 fw7 ml0">nominatív</dd>
+          </dl>
+          <dl className="fl w-50 lh-title mt0 mb3">
+            <dt className="f6 fw4 ml0">Rod</dt>
+            <dd className="f3 fw7 ml0">mužský</dd>
+          </dl>
+          <dl className="fl w-50 lh-title mt0 mb3">
+            <dt className="f6 fw4 ml0">Číslo</dt>
+            <dd className="f3 fw7 ml0">singulár</dd>
+          </dl>
+          <dl className="fl w-50 lh-title mt0 mb3">
+            <dt className="f6 fw4 ml0">Infinitiv</dt>
+            <dd className="f3 fw7 ml0">huh</dd>
+          </dl>
+          <dl className="lh-title mt0 mb3">
+            <dt className="f6 fw4 ml0">Vzory</dt>
+            <dd className="f3 fw7 ml0">
               <ul className="list pl0 mv0 overflow-y-auto">
-                {patterns.map((item, index) => (
-                  <li key={index}><a className="dib link underline-hover black" href="#" data-tip="Just the tip">{item}</a></li>
-                ))}
-              </ul>
-              <ReactTooltip class="Tooltip" effect="solid"/>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+                  {patterns.map((item, index) => (
+                    <li key={index}><a className="dib link underline-hover black" href="#" data-tip="Just the tip">{item}</a></li>
+                  ))}
+                </ul>
+                <ReactTooltip class="Tooltip" effect="solid"/>
+            </dd>
+          </dl>
+        </div>*/}
+      </div>
     );
   }
 }

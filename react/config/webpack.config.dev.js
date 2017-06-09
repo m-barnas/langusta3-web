@@ -1,6 +1,5 @@
 'use strict';
 
-var autoprefixer = require('autoprefixer');
 var postcssImport = require('postcss-import');
 var cssnext = require('postcss-cssnext');
 var webpack = require('webpack');
@@ -136,6 +135,15 @@ module.exports = {
           cacheDirectory: true
         }
       },
+      // {
+      //  // use `test` to split a single file
+      //  // or `include` to split a whole folder
+      //  test: /.*/,
+      //  include: [
+      //    paths.appSrc +  '/containers/RegexContainer'
+      //   ],
+      //  loader: 'bundle?lazy&name=regex'
+      // },
       // "postcss" loader applies autoprefixer to our CSS.
       // "css" loader resolves paths in CSS and adds assets as dependencies.
       // "style" loader turns CSS into JS modules that inject <style> tags.

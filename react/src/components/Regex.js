@@ -16,7 +16,7 @@ export default class Regex extends Component {
       <main className="Regex">
         <div className="Container pv5">
           <h1 className="mt0 tc">RegEx</h1>
-          <div className="mw6 center cf mb4">
+          <div className="mw7 center cf mb4">
             <form className="flex">
               <div className="flex-auto">
                 <input className="RegexInput FormControl code" type="text" placeholder="/([A-Z])\w+/g"/>
@@ -40,7 +40,7 @@ export default class Regex extends Component {
               </div>
             </div>
           </div>
-          <div className="mw6 center cf">
+          <div className="mw7 center cf">
             <div className="fl w-50 pr3">
               <WordAnalysis />
             </div>

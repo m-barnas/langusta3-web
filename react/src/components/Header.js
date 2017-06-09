@@ -33,7 +33,7 @@ class Header extends Component {
     let menuOptions = {
       isOpen: this.state.isMenuOpen,
       close: this.close,
-      toggle: <a className="link black underline-hover" href="#" onClick={this.toggle}>Hledat{menuIcon}</a>,
+      toggle: <a className="pv2 db link black underline-hover" href="#" onClick={this.toggle}>Hledat{menuIcon}</a>,
       align: 'center',
       animate: false
     };
@@ -42,7 +42,7 @@ class Header extends Component {
         <div className="Container">
           <nav className="Nav dt-m dt-l w-100">
             <div className="dtc-ns v-mid tc tl-ns mt3">
-              <Link to="/" className="Nav-logo link black underline-hover b">Langusta3-web</Link>
+              <Link to="/" className="Nav-logo link black underline-hover b">Langusta3</Link>
             </div>
             <div className="dtc-ns v-mid tc tr-ns">
               <ul className="Nav-menu list mv0 pa0 pv2">
@@ -54,8 +54,8 @@ class Header extends Component {
                     <li><Link to="/">Počet slov podle vzoru</Link></li>
                   </DropdownMenu>
                 </li>
-                <li className="dib mr3 mr4-l"><Link to="/" className="pv2 db link black underline-hover">O projektu</Link></li>
-                <li className="dib"><Link to="/" className="pv2 db link black underline-hover">Kontakt</Link></li>
+                <li className="dib mr3 mr4-l"><Link to="/about" className="pv2 db link black underline-hover">O projektu</Link></li>
+                <li className="dib"><Link to="/contact" className="pv2 db link black underline-hover">Kontakt</Link></li>
               </ul>
             </div>
           </nav>

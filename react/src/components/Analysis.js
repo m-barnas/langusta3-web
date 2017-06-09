@@ -49,7 +49,7 @@ class Analysis extends Component {
       <main className="Analysis">
         <div className="Container pv5">
           <h1 className="mt0 tc">Analýza</h1>
-          <form className="cf mb3" onSubmit={this.handleSubmit}>
+          <form className="mw7 center cf mb3" onSubmit={this.handleSubmit}>
             <div className="cf mb2">
               <div className="fl w-50 pr3">
                 <textarea className="AnalysisInput FormControl" rows="3" onChange={this.handleChange} value={this.state.value} />

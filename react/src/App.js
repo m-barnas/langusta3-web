@@ -5,11 +5,20 @@ import Footer from './components/Footer';
 import AnalysisContainer from './containers/AnalysisContainer';
 import RegexContainer from './containers/RegexContainer';
 import PatternSearchContainer from './containers/PatternSearchContainer';
+import AboutContainer from './containers/AboutContainer';
+import ContactContainer from './containers/ContactContainer';
 
 import './../tachyons/css/tachyons.css';
 import './css/App.css';
 
+// const isReactComponent = (obj) => Boolean(obj && obj.prototype && Boolean(obj.prototype.isReactComponent));
 
+// const component = (component) => {
+//   return isReactComponent(component)
+//     ? {component}
+//     : {getComponent: (loc, cb)=> component(
+//          comp=> cb(null, comp.default || comp))}
+// };
 
 class App extends Component {
   render() {
@@ -22,6 +31,8 @@ class App extends Component {
             <Route exact={true} path="/" component={AnalysisContainer}/>
             <Route path="/regex" component={RegexContainer}/>
             <Route path="/pattern-search" component={PatternSearchContainer}/>
+            <Route path="/about" component={AboutContainer}/>
+            <Route path="/contact" component={ContactContainer}/>
           </div>
 
           <Footer />

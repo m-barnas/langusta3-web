@@ -37,6 +37,7 @@
     border: 1px solid var(--moon-gray);
     border-radius: 3px;
 
+    font-family: inherit; /* because firefox */
     line-height: 1.5;
     resize: none;
     transition: all 150ms;
@@ -84,6 +85,38 @@
     background: #49494a;
 }
 
+/**
+ * Dropdown menu
+ */
+ /*.dd-menu-items:before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+
+    display: block;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid var(--moon-gray);
+
+    margin-left: -4px;
+ }*/
+ .dd-menu .dd-menu-items ul, 
+ .dd-menu .dd-menu-items ol {
+     box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+     /*box-shadow: none;*/
+     border: 1px solid var(--moon-gray);
+ }
+ .dd-menu .dd-menu-items ul li:hover:not([role="separator"]):not(.separator), 
+ .dd-menu .dd-menu-items ul li > *:focus, 
+ .dd-menu .dd-menu-items ol li:hover:not([role="separator"]):not(.separator), 
+ .dd-menu .dd-menu-items ol li > *:focus {
+     background-color: var(--near-white);
+ }
+ .dd-menu .dd-menu-items ul li > *:focus, 
+ .dd-menu .dd-menu-items ol li > *:focus {
+     outline: 1px dotted;
+ }
 
 /**
  * Analysis
