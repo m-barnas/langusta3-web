@@ -4,6 +4,7 @@ import cz.fi.muni.PB138.dao.WordDao;
 import cz.fi.muni.PB138.entity.Word;
 import cz.fi.muni.PB138.enums.GrammaticalCase;
 import cz.fi.muni.PB138.enums.GrammaticalGender;
+import cz.fi.muni.PB138.enums.WordClass;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -36,13 +37,18 @@ public class WordServiceImpl implements WordService {
     }
 
     @Override
-    public List<Word> findByInfinitive(String infinitive) {
-        return wordDao.findByInfinitive(infinitive);
+    public List<String> findInfinitives(String pattern) {
+        return wordDao.findInfinitives(pattern);
     }
 
     @Override
-    public List<Word> findWordsByPattern(String pattern) {
-        return wordDao.findWordsByPattern(pattern);
+    public List<String> findByNumberOfPatterns(Long numberOfPatterns) {
+        return wordDao.findByNumberOfPatterns(numberOfPatterns);
+    }
+
+    @Override
+    public List<String> findPatterns(String infinitive) {
+        return wordDao.findPatterns(infinitive);
     }
 
     @Override
@@ -51,7 +57,15 @@ public class WordServiceImpl implements WordService {
     }
 
     @Override
-    public List<Word> findByWordClass(String wordClass) {
+    public List<Word> findAllForms(String infinitive, String pattern) {
+        return wordDao.findAllForms(infinitive, pattern);
+    }
+
+
+
+
+    @Override
+    public List<Word> findByWordClass(WordClass wordClass) {
         return wordDao.findByWordClass(wordClass);
     }
 
@@ -68,10 +82,5 @@ public class WordServiceImpl implements WordService {
     @Override
     public List<Word> findByGrammaticalCase(GrammaticalCase grammaticalCase) {
         return wordDao.findByGrammaticalCase(grammaticalCase);
-    }
-
-    @Override
-    public List<Word> findByNumberOfPattern(int numberOfPatterns) {
-        return wordDao.findByNumberOfPattern(numberOfPatterns);
     }
 }

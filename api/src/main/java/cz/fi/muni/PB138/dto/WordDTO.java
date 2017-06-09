@@ -1,6 +1,6 @@
 package cz.fi.muni.PB138.dto;
 
-import com.sun.istack.internal.NotNull;
+import javax.validation.constraints.NotNull;
 import cz.fi.muni.PB138.enums.GrammaticalCase;
 import cz.fi.muni.PB138.enums.GrammaticalGender;
 import cz.fi.muni.PB138.enums.Number;

@@ -117,12 +117,12 @@ public class Word {
 
         Word word = (Word) o;
 
-        return getId().equals(word.getId());
+        return getInfinitive() != null ? getInfinitive().equals(word.getInfinitive()) : word.getInfinitive() == null;
     }
 
     @Override
     public int hashCode() {
-        return id != null ? getId().hashCode() : 0;
+        return getInfinitive() != null ? getInfinitive().hashCode() : 0;
     }
 
     @Override

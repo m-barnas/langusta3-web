@@ -3,6 +3,7 @@ package cz.fi.muni.PB138.service;
 import cz.fi.muni.PB138.entity.Word;
 import cz.fi.muni.PB138.enums.GrammaticalCase;
 import cz.fi.muni.PB138.enums.GrammaticalGender;
+import cz.fi.muni.PB138.enums.WordClass;
 
 import java.util.List;
 
@@ -36,23 +37,23 @@ public interface WordService {
     List<Word> findAll();
 
     /**
-     * Finds words by given infinitive
-     *
-     * @param infinitive to be searched
-     * @return list of words with given infinitive or empty list if none exists
-     */
-    List<Word> findByInfinitive(String infinitive);
-
-    /**
-     * Finds words by given pattern
+     * 1/ Finds infinitives represented by given pattern
      *
      * @param pattern to be searched
      * @return list of words with given pattern or empty list if none exists
      */
-    List<Word> findWordsByPattern(String pattern);
+    List<String> findInfinitives(String pattern);
 
     /**
-     * Finds words by given declined value
+     * 2/ Finds infinitives by number of patterns
+     *
+     * @param  numberOfPatterns to be searched
+     * @return list of words with given number of patterns or empty list if none exists
+     */
+    List<String> findByNumberOfPatterns(Long numberOfPatterns);
+
+    /**
+     * 3/ Finds all occurrences of given declined value
      *
      * @param declinedValue to be searched
      * @return list of words with given declined value or empty list if none exists
@@ -60,12 +61,32 @@ public interface WordService {
     List<Word> findByDeclinedValue(String declinedValue);
 
     /**
+     * 5/ Finds patterns for given word
+     *
+     * @param declinedValue to be searched
+     * @return list of patterns or empty list if none exists
+     */
+    List<String> findPatterns(String declinedValue);
+
+    /**
+     * 6/ Finds all forms for given infinitive and pattern
+     *
+     * @param infinitive to be searched
+     * @param pattern to be searched
+     * @return list of forms or empty list if none exists
+     */
+    List<Word> findAllForms(String infinitive, String pattern);
+
+
+
+
+    /**
      * Finds words by given word class
      *
      * @param  wordClass to be searched
      * @return list of words with given word class or empty list if none exists
      */
-    List<Word> findByWordClass(String wordClass);
+    List<Word> findByWordClass(WordClass wordClass);
 
     /**
      * Finds words by given grammatical gender
@@ -90,12 +111,4 @@ public interface WordService {
      * @return list of words with given grammatical case or empty list if none exists
      */
     List<Word> findByGrammaticalCase(GrammaticalCase grammaticalCase);
-
-    /**
-     * Finds words by number of patterns
-     *
-     * @param  numberOfPatterns of a word
-     * @return list of words with given number of patterns or empty list if none exists
-     */
-    List<Word> findByNumberOfPattern(int numberOfPatterns);
 }

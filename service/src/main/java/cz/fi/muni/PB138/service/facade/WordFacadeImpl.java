@@ -1,11 +1,14 @@
 package cz.fi.muni.PB138.service.facade;
 
 import cz.fi.muni.PB138.dto.WordDTO;
+import cz.fi.muni.PB138.dto.WordFormDTO;
 import cz.fi.muni.PB138.entity.Word;
 import cz.fi.muni.PB138.enums.GrammaticalCase;
 import cz.fi.muni.PB138.enums.GrammaticalGender;
+import cz.fi.muni.PB138.enums.WordClass;
 import cz.fi.muni.PB138.facade.WordFacade;
 import cz.fi.muni.PB138.service.WordService;
+import cz.fi.muni.PB138.service.mappers.WordFormMapperService;
 import cz.fi.muni.PB138.service.mappers.WordMapperService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +31,9 @@ public class WordFacadeImpl implements WordFacade {
     @Inject
     private WordMapperService mapperService;
 
+    @Inject
+    private WordFormMapperService wordFormMapperService;
+
     @Override
     public void create(WordDTO word) {
         Word w = mapperService.asEntity(word);
@@ -47,13 +53,13 @@ public class WordFacadeImpl implements WordFacade {
     }
 
     @Override
-    public List<WordDTO> findByInfinitive(String infinitive) {
-        return mapperService.asDtos(wordService.findByInfinitive(infinitive));
+    public List<String> findInfinitives(String pattern) {
+        return wordService.findInfinitives(pattern);
     }
 
     @Override
-    public List<WordDTO> findWordsByPattern(String pattern) {
-        return mapperService.asDtos(wordService.findWordsByPattern(pattern));
+    public List<String> findByNumberOfPatterns(Long numberOfPatterns) {
+        return wordService.findByNumberOfPatterns(numberOfPatterns);
     }
 
     @Override
@@ -62,7 +68,18 @@ public class WordFacadeImpl implements WordFacade {
     }
 
     @Override
-    public List<WordDTO> findByWordClass(String wordClass) {
+    public List<String> findPatterns(String infinitive) {
+        return wordService.findPatterns(infinitive);
+    }
+
+    @Override
+    public WordFormDTO findAllForms(String infinitive, String pattern) {
+        return wordFormMapperService.convertToDTO(wordService.findAllForms(infinitive, pattern));
+    }
+
+
+    @Override
+    public List<WordDTO> findByWordClass(WordClass wordClass) {
         return mapperService.asDtos(wordService.findByWordClass(wordClass));
     }
 
@@ -79,10 +96,5 @@ public class WordFacadeImpl implements WordFacade {
     @Override
     public List<WordDTO> findByGrammaticalCase(GrammaticalCase grammaticalCase) {
         return mapperService.asDtos(wordService.findByGrammaticalCase(grammaticalCase));
-    }
-
-    @Override
-    public List<WordDTO> findByNumberOfPattern(int numberOfPatterns) {
-        return mapperService.asDtos(wordService.findByNumberOfPattern(numberOfPatterns));
     }
 }
