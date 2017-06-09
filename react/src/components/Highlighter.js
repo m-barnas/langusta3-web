@@ -44,7 +44,11 @@ class Highlighter extends Component {
     })
 
     return (
-      <Words className={this.state.className} ref={(words) => {this.words = words}}>
+      <Words 
+        className={this.state.className} 
+        onWordSelect={this.props.onWordSelect}
+        ref={(words) => {this.words = words}}
+      >
         {chunks.map((chunk, index) => {
           const text = textToHighlight.substr(chunk.start, chunk.end - chunk.start)
 

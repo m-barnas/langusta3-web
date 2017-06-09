@@ -6,7 +6,7 @@ export const fetchPatterns = (word) => {
   console.log('Fetching patterns for word');
   console.time('fetchPatterns');
 
-  return fetch(`http://localhost:8080/PB138/langusta3/word/find-patterns?declined-value=${word}`).then((res) => {
+  return fetch(`PB138/langusta3/word/find-patterns?declined-value=${word}`).then((res) => {
     if (res.ok) {
       console.timeEnd('fetchPatterns');
       return res.json();
@@ -44,7 +44,7 @@ export const fetchWordInfinitives = (pattern) => {
   console.log('Fetching word infinitives');
   console.time('fetchWordInfinitives');
 
-  return fetch(`langusta3/word/find-infinitives?pattern=${pattern}`).then((res) => {
+  return fetch(`PB138/langusta3/word/find-infinitives?pattern=${pattern}`).then((res) => {
     if (res.ok) {
       console.timeEnd('fetchWordInfinitives');
       return res.json();
@@ -63,7 +63,7 @@ export const fetchWordOccurrences = (word) => {
   console.log('Fetching all word occurrences');
   console.time('fetchWordOccurrences');
 
-  return fetch(`langusta3/word/find-by-declined-value?declined-value=${word}`).then((res) => {
+  return fetch(`PB138/langusta3/word/find-by-declined-value?declined-value=${word}`).then((res) => {
     if (res.ok) {
       console.timeEnd('fetchWordOccurrences');
       return res.json();
@@ -82,7 +82,7 @@ export const fetchWordForms = (word, pattern) => {
   console.log('Fetching all forms for word and pattern');
   console.time('fetchWordForms');
 
-  return fetch(`http://localhost:8080/PB138/langusta3/word/find-all-forms?infinitive=${word}&pattern=${pattern}`).then((res) => {
+  return fetch(`PB138/langusta3/word/find-all-forms?infinitive=${word}&pattern=${pattern}`).then((res) => {
     if (res.ok) {
       console.timeEnd('fetchWordForms');
       return res.json();

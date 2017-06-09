@@ -12,11 +12,12 @@ class Analysis extends Component {
     this.state = {
       value: 'Příliš žluťoučký kůň úpěl ďábelské ódy',
       words: ['příliš', 'kůň', 'ódy'],
-      highlighter: null
+      selectedWord: null
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleWordSelect = this.handleWordSelect.bind(this);
     this.parse = this.parse.bind(this);
   }
 
@@ -32,6 +33,11 @@ class Analysis extends Component {
 
     data.then((data) => {
       console.log(data);
+    })
+  }
+  handleWordSelect(selectedWord) {
+    this.setState({
+      selectedWord: selectedWord
     })
   }
 
@@ -51,15 +57,16 @@ class Analysis extends Component {
           <h1 className="mt0 tc">Analýza</h1>
           <form className="mw7 center cf mb3" onSubmit={this.handleSubmit}>
             <div className="cf mb2">
-              <div className="fl w-50 pr3">
+              <div className="fl w-50 pr2">
                 <textarea className="AnalysisInput FormControl" rows="3" onChange={this.handleChange} value={this.state.value} />
               </div>
-              <div className="fl w-50 pl3">
+              <div className="fl w-50 pl2">
                 <div className="AnalysisResult FormControl overflow-y-auto bg-near-white">
                   <Highlighter
                     className="AnalysisResult-inner db"
                     searchWords={this.state.words}
                     textToHighlight={this.state.value}
+                    onWordSelect={this.handleWordSelect}
                   />
                 </div>
               </div>
@@ -70,12 +77,12 @@ class Analysis extends Component {
             </button>
           </form>
 
-          <div className="mw6 center cf">
-            <div className="fl w-50 pr3">
+          <div className="mw7 center cf">
+            <div className="fl w-30 pr3">
               <WordAnalysis />
             </div>
-            <div className="fl w-50 pl3">
-              <WordForms />
+            <div className="fl w-70 pl3">
+              <WordForms word="advokát" pattern="student" />
             </div>
           </div>
 

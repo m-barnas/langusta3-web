@@ -40,11 +40,11 @@ export default class Regex extends Component {
               </div>
             </div>
           </div>
-          <div className="mw6 center cf">
-            <div className="fl w-50 pr3">
+          <div className="mw7 center cf">
+            <div className="fl w-30 pr3">
               <WordAnalysis />
             </div>
-            <div className="fl w-50 pl3">
+            <div className="fl w-70 pl3">
               <WordForms />
             </div>
           </div>

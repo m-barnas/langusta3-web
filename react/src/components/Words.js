@@ -26,6 +26,8 @@ export default class Words extends Component {
     this.setState({
       selectedWord: selectedWord
     });
+
+    this.props.onWordSelect(selectedWord);
   }
   render() {
     return (
