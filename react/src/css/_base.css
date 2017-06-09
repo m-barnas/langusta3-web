@@ -13,3 +13,12 @@ html {
     -moz-osx-font-smoothing: grayscale;
     -moz-font-feature-settings: "liga" on;
 }
+
+.link[type="button"] {
+    appearance: none;
+    cursor: pointer;
+}
+
+button, html [type="button"], [type="reset"], [type="submit"] {
+    font-family: inherit;
+}

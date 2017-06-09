@@ -1,10 +1,5 @@
 @import 'react-dd-menu/dist/react-dd-menu.css';
 
-.link[type="button"] {
-    appearance: none;
-    cursor: pointer;
-}
-
 .Container {
     max-width: 64rem;
     margin-right: auto;
@@ -116,6 +111,10 @@
  .dd-menu .dd-menu-items ul li > *:focus, 
  .dd-menu .dd-menu-items ol li > *:focus {
      outline: 1px dotted;
+ }
+ .dd-menu .dd-menu-items ul li > *:not(.dd-item-ignore), 
+ .dd-menu .dd-menu-items ol li > *:not(.dd-item-ignore) {
+     font-family: inherit;
  }
 
 /**
