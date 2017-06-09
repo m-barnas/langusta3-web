@@ -10,9 +10,10 @@ A user is allowed to enter [word / sentence / regex / pattern] and use various f
 
 - How many words belong to a given pattern
 - How many words belong to [exactly one pattern / one or more pattterns / exact number of patterns]
-- All declined forms of a given word
+- All occurrences of a word
 - All words that belong to a given pattern
-- All patterns for a given word 
+- All patterns for a given word
+- All declined forms of a given word (for each pattern that represents the word)
 - And much more
 
 ### A Database
