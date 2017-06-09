@@ -1,49 +1,34 @@
-package cz.fi.muni.PB138.entity;
+package cz.fi.muni.PB138.dto;
 
+import javax.validation.constraints.NotNull;
 import cz.fi.muni.PB138.enums.GrammaticalCase;
 import cz.fi.muni.PB138.enums.GrammaticalGender;
 import cz.fi.muni.PB138.enums.Number;
 import cz.fi.muni.PB138.enums.WordClass;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-
 /**
- * Created by Martin on 26.5.2017.
+ * Created by Martin on 7.6.2017.
  *
  * @author Martin Barnas 433523
  */
-@Entity
-@Table(name = "word")
-public class Word {
+public class WordDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
-    @Column(nullable = false)
     private String infinitive;
 
     private String pattern;
 
     @NotNull
-    @Column(name = "declined_value", nullable = false)
     private String declinedValue;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "word_class")
     private WordClass wordClass;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "grammatical_gender")
     private GrammaticalGender grammaticalGender;
 
-    @Enumerated(EnumType.STRING)
     private Number number;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "grammatical_case")
     private GrammaticalCase grammaticalCase;
 
     public Long getId() {
@@ -113,21 +98,21 @@ public class Word {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Word)) return false;
+        if (!(o instanceof WordDTO)) return false;
 
-        Word word = (Word) o;
+        WordDTO wordDTO = (WordDTO) o;
 
-        return getInfinitive() != null ? getInfinitive().equals(word.getInfinitive()) : word.getInfinitive() == null;
+        return getId().equals(wordDTO.getId());
     }
 
     @Override
     public int hashCode() {
-        return getInfinitive() != null ? getInfinitive().hashCode() : 0;
+        return getId() != null ? getId().hashCode() : 0;
     }
 
     @Override
     public String toString() {
-        return "Word{" +
+        return "WordDTO{" +
                 "id=" + id +
                 ", infinitive='" + infinitive + '\'' +
                 ", pattern='" + pattern + '\'' +

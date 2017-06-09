@@ -1,6 +1,7 @@
-package cz.fi.muni.PB138.dao;
+package cz.fi.muni.PB138.facade;
 
-import cz.fi.muni.PB138.entity.Word;
+import cz.fi.muni.PB138.dto.WordDTO;
+import cz.fi.muni.PB138.dto.WordFormDTO;
 import cz.fi.muni.PB138.enums.GrammaticalCase;
 import cz.fi.muni.PB138.enums.GrammaticalGender;
 import cz.fi.muni.PB138.enums.WordClass;
@@ -8,37 +9,36 @@ import cz.fi.muni.PB138.enums.WordClass;
 import java.util.List;
 
 /**
- * Created by Martin on 26.5.2017.
+ * Created by Martin on 7.6.2017.
  *
  * @author Martin Barnas 433523
  */
-public interface WordDao {
-
+public interface WordFacade {
 
     /**
      * Creates entity word
      *
      * @param word to create
      */
-    void create(Word word);
+    void create(WordDTO word);
 
     /**
      * Finds word by id
      *
      * @param id to be searched
      * @return word or null for non-existing id
-    */
-    Word findById(Long id);
+     */
+    WordDTO findById(Long id);
 
     /**
      * Finds all words
      *
      * @return - list of all words or empty list if none exists
      */
-    List<Word> findAll();
+    List<WordDTO> findAll();
 
     /**
-     * 1/4/ Finds infinitives represented by given pattern
+     * 1/ Finds infinitives represented by given pattern
      *
      * @param pattern to be searched
      * @return list of words with given pattern or empty list if none exists
@@ -59,7 +59,7 @@ public interface WordDao {
      * @param declinedValue to be searched
      * @return list of words with given declined value or empty list if none exists
      */
-    List<Word> findByDeclinedValue(String declinedValue);
+    List<WordDTO> findByDeclinedValue(String declinedValue);
 
     /**
      * 5/ Finds patterns for given word
@@ -76,7 +76,8 @@ public interface WordDao {
      * @param pattern to be searched
      * @return list of forms or empty list if none exists
      */
-    List<Word> findAllForms(String infinitive, String pattern);
+    WordFormDTO findAllForms(String infinitive, String pattern);
+
 
     /**
      * Finds words by given word class
@@ -84,7 +85,7 @@ public interface WordDao {
      * @param  wordClass to be searched
      * @return list of words with given word class or empty list if none exists
      */
-    List<Word> findByWordClass(WordClass wordClass);
+    List<WordDTO> findByWordClass(WordClass wordClass);
 
     /**
      * Finds words by given grammatical gender
@@ -92,7 +93,7 @@ public interface WordDao {
      * @param  grammaticalGender to be searched
      * @return list of words with given grammatical gender or empty list if none exists
      */
-    List<Word> findByGrammaticalGender(GrammaticalGender grammaticalGender);
+    List<WordDTO> findByGrammaticalGender(GrammaticalGender grammaticalGender);
 
     /**
      * Finds words by given number
@@ -100,7 +101,7 @@ public interface WordDao {
      * @param  number to be searched
      * @return list of words with given number or empty list if none exists
      */
-    List<Word> findByNumber(Number number);
+    List<WordDTO> findByNumber(Number number);
 
     /**
      * Finds words by given grammatical case
@@ -108,5 +109,5 @@ public interface WordDao {
      * @param  grammaticalCase to be searched
      * @return list of words with given grammatical case or empty list if none exists
      */
-    List<Word> findByGrammaticalCase(GrammaticalCase grammaticalCase);
+    List<WordDTO> findByGrammaticalCase(GrammaticalCase grammaticalCase);
 }
