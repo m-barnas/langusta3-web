@@ -9,8 +9,8 @@ class WordAnalysis extends Component {
 
     this.state = {
       wordData: null,
-      selectedPatternData: null,
-      selectedGenderData: null
+      patternData: null,
+      genderData: null
     }
     
     // this.handlePatternClick = this.handlePatternClick.bind(this);
@@ -18,16 +18,15 @@ class WordAnalysis extends Component {
     this.handleGenderChange = this.handleGenderChange.bind(this);
   }
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
     if (nextProps.word !== null) {
       let wordData = nextProps.word.getData();
-      let selectedPatternData = nextProps.patternData;
-      let selectedGenderData = nextProps.genderData;
+      let patternData = nextProps.patternData;
+      let genderData = nextProps.genderData;
 
       this.setState({
         wordData: wordData,
-        selectedPatternData: selectedPatternData,
-        selectedGenderData: selectedGenderData
+        patternData: patternData,
+        genderData: genderData
       })
     }
   }
@@ -45,33 +44,32 @@ class WordAnalysis extends Component {
   //   this.props.onPatternSelect(selectedPattern);
   // }
   handlePatternChange(event) {
-    let selectedPatternData = this.state.wordData.patterns[event.target.value];
+    let patternData = this.state.wordData.patterns[event.target.value];
 
 
     this.setState({
-      selectedPatternData: selectedPatternData
+      patternData: patternData
     })
     
-    this.props.onPatternSelect(selectedPatternData);
+    this.props.onPatternSelect(patternData);
   }
   handleGenderChange(event) {
-    let selectedGenderData = this.state.selectedPatternData.genders[event.target.value];
+    let genderData = this.state.patternData.genders[event.target.value];
 
     this.setState({
-      selectedGenderData: selectedGenderData
+      genderData: genderData
     })
 
-    this.props.onGenderSelect(selectedGenderData);
+    this.props.onGenderSelect(genderData);
   }
 
   render() {
     const wordData = this.state.wordData;
-    const selectedPatternData = this.state.selectedPatternData;
+    const patternData = this.state.patternData;
 
     if (wordData !== null) {;
-      console.log(this.state);
       const patterns = wordData.patterns;
-      const genders = selectedPatternData.genders;
+      const genders = patternData.genders;
     
       return (
         <div className={"WordAnalysis" + (this.props.isLoading ? " is-loading" : "")}>
@@ -108,11 +106,11 @@ class WordAnalysis extends Component {
               </tr>
               <tr className="">
                 <th className=" v-top pv1 normal">Infinitiv:</th>
-                <td className="w-100 pl3 v-top pv1 b">{ selectedPatternData.infinitive }</td>
+                <td className="w-100 pl3 v-top pv1 b">{ patternData.infinitive }</td>
               </tr>
               <tr className="">
                 <th className="nowrap v-top pv1 normal">Slovný druh:</th>
-                <td className="w-100 pl3 v-top pv1 b">{ selectedPatternData.wordClass }</td>
+                <td className="w-100 pl3 v-top pv1 b">{ patternData.wordClass }</td>
               </tr>
               <tr className="">
                 <th className=" v-top pv1 normal">Rod:</th>

@@ -17,9 +17,9 @@ class Analysis extends Component {
       value: 'Bezpečné heslo je jedno z nejlepších',
       words: [],
       wordStrings: [],
-      selectedWord: null,
-      selectedPatternData: null,
-      selectedGenderData: null
+      word: null,
+      patternData: null,
+      genderData: null
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -63,28 +63,28 @@ class Analysis extends Component {
     // console.log(value);
   }
 
-  handleWordSelect(selectedWord) {
-    const wordData = selectedWord.getData();
+  handleWordSelect(word) {
+    const wordData = word.getData();
     const patternData = wordData.patterns[0];
     const genderData = patternData.genders[0];
 
     this.setState({
-      selectedWord: selectedWord,
-      selectedPatternData: patternData,
-      selectedGenderData: genderData
+      word: word,
+      patternData: patternData,
+      genderData: genderData
     })
   }
 
-  handlePatternSelect(selectedPatternData) {
+  handlePatternSelect(patternData) {
     this.setState({
-      selectedPatternData: selectedPatternData,
-      selectedGenderData: selectedPatternData.genders[0]
+      patternData: patternData,
+      genderData: patternData.genders[0]
     })
   }
   
-  handleGenderSelect(selectedGenderData) {
+  handleGenderSelect(genderData) {
     this.setState({
-      selectedGenderData: selectedGenderData
+      genderData: genderData
     })
   }
 
@@ -125,12 +125,12 @@ class Analysis extends Component {
 
           <div className="center cf">
             <div className="fl-l w-40-l pr3-l mb4 mb0-l">
-              <WordAnalysis word={ this.state.selectedWord } patternData={this.state.selectedPatternData} 
-              genderData={this.state.selectedGenderData} onPatternSelect={this.handlePatternSelect} 
+              <WordAnalysis word={ this.state.word } patternData={this.state.patternData} 
+              genderData={this.state.genderData} onPatternSelect={this.handlePatternSelect} 
               onGenderSelect={this.handleGenderSelect}  isLoading={this.state.isLoading}/>
             </div>
             <div className="fl-l w-60-l pl3-l">
-              <WordForms word={this.state.selectedWord} genderData={this.state.selectedGenderData}  isLoading={this.state.isLoading}/>
+              <WordForms word={this.state.word} genderData={this.state.genderData}  isLoading={this.state.isLoading}/>
             </div>
           </div>
 

@@ -19,13 +19,7 @@ class WordForms extends Component {
       })
     }
   }
-  getSingular(grammaticalCase) {
 
-  }
-  getPlural(grammaticalCase) {
-
-  }
-  
   render() {
     const genderData = this.state.genderData;
     const grammaticalCases = this.state.grammaticalCases;
