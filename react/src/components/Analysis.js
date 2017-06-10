@@ -6,12 +6,14 @@ import Highlighter from './Highlighter';
 import {MdRefresh, MdMailOutline} from 'react-icons/lib/md';
 import { fetchAnalyzedWords } from './../util/api';
 import { getGrammaticalCases } from './../util/enums';
+import { getWords } from './../util/data.js';
 
 class Analysis extends Component {
   constructor(props) {
     super(props);
     this.state = {
       // value: 'Příliš žluťoučký kůň úpěl ďábelské ódy',
+      isLoading: false,
       value: 'Bezpečné heslo je jedno z nejlepších',
       words: [],
       wordStrings: [],
@@ -36,249 +38,14 @@ class Analysis extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
+    this.setState({
+      isLoading: true
+    });
+
     let value = this.parseValue(this.state.value);
+    // let words = getWords();
 
-    let words = [
-      {
-        "inputValue": "heslo",
-        "infinitive": "heslo",
-        "patterns": [
-          {
-            "pattern": "sluchadlo",
-            "grammaticalGender": "Neuter",
-            "wordClass": "Noun",
-            "nominative": {
-              "singulars": [
-                "heslo"
-              ],
-              "plurals": [
-                "hesla"
-              ]
-            },
-            "genitive": {
-              "singulars": [
-                "hesla"
-              ],
-              "plurals": [
-                "hesel"
-              ]
-            },
-            "dative": {
-              "singulars": [
-                "heslu"
-              ],
-              "plurals": [
-                "heslům"
-              ]
-            },
-            "accusative": {
-              "singulars": [
-                "heslo"
-              ],
-              "plurals": [
-                "hesla"
-              ]
-            },
-            "vocative": {
-              "singulars": [
-                "heslo"
-              ],
-              "plurals": [
-                "hesla"
-              ]
-            },
-            "locative": {
-              "singulars": [
-                "hesle"
-              ],
-              "plurals": [
-                "heslech"
-              ]
-            },
-            "instrumental": {
-              "singulars": [
-                "heslem"
-              ],
-              "plurals": [
-                "hesly"
-              ]
-            }
-          },
-          {
-            "pattern": "vědro",
-            "grammaticalGender": "Neuter",
-            "wordClass": "Noun",
-            "nominative": {
-              "singulars": [
-                "heslo"
-              ],
-              "plurals": [
-                "hesla"
-              ]
-            },
-            "genitive": {
-              "singulars": [
-                "hesla"
-              ],
-              "plurals": [
-                "hesel"
-              ]
-            },
-            "dative": {
-              "singulars": [
-                "heslu"
-              ],
-              "plurals": [
-                "heslům"
-              ]
-            },
-            "accusative": {
-              "singulars": [
-                "heslo"
-              ],
-              "plurals": [
-                "hesla"
-              ]
-            },
-            "vocative": {
-              "singulars": [
-                "heslo"
-              ],
-              "plurals": [
-                "hesla"
-              ]
-            },
-            "locative": {
-              "singulars": [
-                "heslu"
-              ],
-              "plurals": [
-                "heslech"
-              ]
-            },
-            "instrumental": {
-              "singulars": [
-                "heslem"
-              ],
-              "plurals": [
-                "hesly"
-              ]
-            }
-          }
-        ]
-      },
-      {
-        "inputValue": "Bezpečné",
-        "infinitive": "bezpečný",
-        "patterns": [
-          {
-            "pattern": "mladý",
-            "grammaticalGender": "MasculineAnimate",
-            "wordClass": "Adjective",
-            "nominative": {
-              "singulars": [
-                "bezpečný",
-                "bezpečný",
-                "bezpečná",
-                "bezpečné"
-              ],
-              "plurals": [
-                "bezpeční",
-                "bezpečné",
-                "bezpečné",
-                "bezpečná"
-              ]
-            },
-            "genitive": {
-              "singulars": [
-                "bezpečného",
-                "bezpečného",
-                "bezpečné",
-                "bezpečného"
-              ],
-              "plurals": [
-                "bezpečných",
-                "bezpečných",
-                "bezpečných",
-                "bezpečných"
-              ]
-            },
-            "dative": {
-              "singulars": [
-                "bezpečnému",
-                "bezpečnému",
-                "bezpečné",
-                "bezpečnému"
-              ],
-              "plurals": [
-                "bezpečným",
-                "bezpečným",
-                "bezpečným",
-                "bezpečným"
-              ]
-            },
-            "accusative": {
-              "singulars": [
-                "bezpečného",
-                "bezpečný",
-                "bezpečnou",
-                "bezpečné"
-              ],
-              "plurals": [
-                "bezpečné",
-                "bezpečné",
-                "bezpečné",
-                "bezpečná"
-              ]
-            },
-            "vocative": {
-              "singulars": [
-                "bezpečný",
-                "bezpečný",
-                "bezpečná",
-                "bezpečné"
-              ],
-              "plurals": [
-                "bezpeční",
-                "bezpečné",
-                "bezpečné",
-                "bezpečná"
-              ]
-            },
-            "locative": {
-              "singulars": [
-                "bezpečném",
-                "bezpečném",
-                "bezpečné",
-                "bezpečném"
-              ],
-              "plurals": [
-                "bezpečných",
-                "bezpečných",
-                "bezpečných",
-                "bezpečných"
-              ]
-            },
-            "instrumental": {
-              "singulars": [
-                "bezpečným",
-                "bezpečným",
-                "bezpečnou",
-                "bezpečným"
-              ],
-              "plurals": [
-                "bezpečnými",
-                "bezpečnými",
-                "bezpečnými",
-                "bezpečnými"
-              ]
-            }
-          }
-        ]
-      }
-    ]
-
-    // fetchAnalyzedWords(value).then((words) => {
+    fetchAnalyzedWords(value).then((words) => {
       let wordStrings = [];
 
       for (let word of words) {
@@ -287,14 +54,13 @@ class Analysis extends Component {
       // console.log(words);
 
       this.setState({
+        isLoading: false,
         words: words,
         wordStrings: wordStrings
       });
-
-    // })
+    })
 
     // console.log(value);
-    
   }
 
   handleWordSelect(selectedWord) {
@@ -323,10 +89,12 @@ class Analysis extends Component {
           <form className="mw7 center cf mb3" onSubmit={this.handleSubmit}>
             <div className="cf mb2">
               <div className="fl w-50 pr2">
-                <textarea className="AnalysisInput FormControl" rows="3" onChange={this.handleChange} value={this.state.value} />
+                <textarea className={"AnalysisInput FormControl" + (this.state.isLoading ? " is-loading" : "")}
+                 rows="3" onChange={this.handleChange} value={this.state.value}
+                 disabled={this.state.isLoading} maxlength="255"/>
               </div>
               <div className="fl w-50 pl2">
-                <div className="AnalysisResult FormControl overflow-y-auto bg-near-white">
+                <div className={"AnalysisResult FormControl overflow-y-auto bg-near-white" + (this.state.isLoading ? " is-loading" : "")}>
                   <Highlighter
                     className="AnalysisResult-inner db"
                     searchWords={this.state.wordStrings}
@@ -338,17 +106,18 @@ class Analysis extends Component {
               </div>
             </div>
 
-            <button className="Button Button--primary fr" type="submit">
+            <button className={"Button Button--primary fr" + (this.state.isLoading ? " is-loading" : "") } 
+              type="submit" disabled={this.state.isLoading}>
               <MdRefresh className="Button-icon" /> Analyze
             </button>
           </form>
 
           <div className="mw7 center cf">
             <div className="fl w-30 pr3">
-              <WordAnalysis word={ this.state.selectedWord } onPatternSelect={this.handlePatternSelect} />
+              <WordAnalysis word={ this.state.selectedWord } onPatternSelect={this.handlePatternSelect} isLoading={this.state.isLoading}/>
             </div>
             <div className="fl w-70 pl3">
-              <WordForms word={this.state.selectedWord} patternData={this.state.selectedPatternData} />
+              <WordForms word={this.state.selectedWord} patternData={this.state.selectedPatternData}  isLoading={this.state.isLoading}/>
             </div>
           </div>
 

@@ -43,7 +43,19 @@
     border-color: var(--black);
     /*outline: 1px dotted currentColor;*/
 }
+.FormControl.is-loading {
+    cursor: wait;
+    opacity: .5;
+}
 
+@keyframes spin {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(359deg);
+    }
+}
 /**
  * Buttons
  */
@@ -68,6 +80,14 @@
 }
 .Button-icon {
     margin-top: -3px;
+    transition: all 150ms;
+}
+.Button.is-loading {
+    /*pointer-events: none;*/
+    cursor: wait;
+}
+.Button.is-loading .Button-icon {
+    animation: spin 1s infinite linear;
 }
 
 .Button--primary {
@@ -77,7 +97,10 @@
 }
 .Button--primary:hover,
 .Button--primary:focus {
-    background: #49494a;
+    background: #555555;
+}
+.Button--primary.is-loading {
+    background: #555555;
 }
 
 /**
@@ -132,6 +155,12 @@
 }
 
 
+.WordAnalysis.is-loading,
+.WordForms.is-loading {
+    pointer-events: none;
+    opacity: .5;
+}
+
 /**
  * Word
  */
@@ -141,6 +170,7 @@
     border: none;
     background: none;
     cursor: pointer;
+    line-height: inherit;
     transition: all 150ms;
 }
 .Word--highlighted {
@@ -153,6 +183,9 @@
 .Word:focus {
     outline: 1px dotted;
     /*outline: none;*/
+}
+.is-loading .Word {
+    pointer-events: none;
 }
 
 /**
@@ -243,6 +276,8 @@
     border: none;
     border-radius: 0;
     background: none;
+    
+    color: inherit;
     line-height: inherit;
     transition: all 150ms;
     cursor: pointer;

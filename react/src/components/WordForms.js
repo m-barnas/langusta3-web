@@ -32,7 +32,7 @@ class WordForms extends Component {
 
     if (patternData !== null) {
       return (
-        <div>
+        <div className={"WordForms" + (this.props.isLoading ? " is-loading" : "")}>
           <h2 className="f5 normal ma0 pv1 clip">Všechna tvary slova:</h2>
           <div className="h5 overflow-y-auto">
             <table className="collapse tl w-100">

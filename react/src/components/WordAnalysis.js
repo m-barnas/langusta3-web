@@ -55,7 +55,7 @@ class WordAnalysis extends Component {
       const patterns = wordData.patterns;
     
       return (
-        <div>
+        <div className={"WordAnalysis" + (this.props.isLoading ? " is-loading" : "")}>
           <table className="w-100 mw5 collapse tl mt4">
             <tbody>
               {/*<tr className="">
