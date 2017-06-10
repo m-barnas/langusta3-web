@@ -1,5 +1,6 @@
 package cz.fi.muni.PB138.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,13 +8,10 @@ import java.util.List;
  *
  * @author Martin Barnas 433523
  */
-public class InfinitiveDTO {
+public class InputValueDTO {
 
     private String inputValue;
-
-    private String infinitive;
-
-    private List<DeclinedWordDTO> patterns;
+    private List<ModelDTO> patterns = new ArrayList<>();
 
     public String getInputValue() {
         return inputValue;
@@ -23,19 +21,11 @@ public class InfinitiveDTO {
         this.inputValue = inputValue;
     }
 
-    public String getInfinitive() {
-        return infinitive;
-    }
-
-    public void setInfinitive(String infinitive) {
-        this.infinitive = infinitive;
-    }
-
-    public List<DeclinedWordDTO> getPatterns() {
+    public List<ModelDTO> getPatterns() {
         return patterns;
     }
 
-    public void setPatterns(List<DeclinedWordDTO> patterns) {
+    public void setPatterns(List<ModelDTO> patterns) {
         this.patterns = patterns;
     }
 }

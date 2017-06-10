@@ -5,6 +5,7 @@ import cz.fi.muni.PB138.entity.Word;
 import cz.fi.muni.PB138.enums.GrammaticalCase;
 import cz.fi.muni.PB138.enums.GrammaticalGender;
 import cz.fi.muni.PB138.enums.WordClass;
+import cz.fi.muni.PB138.service.utils.EnumConverter;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -37,8 +38,8 @@ public class WordServiceImpl implements WordService {
     }
 
     @Override
-    public List<String> findInfinitives(String pattern) {
-        return wordDao.findInfinitives(pattern);
+    public List<String> findInfinitivesByPattern(String pattern) {
+        return wordDao.findInfinitivesByPattern(pattern);
     }
 
     @Override
@@ -52,6 +53,11 @@ public class WordServiceImpl implements WordService {
     }
 
     @Override
+    public  List<String> findPatternsByInfinitive(String infinitive) {
+        return wordDao.findPatternsByInfinitive(infinitive);
+    }
+
+    @Override
     public List<Word> findByDeclinedValue(String declinedValue) {
         return wordDao.findByDeclinedValue(declinedValue);
     }
@@ -62,10 +68,20 @@ public class WordServiceImpl implements WordService {
     }
 
     @Override
-    public String findInfinitive(String declinedValue) {
-        return wordDao.findInfinitive(declinedValue);
+    public List<Word> findAllForms(String infinitive, String pattern, GrammaticalGender grammaticalGender) {
+        return wordDao.findAllForms(infinitive, pattern,
+                EnumConverter.grammaticalGenderToString(grammaticalGender));
     }
 
+    @Override
+    public List<String> findInfinitivesByDeclinedValue(String declinedValue) {
+        return wordDao.findInfinitivesByDeclinedValue(declinedValue);
+    }
+
+    @Override
+    public List<GrammaticalGender> findGrammaticalGenders(String infinitive, String pattern) {
+        return wordDao.findGrammaticalGenders(infinitive, pattern);
+    }
 
 
 

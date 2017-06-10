@@ -1,8 +1,9 @@
 package cz.fi.muni.PB138.facade;
 
+import cz.fi.muni.PB138.dto.GenderDTO;
 import cz.fi.muni.PB138.dto.WordDTO;
-import cz.fi.muni.PB138.dto.DeclinedWordDTO;
-import cz.fi.muni.PB138.dto.InfinitiveDTO;
+import cz.fi.muni.PB138.dto.ModelDTO;
+import cz.fi.muni.PB138.dto.InputValueDTO;
 import cz.fi.muni.PB138.enums.GrammaticalCase;
 import cz.fi.muni.PB138.enums.GrammaticalGender;
 import cz.fi.muni.PB138.enums.WordClass;
@@ -44,7 +45,7 @@ public interface WordFacade {
      * @param pattern to be searched
      * @return list of words with given pattern or empty list if none exists
      */
-    List<String> findInfinitives(String pattern);
+    List<String> findInfinitivesByPattern(String pattern);
 
     /**
      * 2/ Finds infinitives by number of patterns
@@ -71,13 +72,13 @@ public interface WordFacade {
     List<String> findPatterns(String declinedValue);
 
     /**
-     * 6/ Finds all forms for given infinitive and pattern
+     * 6/ Finds all forms for given infinitive, pattern and gender
      *
      * @param infinitive to be searched
      * @param pattern to be searched
      * @return list of forms or empty list if none exists
      */
-    DeclinedWordDTO findAllForms(String infinitive, String pattern);
+    GenderDTO findAllForms(String infinitive, String pattern, GrammaticalGender gender);
 
     /**
      * 7/ Analyzes given text
@@ -86,7 +87,7 @@ public interface WordFacade {
      * @return list of words (for each word -> patterns and declined values for each pattern)
      * or empty list if none exists
      */
-    List<InfinitiveDTO> analyze(String text);
+    List<InputValueDTO> analyze(String text);
 
 
     /**

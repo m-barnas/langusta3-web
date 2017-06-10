@@ -1,7 +1,7 @@
 package cz.fi.muni.PB138.rest.controller;
 
 import cz.fi.muni.PB138.dto.WordDTO;
-import cz.fi.muni.PB138.dto.InfinitiveDTO;
+import cz.fi.muni.PB138.dto.InputValueDTO;
 import cz.fi.muni.PB138.facade.WordFacade;
 import cz.fi.muni.PB138.rest.Uri;
 import org.springframework.http.MediaType;
@@ -24,7 +24,7 @@ public class WordController {
 
     @RequestMapping(path = "/find-infinitives", method = RequestMethod.GET)
     public List<String> findInfinitives(@RequestParam("pattern") String pattern) {
-        return wordFacade.findInfinitives(pattern);
+        return wordFacade.findInfinitivesByPattern(pattern);
     }
 
     @RequestMapping(path = "/find-by-number-of-patterns", method = RequestMethod.GET)
@@ -51,7 +51,7 @@ public class WordController {
     */
 
     @RequestMapping(path = "/analyze", method = RequestMethod.GET)
-    public List<InfinitiveDTO> analyze(@RequestParam("text") String text) {
+    public List<InputValueDTO> analyze(@RequestParam("text") String text) {
         return wordFacade.analyze(text);
     }
 
