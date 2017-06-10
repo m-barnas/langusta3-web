@@ -7,15 +7,15 @@ class WordForms extends Component {
     super(props);
 
     this.state = {
-      patternData: null,
+      genderData: null,
       wordForms: [],
       grammaticalCases: getGrammaticalCases()
     }
   }
   componentWillReceiveProps(nextProps) {
-    if (nextProps.patternData !== null) {
+    if (nextProps.genderData !== null) {
       this.setState({
-        patternData: nextProps.patternData
+        genderData: nextProps.genderData
       })
     }
   }
@@ -27,10 +27,10 @@ class WordForms extends Component {
   }
   
   render() {
-    const patternData = this.state.patternData;
+    const genderData = this.state.genderData;
     const grammaticalCases = this.state.grammaticalCases;
 
-    if (patternData !== null) {
+    if (genderData !== null) {
       return (
         <div className={"WordForms" + (this.props.isLoading ? " is-loading" : "")}>
           <h2 className="f5 normal ma0 pv1 clip">Všechna tvary slova:</h2>
@@ -48,12 +48,12 @@ class WordForms extends Component {
                   <tr className="striped--near-white" key={index}>
                     <th className="pv1 pl3 v-top"><div>{grammaticalCase}</div></th>
                     <td className="pl3 pt0 pv0 v-top">{
-                      patternData[grammaticalCase.toLowerCase()]['singulars'].map((item, index) => {
+                      genderData[grammaticalCase.toLowerCase()]['singulars'].map((item, index) => {
                         return <div className="pv1" key={index}>{item}</div>  
                       })
                     }</td>
                     <td className="pl3 pr3 pv0 v-top">{
-                      patternData[grammaticalCase.toLowerCase()]['plurals'].map((item, index) => {
+                      genderData[grammaticalCase.toLowerCase()]['plurals'].map((item, index) => {
                         return <div className="pv1" key={index}>{item}</div>
                       })
                     }</td>

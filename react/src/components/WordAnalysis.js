@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ReactTooltip from 'react-tooltip';
-import Pattern from './Pattern';
-import {MdArrowDropDown, MdRadioButtonChecked} from 'react-icons/lib/md';
+// import Pattern from './Pattern';
+import {MdArrowDropDown} from 'react-icons/lib/md';
 
 class WordAnalysis extends Component {
   constructor(props) {
@@ -9,19 +9,25 @@ class WordAnalysis extends Component {
 
     this.state = {
       wordData: null,
-      selectedPatternData: null
+      selectedPatternData: null,
+      selectedGenderData: null
     }
     
     // this.handlePatternClick = this.handlePatternClick.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.handlePatternChange = this.handlePatternChange.bind(this);
+    this.handleGenderChange = this.handleGenderChange.bind(this);
   }
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
     if (nextProps.word !== null) {
       let wordData = nextProps.word.getData();
+      let selectedPatternData = nextProps.patternData;
+      let selectedGenderData = nextProps.genderData;
 
       this.setState({
         wordData: wordData,
-        selectedPatternData: wordData.patterns[0]
+        selectedPatternData: selectedPatternData,
+        selectedGenderData: selectedGenderData
       })
     }
   }
@@ -38,8 +44,9 @@ class WordAnalysis extends Component {
 
   //   this.props.onPatternSelect(selectedPattern);
   // }
-  handleChange(event) {
+  handlePatternChange(event) {
     let selectedPatternData = this.state.wordData.patterns[event.target.value];
+
 
     this.setState({
       selectedPatternData: selectedPatternData
@@ -47,30 +54,34 @@ class WordAnalysis extends Component {
     
     this.props.onPatternSelect(selectedPatternData);
   }
+  handleGenderChange(event) {
+    let selectedGenderData = this.state.selectedPatternData.genders[event.target.value];
+
+    this.setState({
+      selectedGenderData: selectedGenderData
+    })
+
+    this.props.onGenderSelect(selectedGenderData);
+  }
 
   render() {
     const wordData = this.state.wordData;
+    const selectedPatternData = this.state.selectedPatternData;
 
-    if (wordData !== null) {
+    if (wordData !== null) {;
+      console.log(this.state);
       const patterns = wordData.patterns;
+      const genders = selectedPatternData.genders;
     
       return (
         <div className={"WordAnalysis" + (this.props.isLoading ? " is-loading" : "")}>
-          <table className="w-100 mw5 collapse tl mt4">
+          <table className="w-100 collapse tl mt4">
             <tbody>
-              {/*<tr className="">
-                <th className=" v-top pv1 normal">Pád:</th>
-                <td className="w-100 pl3 v-top pv1 b">nominatív</td>
-              </tr>*/}
-              {/*<tr className="">
-                <th className=" v-top pv1 normal">Rod:</th>
-                <td className="w-100 pl3 v-top pv1 b">mužský</td>
-              </tr>*/}
               <tr className="">
                 <th className=" v-top pv1 normal">Vzory:</th>
                 <td className="w-100 pl2 pv0 v-top b">
                   <label className="Select db">
-                    <select className="pv1 pl2 pr3 b" onChange={this.handleChange}>
+                    <select className="pv1 pl2 pr3 b" onChange={this.handlePatternChange}>
                       {patterns.map((item, index) => (
                         <option key={index} value={index}>
                           {item.pattern}
@@ -97,8 +108,28 @@ class WordAnalysis extends Component {
               </tr>
               <tr className="">
                 <th className=" v-top pv1 normal">Infinitiv:</th>
-                <td className="w-100 pl3 v-top pv1 b">{ wordData.infinitive }</td>
+                <td className="w-100 pl3 v-top pv1 b">{ selectedPatternData.infinitive }</td>
               </tr>
+              <tr className="">
+                <th className="nowrap v-top pv1 normal">Slovný druh:</th>
+                <td className="w-100 pl3 v-top pv1 b">{ selectedPatternData.wordClass }</td>
+              </tr>
+              <tr className="">
+                <th className=" v-top pv1 normal">Rod:</th>
+                <td className="w-100 pl2 pv0 v-top b">
+                  <label className="Select db">
+                    <select className="pv1 pl2 pr3 b" onChange={this.handleGenderChange}>
+                      {genders.map((item, index) => (
+                        <option key={index} value={index}>
+                          {item.grammaticalGender}
+                        </option>
+                      ))}
+                    </select>
+                    <MdArrowDropDown className="icon" />
+                  </label>
+                </td>
+              </tr>
+
             </tbody>
           </table>
           {/*<div className="cf">

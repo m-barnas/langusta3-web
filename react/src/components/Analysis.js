@@ -5,8 +5,8 @@ import WordForms from './WordForms';
 import Highlighter from './Highlighter';
 import {MdRefresh, MdMailOutline} from 'react-icons/lib/md';
 import { fetchAnalyzedWords } from './../util/api';
-import { getGrammaticalCases } from './../util/enums';
-import { getWords } from './../util/data.js';
+// import { getGrammaticalCases } from './../util/enums';
+// import { getWords } from './../util/data.js';
 
 class Analysis extends Component {
   constructor(props) {
@@ -18,15 +18,15 @@ class Analysis extends Component {
       words: [],
       wordStrings: [],
       selectedWord: null,
-      selectedPatternData: null
+      selectedPatternData: null,
+      selectedGenderData: null
     };
-
-    const grammaticalCases = getGrammaticalCases();
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleWordSelect = this.handleWordSelect.bind(this);
     this.handlePatternSelect = this.handlePatternSelect.bind(this);
+    this.handleGenderSelect = this.handleGenderSelect.bind(this);
     this.parseValue = this.parseValue.bind(this);
   }
 
@@ -64,16 +64,27 @@ class Analysis extends Component {
   }
 
   handleWordSelect(selectedWord) {
+    const wordData = selectedWord.getData();
+    const patternData = wordData.patterns[0];
+    const genderData = patternData.genders[0];
+
     this.setState({
       selectedWord: selectedWord,
-      selectedPatternData: selectedWord.getData().patterns[0]
+      selectedPatternData: patternData,
+      selectedGenderData: genderData
     })
   }
 
   handlePatternSelect(selectedPatternData) {
-    console.log('hej');
     this.setState({
-      selectedPatternData: selectedPatternData
+      selectedPatternData: selectedPatternData,
+      selectedGenderData: selectedPatternData.genders[0]
+    })
+  }
+  
+  handleGenderSelect(selectedGenderData) {
+    this.setState({
+      selectedGenderData: selectedGenderData
     })
   }
 
@@ -86,14 +97,14 @@ class Analysis extends Component {
       <main className="Analysis">
         <div className="Container pv5">
           <h1 className="mt0 tc">Analýza</h1>
-          <form className="mw7 center cf mb3" onSubmit={this.handleSubmit}>
+          <form className=" center cf mb3" onSubmit={this.handleSubmit}>
             <div className="cf mb2">
-              <div className="fl w-50 pr2">
+              <div className="fl-ns w-50-ns pr2-ns mb2 mb0-ns">
                 <textarea className={"AnalysisInput FormControl" + (this.state.isLoading ? " is-loading" : "")}
                  rows="3" onChange={this.handleChange} value={this.state.value}
-                 disabled={this.state.isLoading} maxlength="255"/>
+                 disabled={this.state.isLoading} maxLength="255"/>
               </div>
-              <div className="fl w-50 pl2">
+              <div className="fl-ns w-50-ns pl2-ns">
                 <div className={"AnalysisResult FormControl overflow-y-auto bg-near-white" + (this.state.isLoading ? " is-loading" : "")}>
                   <Highlighter
                     className="AnalysisResult-inner db"
@@ -112,12 +123,14 @@ class Analysis extends Component {
             </button>
           </form>
 
-          <div className="mw7 center cf">
-            <div className="fl w-30 pr3">
-              <WordAnalysis word={ this.state.selectedWord } onPatternSelect={this.handlePatternSelect} isLoading={this.state.isLoading}/>
+          <div className="center cf">
+            <div className="fl-l w-40-l pr3-l mb4 mb0-l">
+              <WordAnalysis word={ this.state.selectedWord } patternData={this.state.selectedPatternData} 
+              genderData={this.state.selectedGenderData} onPatternSelect={this.handlePatternSelect} 
+              onGenderSelect={this.handleGenderSelect}  isLoading={this.state.isLoading}/>
             </div>
-            <div className="fl w-70 pl3">
-              <WordForms word={this.state.selectedWord} patternData={this.state.selectedPatternData}  isLoading={this.state.isLoading}/>
+            <div className="fl-l w-60-l pl3-l">
+              <WordForms word={this.state.selectedWord} genderData={this.state.selectedGenderData}  isLoading={this.state.isLoading}/>
             </div>
           </div>
 
