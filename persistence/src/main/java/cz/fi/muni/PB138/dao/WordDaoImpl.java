@@ -41,7 +41,7 @@ public class WordDaoImpl implements WordDao {
     }
 
     @Override
-    public List<String> findInfinitives(String pattern) {
+    public List<String> findInfinitivesByPattern(String pattern) {
         return em.createQuery(
                 "SELECT DISTINCT w.infinitive FROM Word w " +
                         "WHERE lower(w.pattern) = lower(:pattern) " +
@@ -74,6 +74,17 @@ public class WordDaoImpl implements WordDao {
     }
 
     @Override
+    public List<String> findPatternsByInfinitive(String infinitive) {
+        return em.createQuery(
+                "SELECT DISTINCT w.pattern FROM Word w " +
+                        "WHERE lower(w.infinitive) = lower(:infinitive) " +
+                        "AND w.pattern IS NOT NULL "
+                , String.class)
+                .setParameter("infinitive", infinitive)
+                .getResultList();
+    }
+
+    @Override
     public List<Word> findByDeclinedValue(String declinedValue) {
         return em.createQuery(
                 "SELECT w FROM Word w " +
@@ -96,16 +107,42 @@ public class WordDaoImpl implements WordDao {
     }
 
     @Override
-    public String findInfinitive(String declinedValue) {
-        List<String> list = em.createQuery(
-                "SELECT w.infinitive FROM Word w " +
+    public List<Word> findAllForms(String infinitive, String pattern, String grammaticalGender) {
+        return em.createQuery(
+                "SELECT w FROM Word w " +
+                        "WHERE lower(w.infinitive) = lower(:infinitive)" +
+                        "AND lower(w.pattern) = lower(:pattern) " +
+                        "AND lower(w.grammaticalGender) = lower(:grammaticalGender)"
+                , Word.class)
+                .setParameter("infinitive", infinitive)
+                .setParameter("pattern", pattern)
+                .setParameter("grammaticalGender", grammaticalGender)
+                .getResultList();
+    }
+
+    @Override
+    public List<String> findInfinitivesByDeclinedValue(String declinedValue) {
+        return em.createQuery(
+                "SELECT DISTINCT w.infinitive FROM Word w " +
                         "WHERE lower(w.declinedValue) = lower(:declinedValue) "
                 , String.class)
                 .setParameter("declinedValue", declinedValue)
-                .setMaxResults(1)
                 .getResultList();
-        return list.isEmpty() ? null : list.get(0);
     }
+
+    @Override
+    public List<GrammaticalGender> findGrammaticalGenders(String infinitive, String pattern) {
+        return em.createQuery(
+                "SELECT DISTINCT w.grammaticalGender FROM Word w " +
+                        "WHERE lower(w.infinitive) = lower(:infinitive) " +
+                        "AND lower(w.pattern) = lower(:pattern) " +
+                        "AND w.grammaticalGender IS NOT NULL "
+                , GrammaticalGender.class)
+                .setParameter("infinitive", infinitive)
+                .setParameter("pattern", pattern)
+                .getResultList();
+    }
+
 
 
 

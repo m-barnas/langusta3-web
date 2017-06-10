@@ -22,7 +22,9 @@ public class Parser {
     public static List<String> parseText(String text) {
         String[] words = text.split("[^\\p{L}]");
         for (int i = 0; i < words.length;++i) {
-            words[i] = words[i].replaceAll("\\d","");
+            if (words[i].matches(".*\\d+.*")) {
+                words[i] = null;
+            }
         }
         Set<String> wordsWithoutDuplicates = new HashSet<>(Arrays.asList(words));
         wordsWithoutDuplicates.remove(null);

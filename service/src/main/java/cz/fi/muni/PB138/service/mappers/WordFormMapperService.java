@@ -1,6 +1,7 @@
 package cz.fi.muni.PB138.service.mappers;
 
-import cz.fi.muni.PB138.dto.DeclinedWordDTO;
+import cz.fi.muni.PB138.dto.GenderDTO;
+import cz.fi.muni.PB138.dto.ModelDTO;
 import cz.fi.muni.PB138.entity.Word;
 
 import java.util.List;
@@ -12,5 +13,5 @@ import java.util.List;
  */
 public interface WordFormMapperService {
 
-    DeclinedWordDTO convertToDTO(List<Word> entity);
+    GenderDTO convertToDTO(List<Word> entity);
 }
