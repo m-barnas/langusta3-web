@@ -79,6 +79,19 @@ public interface WordDao {
     List<Word> findAllForms(String infinitive, String pattern);
 
     /**
+     * Finds infinitive for given declined value
+     *
+     * @param declinedValue to be searched
+     * @return infinitive or null if does not exist
+     */
+    String findInfinitive(String declinedValue);
+
+
+
+
+
+
+    /**
      * Finds words by given word class
      *
      * @param  wordClass to be searched
