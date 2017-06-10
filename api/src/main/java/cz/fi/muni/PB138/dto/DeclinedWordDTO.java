@@ -1,7 +1,8 @@
 package cz.fi.muni.PB138.dto;
 
-import cz.fi.muni.PB138.enums.GrammaticalCase;
-import cz.fi.muni.PB138.enums.Number;
+import cz.fi.muni.PB138.enums.GrammaticalGender;
+import cz.fi.muni.PB138.enums.WordClass;
+
 
 /**
  * Created by Martin on 9.6.2017.
@@ -10,43 +11,95 @@ import cz.fi.muni.PB138.enums.Number;
  */
 public class DeclinedWordDTO {
 
-    private Long id;
+    private String pattern;
+    private GrammaticalGender grammaticalGender;
+    private WordClass wordClass;
 
-    private String declinedValue;
+    private GrammaticalCaseDTO nominative = new GrammaticalCaseDTO();
+    private GrammaticalCaseDTO genitive = new GrammaticalCaseDTO();
+    private GrammaticalCaseDTO dative = new GrammaticalCaseDTO();
+    private GrammaticalCaseDTO accusative = new GrammaticalCaseDTO();
+    private GrammaticalCaseDTO vocative = new GrammaticalCaseDTO();
+    private GrammaticalCaseDTO locative = new GrammaticalCaseDTO();
+    private GrammaticalCaseDTO instrumental = new GrammaticalCaseDTO();
 
-    private GrammaticalCase grammaticalCase;
-
-    private Number number;
-
-    public Long getId() {
-        return id;
+    public String getPattern() {
+        return pattern;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPattern(String pattern) {
+        this.pattern = pattern;
     }
 
-    public String getDeclinedValue() {
-        return declinedValue;
+    public GrammaticalGender getGrammaticalGender() {
+        return grammaticalGender;
     }
 
-    public void setDeclinedValue(String declinedValue) {
-        this.declinedValue = declinedValue;
+    public void setGrammaticalGender(GrammaticalGender grammaticalGender) {
+        this.grammaticalGender = grammaticalGender;
     }
 
-    public GrammaticalCase getGrammaticalCase() {
-        return grammaticalCase;
+    public WordClass getWordClass() {
+        return wordClass;
     }
 
-    public void setGrammaticalCase(GrammaticalCase grammaticalCase) {
-        this.grammaticalCase = grammaticalCase;
+    public void setWordClass(WordClass wordClass) {
+        this.wordClass = wordClass;
     }
 
-    public Number getNumber() {
-        return number;
+    public GrammaticalCaseDTO getNominative() {
+        return nominative;
     }
 
-    public void setNumber(Number number) {
-        this.number = number;
+    public void setNominative(GrammaticalCaseDTO nominative) {
+        this.nominative = nominative;
+    }
+
+    public GrammaticalCaseDTO getGenitive() {
+        return genitive;
+    }
+
+    public void setGenitive(GrammaticalCaseDTO genitive) {
+        this.genitive = genitive;
+    }
+
+    public GrammaticalCaseDTO getDative() {
+        return dative;
+    }
+
+    public void setDative(GrammaticalCaseDTO dative) {
+        this.dative = dative;
+    }
+
+    public GrammaticalCaseDTO getAccusative() {
+        return accusative;
+    }
+
+    public void setAccusative(GrammaticalCaseDTO accusative) {
+        this.accusative = accusative;
+    }
+
+    public GrammaticalCaseDTO getVocative() {
+        return vocative;
+    }
+
+    public void setVocative(GrammaticalCaseDTO vocative) {
+        this.vocative = vocative;
+    }
+
+    public GrammaticalCaseDTO getLocative() {
+        return locative;
+    }
+
+    public void setLocative(GrammaticalCaseDTO locative) {
+        this.locative = locative;
+    }
+
+    public GrammaticalCaseDTO getInstrumental() {
+        return instrumental;
+    }
+
+    public void setInstrumental(GrammaticalCaseDTO instrumental) {
+        this.instrumental = instrumental;
     }
 }

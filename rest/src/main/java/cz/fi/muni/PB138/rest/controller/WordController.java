@@ -1,10 +1,7 @@
 package cz.fi.muni.PB138.rest.controller;
 
 import cz.fi.muni.PB138.dto.WordDTO;
-import cz.fi.muni.PB138.dto.WordFormDTO;
-import cz.fi.muni.PB138.enums.GrammaticalCase;
-import cz.fi.muni.PB138.enums.GrammaticalGender;
-import cz.fi.muni.PB138.enums.WordClass;
+import cz.fi.muni.PB138.dto.InfinitiveDTO;
 import cz.fi.muni.PB138.facade.WordFacade;
 import cz.fi.muni.PB138.rest.Uri;
 import org.springframework.http.MediaType;
@@ -45,10 +42,17 @@ public class WordController {
         return wordFacade.findPatterns(declinedValue);
     }
 
-    @RequestMapping(path = "/find-all-forms", method = RequestMethod.GET)
+    /*
+    @RequestMapping(path = "/analyze/find-all-forms", method = RequestMethod.GET)
     public WordFormDTO findPatterns(@RequestParam("infinitive") String infinitive,
                                     @RequestParam("pattern") String pattern) {
         return wordFacade.findAllForms(infinitive, pattern);
+    }
+    */
+
+    @RequestMapping(path = "/analyze", method = RequestMethod.GET)
+    public List<InfinitiveDTO> analyze(@RequestParam("text") String text) {
+        return wordFacade.analyze(text);
     }
 
 
