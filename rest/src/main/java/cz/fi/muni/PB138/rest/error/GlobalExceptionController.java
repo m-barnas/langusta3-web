@@ -42,6 +42,7 @@ public class GlobalExceptionController {
         if (x instanceof InvalidDataAccessApiUsageException) {
             error = String.format("%s: %s", error, x.getMessage());
         }
+        x.printStackTrace();
 
         errors.add(error);
 

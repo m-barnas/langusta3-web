@@ -1,8 +1,9 @@
 package cz.fi.muni.PB138.service.facade;
 
+import cz.fi.muni.PB138.dto.GenderDTO;
 import cz.fi.muni.PB138.dto.WordDTO;
-import cz.fi.muni.PB138.dto.DeclinedWordDTO;
-import cz.fi.muni.PB138.dto.InfinitiveDTO;
+import cz.fi.muni.PB138.dto.ModelDTO;
+import cz.fi.muni.PB138.dto.InputValueDTO;
 import cz.fi.muni.PB138.entity.Word;
 import cz.fi.muni.PB138.enums.GrammaticalCase;
 import cz.fi.muni.PB138.enums.GrammaticalGender;
@@ -56,8 +57,8 @@ public class WordFacadeImpl implements WordFacade {
     }
 
     @Override
-    public List<String> findInfinitives(String pattern) {
-        return wordService.findInfinitives(pattern);
+    public List<String> findInfinitivesByPattern(String pattern) {
+        return wordService.findInfinitivesByPattern(pattern);
     }
 
     @Override
@@ -76,30 +77,45 @@ public class WordFacadeImpl implements WordFacade {
     }
 
     @Override
-    public DeclinedWordDTO findAllForms(String infinitive, String pattern) {
+    public GenderDTO findAllForms(String infinitive, String pattern, GrammaticalGender gender) {
         return wordFormMapperService.convertToDTO(wordService.findAllForms(infinitive, pattern));
     }
 
     @Override
-    public List<InfinitiveDTO> analyze(String text) {
+    public List<InputValueDTO> analyze(String text) {
         List<String> inputValues = Parser.parseText(text);
-        List<InfinitiveDTO> infinitiveDTOS = new ArrayList<>();
+        List<InputValueDTO> inputValueDTOS = new ArrayList<>();
+        boolean isValid = true;
         for(String inputValue : inputValues) {
-            List<String> patterns = wordService.findPatterns(inputValue);
-            if (!patterns.isEmpty()) {
-                String infinitive = wordService.findInfinitive(inputValue);
-                InfinitiveDTO infinitiveDTO = new InfinitiveDTO();
-                infinitiveDTO.setInfinitive(infinitive);
-                infinitiveDTO.setInputValue(inputValue);
-                List<DeclinedWordDTO> declinedWordDTOS = new ArrayList<>();
+            InputValueDTO inputValueDTO = new InputValueDTO();
+            inputValueDTO.setInputValue(inputValue);
+            List<String> infinitives = wordService.findInfinitivesByDeclinedValue(inputValue);
+            isValid = !infinitives.isEmpty();
+            for(String infinitive : infinitives) {
+                List<String> patterns = wordService.findPatternsByInfinitive(infinitive);
+                isValid = !patterns.isEmpty();
                 for(String pattern : patterns) {
-                    declinedWordDTOS.add(findAllForms(infinitive, pattern));
+                    ModelDTO modelDTO = new ModelDTO();
+                    modelDTO.setInfinitive(infinitive);
+                    modelDTO.setPattern(pattern);
+                    List<GrammaticalGender> genders = wordService.findGrammaticalGenders(infinitive, pattern);
+                    for(GrammaticalGender gender : genders) {
+                        List<Word> forms = wordService.findAllForms(infinitive, pattern, gender);
+                        if (forms.size() > 0 && modelDTO.getWordClass() == null) {
+                            modelDTO.setWordClass(forms.get(0).getWordClass());
+                        }
+                        GenderDTO genderDTO = wordFormMapperService.convertToDTO(forms);
+                        genderDTO.setGrammaticalGender(gender);
+                        modelDTO.getGenders().add(genderDTO);
+                    }
+                    inputValueDTO.getPatterns().add(modelDTO);
                 }
-                infinitiveDTO.setPatterns(declinedWordDTOS);
-                infinitiveDTOS.add(infinitiveDTO);
+            }
+            if (isValid) {
+                inputValueDTOS.add(inputValueDTO);
             }
         }
-        return infinitiveDTOS;
+        return inputValueDTOS;
     }
 
 

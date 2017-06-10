@@ -42,7 +42,7 @@ public interface WordService {
      * @param pattern to be searched
      * @return list of words with given pattern or empty list if none exists
      */
-    List<String> findInfinitives(String pattern);
+    List<String> findInfinitivesByPattern(String pattern);
 
     /**
      * 2/ Finds infinitives by number of patterns
@@ -69,6 +69,14 @@ public interface WordService {
     List<String> findPatterns(String declinedValue);
 
     /**
+     * 5/ Finds patterns for given infinitive
+     *
+     * @param infinitive to be searched
+     * @return list of patterns or empty list if none exists
+     */
+    List<String> findPatternsByInfinitive(String infinitive);
+
+    /**
      * 6/ Finds all forms for given infinitive and pattern
      *
      * @param infinitive to be searched
@@ -78,14 +86,31 @@ public interface WordService {
     List<Word> findAllForms(String infinitive, String pattern);
 
     /**
+     * 6/ Finds all forms for given infinitive, pattern and gender
+     *
+     * @param infinitive to be searched
+     * @param pattern to be searched
+     * @param grammaticalGender to be searched
+     * @return list of forms or empty list if none exists
+     */
+    List<Word> findAllForms(String infinitive, String pattern, GrammaticalGender grammaticalGender);
+
+    /**
      * Finds infinitive for given declined value
      *
      * @param declinedValue to be searched
      * @return infinitive or null if does not exist
      */
-    String findInfinitive(String declinedValue);
+    List<String> findInfinitivesByDeclinedValue(String declinedValue);
 
-
+    /**
+     * Finds grammatical genders for given infinitive and pattern
+     *
+     * @param infinitive to be searched
+     * @param pattern to be searched
+     * @return list of grammatical genders or null if none exists
+     */
+    List<GrammaticalGender> findGrammaticalGenders(String infinitive, String pattern);
 
 
 

@@ -1,19 +1,15 @@
 package cz.fi.muni.PB138.dto;
 
 import cz.fi.muni.PB138.enums.GrammaticalGender;
-import cz.fi.muni.PB138.enums.WordClass;
-
 
 /**
- * Created by Martin on 9.6.2017.
+ * Created by Martin on 10.6.2017.
  *
  * @author Martin Barnas 433523
  */
-public class DeclinedWordDTO {
+public class GenderDTO {
 
-    private String pattern;
     private GrammaticalGender grammaticalGender;
-    private WordClass wordClass;
 
     private GrammaticalCaseDTO nominative = new GrammaticalCaseDTO();
     private GrammaticalCaseDTO genitive = new GrammaticalCaseDTO();
@@ -23,28 +19,12 @@ public class DeclinedWordDTO {
     private GrammaticalCaseDTO locative = new GrammaticalCaseDTO();
     private GrammaticalCaseDTO instrumental = new GrammaticalCaseDTO();
 
-    public String getPattern() {
-        return pattern;
-    }
-
-    public void setPattern(String pattern) {
-        this.pattern = pattern;
-    }
-
     public GrammaticalGender getGrammaticalGender() {
         return grammaticalGender;
     }
 
     public void setGrammaticalGender(GrammaticalGender grammaticalGender) {
         this.grammaticalGender = grammaticalGender;
-    }
-
-    public WordClass getWordClass() {
-        return wordClass;
-    }
-
-    public void setWordClass(WordClass wordClass) {
-        this.wordClass = wordClass;
     }
 
     public GrammaticalCaseDTO getNominative() {
