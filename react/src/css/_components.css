@@ -176,7 +176,9 @@
  .Pattern:hover,
  .Pattern:focus {
      background: var(--near-white);
-     outline: none;
+ }
+ .Pattern:focus {
+     outline: 1px dotted;
  }
  .Pattern.is-selected {
     background: var(--primary);

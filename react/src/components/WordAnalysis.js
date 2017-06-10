@@ -50,7 +50,7 @@ class WordAnalysis extends Component {
             </tr>
             <tr className="">
               <th className=" v-top pv1 normal">Vzory:</th>
-              <td className="w-100 pl2 v-top b">
+              <td className="w-100 pl2 pv0 v-top b">
                 <ul className="list pl0 mv0 overflow-y-auto">
                   {patterns.map((item, index) => (
                     <li key={index}>
