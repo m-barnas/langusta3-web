@@ -4,21 +4,28 @@ import WordAnalysis from './WordAnalysis';
 import WordForms from './WordForms';
 import Highlighter from './Highlighter';
 import {MdRefresh, MdMailOutline} from 'react-icons/lib/md';
-import { fetchAllPatterns } from './../util/api';
+import { fetchAnalyzedWords } from './../util/api';
+import { getGrammaticalCases } from './../util/enums';
 
 class Analysis extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 'Příliš žluťoučký kůň úpěl ďábelské ódy',
-      words: ['příliš', 'kůň', 'ódy'],
-      selectedWord: null
+      // value: 'Příliš žluťoučký kůň úpěl ďábelské ódy',
+      value: 'Bezpečné heslo je jedno z nejlepších',
+      words: [],
+      wordStrings: [],
+      selectedWord: null,
+      selectedPatternData: null
     };
+
+    const grammaticalCases = getGrammaticalCases();
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleWordSelect = this.handleWordSelect.bind(this);
-    this.parse = this.parse.bind(this);
+    this.handlePatternSelect = this.handlePatternSelect.bind(this);
+    this.parseValue = this.parseValue.bind(this);
   }
 
   handleChange(event) {
@@ -27,27 +34,285 @@ class Analysis extends Component {
     });
   }
   handleSubmit(event) {
-    // this.parse();
     event.preventDefault();
-    let data = fetchAllPatterns();
 
-    data.then((data) => {
-      console.log(data);
-    })
+    let value = this.parseValue(this.state.value);
+
+    let words = [
+      {
+        "inputValue": "heslo",
+        "infinitive": "heslo",
+        "patterns": [
+          {
+            "pattern": "sluchadlo",
+            "grammaticalGender": "Neuter",
+            "wordClass": "Noun",
+            "nominative": {
+              "singulars": [
+                "heslo"
+              ],
+              "plurals": [
+                "hesla"
+              ]
+            },
+            "genitive": {
+              "singulars": [
+                "hesla"
+              ],
+              "plurals": [
+                "hesel"
+              ]
+            },
+            "dative": {
+              "singulars": [
+                "heslu"
+              ],
+              "plurals": [
+                "heslům"
+              ]
+            },
+            "accusative": {
+              "singulars": [
+                "heslo"
+              ],
+              "plurals": [
+                "hesla"
+              ]
+            },
+            "vocative": {
+              "singulars": [
+                "heslo"
+              ],
+              "plurals": [
+                "hesla"
+              ]
+            },
+            "locative": {
+              "singulars": [
+                "hesle"
+              ],
+              "plurals": [
+                "heslech"
+              ]
+            },
+            "instrumental": {
+              "singulars": [
+                "heslem"
+              ],
+              "plurals": [
+                "hesly"
+              ]
+            }
+          },
+          {
+            "pattern": "vědro",
+            "grammaticalGender": "Neuter",
+            "wordClass": "Noun",
+            "nominative": {
+              "singulars": [
+                "heslo"
+              ],
+              "plurals": [
+                "hesla"
+              ]
+            },
+            "genitive": {
+              "singulars": [
+                "hesla"
+              ],
+              "plurals": [
+                "hesel"
+              ]
+            },
+            "dative": {
+              "singulars": [
+                "heslu"
+              ],
+              "plurals": [
+                "heslům"
+              ]
+            },
+            "accusative": {
+              "singulars": [
+                "heslo"
+              ],
+              "plurals": [
+                "hesla"
+              ]
+            },
+            "vocative": {
+              "singulars": [
+                "heslo"
+              ],
+              "plurals": [
+                "hesla"
+              ]
+            },
+            "locative": {
+              "singulars": [
+                "heslu"
+              ],
+              "plurals": [
+                "heslech"
+              ]
+            },
+            "instrumental": {
+              "singulars": [
+                "heslem"
+              ],
+              "plurals": [
+                "hesly"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "inputValue": "Bezpečné",
+        "infinitive": "bezpečný",
+        "patterns": [
+          {
+            "pattern": "mladý",
+            "grammaticalGender": "MasculineAnimate",
+            "wordClass": "Adjective",
+            "nominative": {
+              "singulars": [
+                "bezpečný",
+                "bezpečný",
+                "bezpečná",
+                "bezpečné"
+              ],
+              "plurals": [
+                "bezpeční",
+                "bezpečné",
+                "bezpečné",
+                "bezpečná"
+              ]
+            },
+            "genitive": {
+              "singulars": [
+                "bezpečného",
+                "bezpečného",
+                "bezpečné",
+                "bezpečného"
+              ],
+              "plurals": [
+                "bezpečných",
+                "bezpečných",
+                "bezpečných",
+                "bezpečných"
+              ]
+            },
+            "dative": {
+              "singulars": [
+                "bezpečnému",
+                "bezpečnému",
+                "bezpečné",
+                "bezpečnému"
+              ],
+              "plurals": [
+                "bezpečným",
+                "bezpečným",
+                "bezpečným",
+                "bezpečným"
+              ]
+            },
+            "accusative": {
+              "singulars": [
+                "bezpečného",
+                "bezpečný",
+                "bezpečnou",
+                "bezpečné"
+              ],
+              "plurals": [
+                "bezpečné",
+                "bezpečné",
+                "bezpečné",
+                "bezpečná"
+              ]
+            },
+            "vocative": {
+              "singulars": [
+                "bezpečný",
+                "bezpečný",
+                "bezpečná",
+                "bezpečné"
+              ],
+              "plurals": [
+                "bezpeční",
+                "bezpečné",
+                "bezpečné",
+                "bezpečná"
+              ]
+            },
+            "locative": {
+              "singulars": [
+                "bezpečném",
+                "bezpečném",
+                "bezpečné",
+                "bezpečném"
+              ],
+              "plurals": [
+                "bezpečných",
+                "bezpečných",
+                "bezpečných",
+                "bezpečných"
+              ]
+            },
+            "instrumental": {
+              "singulars": [
+                "bezpečným",
+                "bezpečným",
+                "bezpečnou",
+                "bezpečným"
+              ],
+              "plurals": [
+                "bezpečnými",
+                "bezpečnými",
+                "bezpečnými",
+                "bezpečnými"
+              ]
+            }
+          }
+        ]
+      }
+    ]
+
+    // fetchAnalyzedWords(value).then((words) => {
+      let wordStrings = [];
+
+      for (let word of words) {
+        wordStrings.push(word.inputValue);
+      }
+      // console.log(words);
+
+      this.setState({
+        words: words,
+        wordStrings: wordStrings
+      });
+
+    // })
+
+    // console.log(value);
+    
   }
+
   handleWordSelect(selectedWord) {
     this.setState({
-      selectedWord: selectedWord
+      selectedWord: selectedWord,
+      selectedPatternData: selectedWord.getData().patterns[0]
     })
   }
 
-  parse() {
-    // let string = this.state.value;
-    // let words = string.trim().split(/[\s,]+/);
+  handlePatternSelect(selectedPatternData) {
+    console.log('hej');
+    this.setState({
+      selectedPatternData: selectedPatternData
+    })
+  }
 
-    // this.setState({
-    //   words: words
-    // })
+  parseValue(value) {
+    return value.replace(/\s/g, "-");
   }
 
   render() {
@@ -64,9 +329,10 @@ class Analysis extends Component {
                 <div className="AnalysisResult FormControl overflow-y-auto bg-near-white">
                   <Highlighter
                     className="AnalysisResult-inner db"
-                    searchWords={this.state.words}
+                    searchWords={this.state.wordStrings}
                     textToHighlight={this.state.value}
                     onWordSelect={this.handleWordSelect}
+                    words={this.state.words}
                   />
                 </div>
               </div>
@@ -79,10 +345,10 @@ class Analysis extends Component {
 
           <div className="mw7 center cf">
             <div className="fl w-30 pr3">
-              <WordAnalysis />
+              <WordAnalysis word={ this.state.selectedWord } onPatternSelect={this.handlePatternSelect} />
             </div>
             <div className="fl w-70 pl3">
-              <WordForms word="advokát" pattern="student" />
+              <WordForms word={this.state.selectedWord} patternData={this.state.selectedPatternData} />
             </div>
           </div>
 

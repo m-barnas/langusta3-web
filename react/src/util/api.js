@@ -96,3 +96,22 @@ export const fetchWordForms = (word, pattern) => {
     throw err;
   })
 }
+
+export const fetchAnalyzedWords = (str) => {
+  console.log('Fetching analyzed words for string');
+  console.time('fetchAnalyzedWords');
+
+  return fetch(`PB138/langusta3/word/analyze?text=${str}`).then((res) => {
+    if (res.ok) {
+      console.timeEnd('fetchAnalyzedWords');
+      return res.json();
+    }
+    throw new Error('Not ok');
+  }, (err) => {
+    console.log('fetch problem');
+    throw err;
+  }).catch((err) => {
+    console.log('problem parsing response');
+    throw err;
+  })
+}

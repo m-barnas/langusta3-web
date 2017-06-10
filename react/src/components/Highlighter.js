@@ -22,8 +22,15 @@ class Highlighter extends Component {
       autoEscape: this.props.autoEscape,
       className: this.props.className,
       highlightStyle: this.props.highlightStyle,
-      sanitize: this.props.sanitize,
+      sanitize: this.props.sanitize
     }
+
+    this.getWordData = this.getWordData.bind(this);
+  }
+  getWordData(word) {
+    return this.props.words.find((item) => {
+      return item.inputValue === word;
+    })
   }
   render() {
 
@@ -44,6 +51,7 @@ class Highlighter extends Component {
     })
 
     return (
+      
       <Words 
         className={this.state.className} 
         onWordSelect={this.props.onWordSelect}
@@ -53,13 +61,14 @@ class Highlighter extends Component {
           const text = textToHighlight.substr(chunk.start, chunk.end - chunk.start)
 
           if (chunk.highlight) {
-          
+
             return (
               <Word 
               className="Word Word--highlighted js-word"
               key={ index }
               style={ this.state.highlightStyle }
-              onClick={ (selectedWord) => this.words.handleWordClick(selectedWord) }>
+              onClick={ (selectedWord) => this.words.handleWordClick(selectedWord) }
+              data={ this.getWordData(text) }>
                 {text}
               </Word>
             )

@@ -221,6 +221,45 @@
 }
 
 /**
+* Select
+*/
+.Select {
+    position: relative;
+    cursor: pointer;
+}
+.Select:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    
+    border-bottom: 1px solid var(--moon-gray);
+}
+.Select select {
+    appearance: none;
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    background: none;
+    line-height: inherit;
+    transition: all 150ms;
+    cursor: pointer;
+}
+.Select:hover select,
+.Select select:focus {
+    background: var(--near-white);
+    outline: none;
+}
+.Select .icon {
+    position: absolute;
+    top: 50%;
+    right: 0.25rem;
+    margin-top: -0.5em;
+}
+
+/**
  * Tag
  */
 .Tag {

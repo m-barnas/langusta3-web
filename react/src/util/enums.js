@@ -1,6 +1,6 @@
-export const grammaticalCases = () => {
+export const getGrammaticalCases = () => {
   return ['Nominative', 'Genitive', 'Dative', 'Accusative', 'Vocative', 'Locative', 'Instrumental'];
 }
-export const numbers = () => {
+export const getNumbers = () => {
   return ['Singular', 'Plural'];
 }

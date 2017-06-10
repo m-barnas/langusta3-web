@@ -11,6 +11,7 @@ export default class Word extends Component {
 
     this.handleClick = this.handleClick.bind(this);
     this.deselect = this.deselect.bind(this);
+    this.getData = this.getData.bind(this);
   }
   handleClick(event) {
     this.props.onClick(this);
@@ -22,6 +23,9 @@ export default class Word extends Component {
       this.setState({
           isSelected: false
       })
+  }
+  getData() {
+    return this.state.data;
   }
   render() {
       let className = this.props.className + (this.state.isSelected ? " is-selected" : " ");
