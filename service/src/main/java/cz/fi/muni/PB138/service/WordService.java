@@ -77,6 +77,15 @@ public interface WordService {
      */
     List<Word> findAllForms(String infinitive, String pattern);
 
+    /**
+     * Finds infinitive for given declined value
+     *
+     * @param declinedValue to be searched
+     * @return infinitive or null if does not exist
+     */
+    String findInfinitive(String declinedValue);
+
+
 
 
 

@@ -47,8 +47,8 @@ public class WordServiceImpl implements WordService {
     }
 
     @Override
-    public List<String> findPatterns(String infinitive) {
-        return wordDao.findPatterns(infinitive);
+    public List<String> findPatterns(String declinedValue) {
+        return wordDao.findPatterns(declinedValue);
     }
 
     @Override
@@ -60,6 +60,12 @@ public class WordServiceImpl implements WordService {
     public List<Word> findAllForms(String infinitive, String pattern) {
         return wordDao.findAllForms(infinitive, pattern);
     }
+
+    @Override
+    public String findInfinitive(String declinedValue) {
+        return wordDao.findInfinitive(declinedValue);
+    }
+
 
 
 

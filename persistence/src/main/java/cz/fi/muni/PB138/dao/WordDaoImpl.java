@@ -4,6 +4,7 @@ import cz.fi.muni.PB138.entity.Word;
 import cz.fi.muni.PB138.enums.GrammaticalCase;
 import cz.fi.muni.PB138.enums.GrammaticalGender;
 import cz.fi.muni.PB138.enums.WordClass;
+import jdk.nashorn.internal.runtime.regexp.joni.constants.StringType;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -65,7 +66,8 @@ public class WordDaoImpl implements WordDao {
     public List<String> findPatterns(String declinedValue) {
         return em.createQuery(
                 "SELECT DISTINCT w.pattern FROM Word w " +
-                        "WHERE lower(w.declinedValue) = lower(:declinedValue)"
+                        "WHERE lower(w.declinedValue) = lower(:declinedValue) " +
+                        "AND w.pattern IS NOT NULL "
                 , String.class)
                 .setParameter("declinedValue", declinedValue)
                 .getResultList();
@@ -91,6 +93,18 @@ public class WordDaoImpl implements WordDao {
                 .setParameter("infinitive", infinitive)
                 .setParameter("pattern", pattern)
                 .getResultList();
+    }
+
+    @Override
+    public String findInfinitive(String declinedValue) {
+        List<String> list = em.createQuery(
+                "SELECT w.infinitive FROM Word w " +
+                        "WHERE lower(w.declinedValue) = lower(:declinedValue) "
+                , String.class)
+                .setParameter("declinedValue", declinedValue)
+                .setMaxResults(1)
+                .getResultList();
+        return list.isEmpty() ? null : list.get(0);
     }
 
 

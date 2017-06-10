@@ -1,7 +1,8 @@
 package cz.fi.muni.PB138.facade;
 
 import cz.fi.muni.PB138.dto.WordDTO;
-import cz.fi.muni.PB138.dto.WordFormDTO;
+import cz.fi.muni.PB138.dto.DeclinedWordDTO;
+import cz.fi.muni.PB138.dto.InfinitiveDTO;
 import cz.fi.muni.PB138.enums.GrammaticalCase;
 import cz.fi.muni.PB138.enums.GrammaticalGender;
 import cz.fi.muni.PB138.enums.WordClass;
@@ -76,7 +77,16 @@ public interface WordFacade {
      * @param pattern to be searched
      * @return list of forms or empty list if none exists
      */
-    WordFormDTO findAllForms(String infinitive, String pattern);
+    DeclinedWordDTO findAllForms(String infinitive, String pattern);
+
+    /**
+     * 7/ Analyzes given text
+     *
+     * @param text to be analyzed
+     * @return list of words (for each word -> patterns and declined values for each pattern)
+     * or empty list if none exists
+     */
+    List<InfinitiveDTO> analyze(String text);
 
 
     /**
