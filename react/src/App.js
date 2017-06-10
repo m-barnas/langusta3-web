@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import AnalysisContainer from './containers/AnalysisContainer';
 import RegexContainer from './containers/RegexContainer';
 import PatternSearchContainer from './containers/PatternSearchContainer';
+import PatternCountSearchContainer from './containers/PatternCountSearchContainer';
 import AboutContainer from './containers/AboutContainer';
 import ContactContainer from './containers/ContactContainer';
 
@@ -31,6 +32,7 @@ class App extends Component {
             <Route exact={true} path="/" component={AnalysisContainer}/>
             <Route path="/regex" component={RegexContainer}/>
             <Route path="/pattern-search" component={PatternSearchContainer}/>
+            <Route path="/pattern-count-search" component={PatternCountSearchContainer}/>
             <Route path="/about" component={AboutContainer}/>
             <Route path="/contact" component={ContactContainer}/>
           </div>

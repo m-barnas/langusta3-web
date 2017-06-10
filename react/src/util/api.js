@@ -115,3 +115,22 @@ export const fetchAnalyzedWords = (str) => {
     throw err;
   })
 }
+
+export const fetchWordsByPatternCount = (count) => {
+  console.log('Fetching word infinitives by pattern count');
+  console.time('fetchWordsByPatternCount');
+
+  return fetch(`PB138/langusta3/word/find-by-number-of-patterns?number-of-patterns=${count}`).then((res) => {
+    if (res.ok) {
+      console.timeEnd('fetchWordsByPatternCount');
+      return res.json();
+    }
+    throw new Error('Not ok');
+  }, (err) => {
+    console.log('fetch problem');
+    throw err;
+  }).catch((err) => {
+    console.log('problem parsing response');
+    throw err;
+  })
+}

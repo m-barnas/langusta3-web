@@ -150,6 +150,11 @@
     height: 4.5em;
     border-color: transparent;
     overflow-y: auto;
+    overflow-x: hidden;
+    word-break: break-word;
+}
+.AnalysisResult--lg {
+    height: 12em;
 }
 .AnalysisResult-inner {
 }

@@ -51,7 +51,7 @@ class Header extends Component {
                   <DropdownMenu {...menuOptions}>
                     <li><Link to="/pattern-search">Podle vzoru</Link></li>
                     <li><Link to="/regex">Regex</Link></li>
-                    <li><Link to="/">Počet slov podle vzoru</Link></li>
+                    <li><Link to="/pattern-count-search">Počet slov podle vzoru</Link></li>
                   </DropdownMenu>
                 </li>
                 <li className="dib mr3 mr4-l"><Link to="/about" className="pv2 db link black underline-hover">O projektu</Link></li>
