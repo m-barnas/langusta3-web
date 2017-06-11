@@ -4,12 +4,21 @@ import cz.fi.muni.PB138.entity.Word;
 import cz.fi.muni.PB138.enums.GrammaticalCase;
 import cz.fi.muni.PB138.enums.GrammaticalGender;
 import cz.fi.muni.PB138.enums.WordClass;
-import jdk.nashorn.internal.runtime.regexp.joni.constants.StringType;
+import cz.fi.muni.PB138.repository.WordRepository;
+import cz.fi.muni.PB138.utils.WordConverter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
+
+import static cz.fi.muni.PB138.specifications.WordSpecifications.isNotPresentInInfinitives;
+import static cz.fi.muni.PB138.specifications.WordSpecifications.isNotRepresentedByPattern;
+import static org.springframework.data.jpa.domain.Specifications.where;
 
 /**
  * Created by Martin on 26.5.2017.
@@ -21,6 +30,9 @@ public class WordDaoImpl implements WordDao {
 
     @PersistenceContext
     private EntityManager em;
+
+    @Autowired
+    private WordRepository wordRepository;
 
     @Override
     public void create(Word word) {
@@ -143,11 +155,20 @@ public class WordDaoImpl implements WordDao {
                 .getResultList();
     }
 
-
-
-
-
-
+    @Override
+    public SortedSet<Word> findAllWordsByPatterns(List<String> patterns) {
+        Specifications<Word> specifications = null;
+        for (String p : patterns) {
+            if(specifications == null) {
+                specifications = where(isNotRepresentedByPattern(p));
+            } else {
+                specifications = specifications.or(isNotRepresentedByPattern(p));
+            }
+        }
+        return new TreeSet<Word>(wordRepository
+                .findAll(isNotPresentInInfinitives(WordConverter.wordToInfinitive(new TreeSet<>(wordRepository
+                        .findAll(specifications))))));
+    }
 
     @Override
     public List<Word> findByWordClass(WordClass wordClass) {

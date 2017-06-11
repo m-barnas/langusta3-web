@@ -118,6 +118,22 @@ public class WordFacadeImpl implements WordFacade {
         return inputValueDTOS;
     }
 
+    @Override
+    public List<String> findAllWordsByPatterns(List<String> patterns) {
+        return wordService.findAllWordsByPatterns(patterns);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     @Override
     public List<WordDTO> findByWordClass(WordClass wordClass) {
