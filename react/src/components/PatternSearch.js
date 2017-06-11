@@ -3,8 +3,9 @@ import TagsInput from 'react-tagsinput';
 // import 'react-tagsinput/react-tagsinput.css';
 import AutosizeInput from 'react-input-autosize';
 import Autosuggest from 'react-autosuggest';
+import ReactTooltip from 'react-tooltip';
 import { MdClose, MdRefresh } from 'react-icons/lib/md';
-import { fetchAllPatterns, fetchWordsByPatterns } from '../util/api';
+import { fetchAllPatterns, fetchWordsByPatterns, fetchBasePattern } from '../util/api';
 
 export default class PatternSearch extends Component {
   constructor(props) {
@@ -52,8 +53,7 @@ export default class PatternSearch extends Component {
           words: data
         })
       })
-    }
-    
+    } 
   }
   handleChange(tags) {
     this.setState({tags})
@@ -71,6 +71,29 @@ export default class PatternSearch extends Component {
   }
   renderTag (props) {
     let {tag, key, disabled, onRemove, classNameRemove, getTagDisplayValue, ...other} = props
+    // let patternTooltipContent = "";
+
+    // fetchBasePattern(getTagDisplayValue(tag)).then((data) => {
+    //   let wordClass = data.wordClass;
+    //   let id = data.id;
+    //   let parent = data.parent;
+
+    //   patternTooltipContent = `<table><tbody>` + 
+    //     `<tr>` +
+    //       `<th class="normal">Slovný druh:</th>` +
+    //       `<td class="pl2 b">${wordClass}</td>` +
+    //     `</tr>` + 
+    //     `<tr>` +
+    //       `<th class="normal">ID:</th>` +
+    //       `<td class="pl2 b">${id}</td>` +
+    //     `</tr>` + 
+    //     `<tr>` +
+    //       `<th class="normal">Rodič:</th>` +
+    //       `<td class="pl2 b">${parent}</td>` +
+    //     `</tr>` + 
+    //   `</tbody></table`;
+    // });
+
     return (
       <span key={key} {...other}>
         {getTagDisplayValue(tag)}
@@ -88,6 +111,26 @@ export default class PatternSearch extends Component {
         e.preventDefault()
       } else {
         props.onChange(e)
+      }
+    }
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        const value = event.target.value;
+
+        // only add tag if input value is a valid pattern
+        if (this.state.patterns.find((item) => {
+          return item === value
+        })) {
+          addTag(value);
+        }
+      }
+      if (event.key === 'Backspace' && !event.target.value.length) {
+        if (typeof this.state.tags !== 'undefined' && this.state.tags.length) {
+          this.state.tags.length--;
+          this.forceUpdate();
+        }
       }
     }
 
@@ -120,7 +163,7 @@ export default class PatternSearch extends Component {
         shouldRenderSuggestions={(value) => value && value.trim().length > 0}
         getSuggestionValue={(suggestion) => suggestion}
         renderSuggestion={(suggestion) => <span>{suggestion}</span>}
-        inputProps={{...props, onChange: handleOnChange}}
+        inputProps={{...props, onChange: handleOnChange, onKeyDown: handleKeyDown}}
         onSuggestionSelected={(e, {suggestion}) => {
           addTag(suggestion)
         }}
@@ -172,6 +215,7 @@ export default class PatternSearch extends Component {
               </div>
             </div>
           }
+          {/*<ReactTooltip class="Tooltip" effect="solid" html={true}/>*/}
         </div>
       </main>
     )
