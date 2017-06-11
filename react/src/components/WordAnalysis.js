@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import ReactTooltip from 'react-tooltip';
 // import Pattern from './Pattern';
-import {MdArrowDropDown} from 'react-icons/lib/md';
+import {MdArrowDropDown, MdInfoOutline} from 'react-icons/lib/md';
+import { fetchPattern } from '../util/api';
 
 class WordAnalysis extends Component {
   constructor(props) {
@@ -10,7 +11,8 @@ class WordAnalysis extends Component {
     this.state = {
       wordData: null,
       patternData: null,
-      genderData: null
+      genderData: null,
+      patternInfo: null
     }
     
     // this.handlePatternClick = this.handlePatternClick.bind(this);
@@ -19,9 +21,22 @@ class WordAnalysis extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.word !== null) {
-      let wordData = nextProps.word.getData();
-      let patternData = nextProps.patternData;
-      let genderData = nextProps.genderData;
+      const wordData = nextProps.word.getData();
+      const patternData = nextProps.patternData;
+      const genderData = nextProps.genderData;
+
+
+      if (this.state.patternData !== patternData) {
+        fetchPattern(patternData.pattern).then((data) => {
+          const patternInfo = data;
+
+          this.setState({
+            patternInfo: patternInfo
+          })
+
+        })
+      }
+      
 
       this.setState({
         wordData: wordData,
@@ -66,10 +81,17 @@ class WordAnalysis extends Component {
   render() {
     const wordData = this.state.wordData;
     const patternData = this.state.patternData;
+    const patternInfo = this.state.patternInfo;
 
     if (wordData !== null) {;
       const patterns = wordData.patterns;
       const genders = patternData.genders;
+
+      let patternTooltipContent = "";
+      if (patternInfo !== null) {
+        patternTooltipContent = patternInfo.id;
+      }
+      
     
       return (
         <div className={"WordAnalysis" + (this.props.isLoading ? " is-loading" : "")}>
@@ -78,16 +100,17 @@ class WordAnalysis extends Component {
               <tr className="">
                 <th className=" v-top pv1 normal">Vzory:</th>
                 <td className="w-100 pl2 pv0 v-top b">
-                  <label className="Select db">
-                    <select className="pv1 pl2 pr3 b" onChange={this.handlePatternChange}>
+                  <div className="Select">
+                    <select className="pv1 pl2 pr3 b" onChange={this.handlePatternChange} 
+                    data-tip={patternTooltipContent}>
                       {patterns.map((item, index) => (
                         <option key={index} value={index}>
                           {item.pattern}
                         </option>
                       ))}
                     </select>
-                    <MdArrowDropDown className="icon" />
-                  </label>
+                    <MdArrowDropDown className="Select-icon"/>
+                  </div>
                   {/*<ul className="list pl0 mv0 overflow-y-auto">
                     {patterns.map((item, index) => (
                       <li key={index}>
@@ -123,7 +146,7 @@ class WordAnalysis extends Component {
                         </option>
                       ))}
                     </select>
-                    <MdArrowDropDown className="icon" />
+                    <MdArrowDropDown className="Select-icon" />
                   </label>
                 </td>
               </tr>

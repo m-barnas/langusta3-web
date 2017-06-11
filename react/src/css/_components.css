@@ -292,10 +292,16 @@
     background: var(--near-white);
     outline: none;
 }
-.Select .icon {
+.Select-icon {
     position: absolute;
     top: 50%;
     right: 0.25rem;
+    margin-top: -0.5em;
+}
+.Select-info {
+    position: absolute;
+    top: 50%;
+    right: 1.5rem;
     margin-top: -0.5em;
 }
 

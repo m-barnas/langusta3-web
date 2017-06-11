@@ -114,7 +114,7 @@ export default class PatternSearch extends Component {
     return (
       <main className="PatternSearch">
         <div className="Container pv5">
-          <h1 className="tc mt0">Pattern search</h1>
+          <h1 className="tc mt0">Vyhľadávanie podľa vzorov</h1>
           <div className="mw7 center">
             <TagsInput 
               renderInput={this.autosuggestRenderInput}

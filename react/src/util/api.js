@@ -1,5 +1,20 @@
 export const fetchPattern = (pattern) => {
-  return fetch(`langusta3/pattern/${pattern}`);
+  console.log(`Fetching info for pattern: ${pattern}`);
+  console.time('fetchPattern');
+
+  return fetch(`PB138/langusta3/pattern/${pattern}`).then((res) => {
+    if (res.ok) {
+      console.timeEnd('fetchPattern');
+      return res.json();
+    }
+    throw new Error('Not ok');
+  }, (err) => {
+    console.log('fetch problem');
+    throw err;
+  }).catch((err) => {
+    console.log('problem parsing response');
+    throw err;
+  });
 }
 
 export const fetchPatternsNames = () => {
