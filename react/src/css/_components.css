@@ -60,7 +60,6 @@
  * Buttons
  */
 .Button {
-    display: inline-block;
     padding: .5em 1em;
     border: 1px solid #ccc;
     border-radius: 3px;
@@ -76,7 +75,7 @@
 .Button:hover,
 .Button:focus {
     /*outline: 1px dotted currentColor;*/
-    background: #EEEEEE;
+    background: var(--moon-gray);
 }
 .Button-icon {
     margin-top: -3px;

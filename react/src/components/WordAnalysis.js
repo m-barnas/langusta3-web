@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import ReactTooltip from 'react-tooltip';
 // import Pattern from './Pattern';
-import {MdArrowDropDown, MdInfoOutline} from 'react-icons/lib/md';
-import { fetchPattern } from '../util/api';
+import {MdArrowDropDown, MdInfoOutline, MdNavigateNext} from 'react-icons/lib/md';
+import { fetchBasePattern } from '../util/api';
 
 class WordAnalysis extends Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class WordAnalysis extends Component {
 
 
       if (this.state.patternData !== patternData) {
-        fetchPattern(patternData.pattern).then((data) => {
+        fetchBasePattern(patternData.pattern).then((data) => {
           const patternInfo = data;
 
           this.setState({
@@ -86,10 +86,27 @@ class WordAnalysis extends Component {
     if (wordData !== null) {;
       const patterns = wordData.patterns;
       const genders = patternData.genders;
-
       let patternTooltipContent = "";
+
       if (patternInfo !== null) {
-        patternTooltipContent = patternInfo.id;
+        const wordClass = patternInfo.wordClass;
+        const id = patternInfo.id;
+        let parent = patternInfo.parent !== null ? patternInfo.parent : "—";
+
+        patternTooltipContent = `<table><tbody>` + 
+          `<tr>` +
+            `<th class="normal">Slovný druh:</th>` +
+            `<td class="pl2 b">${wordClass}</td>` +
+          `</tr>` + 
+          `<tr>` +
+            `<th class="normal">ID:</th>` +
+            `<td class="pl2 b">${id}</td>` +
+          `</tr>` + 
+          `<tr>` +
+            `<th class="normal">Rodič:</th>` +
+            `<td class="pl2 b">${parent}</td>` +
+          `</tr>` + 
+        `</tbody></table`;
       }
       
     
@@ -111,6 +128,13 @@ class WordAnalysis extends Component {
                     </select>
                     <MdArrowDropDown className="Select-icon"/>
                   </div>
+                  <div className="pv1 pr2 tr">
+                    <a className="f6 normal link gray underline-hover" href="#">
+                      <MdInfoOutline className="mr1"/>
+                      <span>info o vzore</span>
+                    </a>
+                  </div>
+                  <ReactTooltip class="Tooltip" effect="solid" html={true}/>
                   {/*<ul className="list pl0 mv0 overflow-y-auto">
                     {patterns.map((item, index) => (
                       <li key={index}>
@@ -124,7 +148,6 @@ class WordAnalysis extends Component {
                       </li>
                     ))}
                   </ul>*/}
-                  <ReactTooltip class="Tooltip" effect="solid"/>
                 </td>
               </tr>
               <tr className="">
@@ -153,6 +176,9 @@ class WordAnalysis extends Component {
 
             </tbody>
           </table>
+          <div className="tr mt4">
+            
+          </div>
           {/*<div className="cf">
             <dl className="fl w-50 lh-title mt0 mb3">
               <dt className="f6 fw4 ml0">Pád</dt>

@@ -1,10 +1,10 @@
-export const fetchPattern = (pattern) => {
-  console.log(`Fetching info for pattern: ${pattern}`);
-  console.time('fetchPattern');
+export const fetchBasePattern= (pattern) => {
+  console.log(`Fetching base info for pattern: ${pattern}`);
+  console.time('fetchBasePattern');
 
-  return fetch(`PB138/langusta3/pattern/${pattern}`).then((res) => {
+  return fetch(`PB138/langusta3/pattern/patternbase/${pattern}`).then((res) => {
     if (res.ok) {
-      console.timeEnd('fetchPattern');
+      console.timeEnd('fetchBasePattern');
       return res.json();
     }
     throw new Error('Not ok');

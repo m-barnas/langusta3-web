@@ -43,9 +43,9 @@ class Analysis extends Component {
     });
 
     let value = this.parseValue(this.state.value);
-    let words = getWords();
+    // let words = getWords();
 
-    // fetchAnalyzedWords(value).then((words) => {
+    fetchAnalyzedWords(value).then((words) => {
       let wordStrings = [];
 
       for (let word of words) {
@@ -58,7 +58,7 @@ class Analysis extends Component {
         words: words,
         wordStrings: wordStrings
       });
-    // })
+    })
 
     // console.log(value);
   }
