@@ -168,3 +168,36 @@ export const fetchWordsByPatternCount = (count) => {
     throw err;
   })
 }
+
+export const fetchWordsByPatterns = (patterns) => {
+  console.log('Fetching word infinitives by patterns');
+  console.time('fetchWordsByPatterns');
+
+  let patternsStr = "";
+  let str = "";
+
+  patterns.map((item, index) => {
+    str = `pattern=${item}`;
+    if (index < patterns.length - 1) {
+      str += "&";
+    }
+
+    patternsStr += str;
+  })
+
+  console.log(patternsStr);
+
+  return fetch(`PB138/langusta3/word/find-words-by-patterns?${patternsStr}`).then((res) => {
+    if (res.ok) {
+      console.timeEnd('fetchWordsByPatterns');
+      return res.json();
+    }
+    throw new Error('Not ok');
+  }, (err) => {
+    console.log('fetch problem');
+    throw err;
+  }).catch((err) => {
+    console.log('problem parsing response');
+    throw err;
+  })
+}

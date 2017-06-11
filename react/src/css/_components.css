@@ -245,6 +245,7 @@
  * TagPicker
  */
 .TagPicker {
+    position: relative;
     padding-bottom: 0;
 }
 .TagPicker-input {
@@ -255,6 +256,9 @@
     border: none;
     line-height: 1.5;
     outline: none;
+}
+.TagPicker.is-loading {
+    cursor: wait;
 }
 
 /**
@@ -335,15 +339,28 @@
     display: inline;
 }
 .react-autosuggest__suggestions-container {
-    margin: 0 -.75em;
+    position: absolute;
+    top: 100%;
+    left: -1px;
+    right: -1px;
+    margin-top: -3px;
+
+    /*margin: 0 -.75em;*/
+}
+.react-autosuggest__suggestions-container--open {
+    border: 1px solid;
+    border-top: none;
+    border-radius: 0 0 3px 3px;
+    background: #fff;
 }
 .react-autosuggest__suggestions-list {
-    max-height: 7.5em;
+    max-height: 5em;
     border-top: 1px solid var(--moon-gray);
     padding: .5em 0;
-    margin: 0;
+    margin: 3px 0 0;
     list-style: none;
     overflow-y: auto;
+
 }
 
 .react-autosuggest__suggestion {

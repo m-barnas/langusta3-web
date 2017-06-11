@@ -3,18 +3,21 @@ import TagsInput from 'react-tagsinput';
 // import 'react-tagsinput/react-tagsinput.css';
 import AutosizeInput from 'react-input-autosize';
 import Autosuggest from 'react-autosuggest';
-import { MdClose } from 'react-icons/lib/md';
-import { fetchAllPatterns } from '../util/api';
+import { MdClose, MdRefresh } from 'react-icons/lib/md';
+import { fetchAllPatterns, fetchWordsByPatterns } from '../util/api';
 
 export default class PatternSearch extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      isLoading: false,
       tags: [],
-      patterns: []
+      patterns: [],
+      words: null
     }
 
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.focus = this.focus.bind(this);
@@ -34,6 +37,23 @@ export default class PatternSearch extends Component {
         patterns: patterns
       }
     });
+  }
+  handleSubmit(event) {
+    event.preventDefault();
+
+    if (typeof this.state.tags !== 'undefined' && this.state.tags.length) {
+      this.setState({
+        isLoading: true
+      })
+
+      fetchWordsByPatterns(this.state.tags).then((data) => {
+        this.setState({
+          isLoading: false,
+          words: data
+        })
+      })
+    }
+    
   }
   handleChange(tags) {
     this.setState({tags})
@@ -111,17 +131,19 @@ export default class PatternSearch extends Component {
     )
   }
   render() {
+    const words = this.state.words;
+
     return (
       <main className="PatternSearch">
         <div className="Container pv5">
           <h1 className="tc mt0">Vyhľadávanie podľa vzorov</h1>
-          <div className="mw7 center">
+          <form className="flex mw7 center" onSubmit={this.handleSubmit}>
             <TagsInput 
               renderInput={this.autosuggestRenderInput}
               renderTag={this.renderTag}
               value={this.state.tags} 
               onChange={this.handleChange}
-              className="TagPicker FormControl"
+              className={"TagPicker FormControl flex-auto" + (this.state.isLoading ? " is-loading" : "")}
               focusedClassName="is-focused"
               inputProps={{
                 className: "TagPicker-input",
@@ -134,8 +156,22 @@ export default class PatternSearch extends Component {
               }}
               onlyUnique={true}
               ref={(input) => {this.input = input}}
+              disabled={this.state.isLoading}
             />
+            <button className={"Button Button--primary ml3 nowrap" + (this.state.isLoading ? " is-loading" : "")} 
+            type="submit" disabled={this.state.isLoading}>
+              <MdRefresh className="Button-icon" /> Search
+            </button>
+          </form>
+          { words !== null && typeof words !== 'undefined' &&
+            <div className="mw7 center mt3">
+              <div className={"AnalysisResult AnalysisResult--lg FormControl overflow-y-auto bg-near-white" + (this.state.isLoading ? " is-loading" : "")}>
+                {words.map((item, index) => {
+                  return <span className="mr2" key={index}>{item} </span>
+                })}
+              </div>
             </div>
+          }
         </div>
       </main>
     )
