@@ -3,6 +3,7 @@ package cz.fi.muni.PB138.service;
 import cz.fi.muni.PB138.entity.Word;
 import cz.fi.muni.PB138.enums.GrammaticalCase;
 import cz.fi.muni.PB138.enums.GrammaticalGender;
+import cz.fi.muni.PB138.enums.Number;
 import cz.fi.muni.PB138.enums.WordClass;
 
 import java.util.List;
@@ -121,6 +122,19 @@ public interface WordService {
      */
     List<String> findAllWordsByPatterns(List<String> patterns);
 
+    /**
+     * Finds words that match requirements
+     *
+     * @param pattern that must match
+     * @param declinedValue that must match
+     * @param wordClass that must match
+     * @param grammaticalGender that must match
+     * @param number that must match
+     * @param grammaticalCase that must match
+     * @return list of words that matches requirements or empty list if none such a word exists
+     */
+    List<String> findFiltered(String declinedValue, String pattern, WordClass wordClass,
+                              GrammaticalGender grammaticalGender, Number number, GrammaticalCase grammaticalCase);
 
 
 

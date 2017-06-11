@@ -7,6 +7,7 @@ import cz.fi.muni.PB138.dto.InputValueDTO;
 import cz.fi.muni.PB138.entity.Word;
 import cz.fi.muni.PB138.enums.GrammaticalCase;
 import cz.fi.muni.PB138.enums.GrammaticalGender;
+import cz.fi.muni.PB138.enums.Number;
 import cz.fi.muni.PB138.enums.WordClass;
 import cz.fi.muni.PB138.facade.WordFacade;
 import cz.fi.muni.PB138.service.WordService;
@@ -123,9 +124,12 @@ public class WordFacadeImpl implements WordFacade {
         return wordService.findAllWordsByPatterns(patterns);
     }
 
-
-
-
+    @Override
+    public List<String> findFiltered(String declinedValue, String pattern, WordClass wordClass,
+                                     GrammaticalGender grammaticalGender, Number number, GrammaticalCase grammaticalCase) {
+        return wordService.findFiltered(declinedValue, pattern, wordClass, grammaticalGender,
+                number, grammaticalCase);
+    }
 
 
 

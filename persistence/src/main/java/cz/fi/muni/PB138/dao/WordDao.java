@@ -4,10 +4,9 @@ import cz.fi.muni.PB138.entity.Word;
 import cz.fi.muni.PB138.enums.GrammaticalCase;
 import cz.fi.muni.PB138.enums.GrammaticalGender;
 import cz.fi.muni.PB138.enums.WordClass;
+import cz.fi.muni.PB138.enums.Number;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.SortedSet;
 
 /**
  * Created by Martin on 26.5.2017.
@@ -116,12 +115,18 @@ public interface WordDao {
     List<GrammaticalGender> findGrammaticalGenders(String infinitive, String pattern);
 
     /**
-     * Finds all words represented by given patterns
+     * Finds words that match requirements
      *
-     * @param patterns to be searched
-     * @return sorted set of word or empty list if none exists
+     * @param pattern that must match
+     * @param declinedValue that must match
+     * @param wordClass that must match
+     * @param grammaticalGender that must match
+     * @param number that must match
+     * @param grammaticalCase that must match
+     * @return list of words that matches requirements or empty list if none such a word exists
      */
-    SortedSet<Word> findAllWordsByPatterns(List<String> patterns);
+    List<Word> findFiltered(String declinedValue, String pattern, WordClass wordClass,
+                            GrammaticalGender grammaticalGender, Number number, GrammaticalCase grammaticalCase);
 
 
 
