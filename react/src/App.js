@@ -8,7 +8,7 @@ import PatternSearchContainer from './containers/PatternSearchContainer';
 import PatternCountSearchContainer from './containers/PatternCountSearchContainer';
 import AboutContainer from './containers/AboutContainer';
 import ContactContainer from './containers/ContactContainer';
-import PatternContainer from './containers/PatternContainer';
+// import PatternContainer from './containers/PatternContainer';
 
 import './../tachyons/css/tachyons.css';
 import './css/App.css';
