@@ -8,6 +8,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -53,6 +55,11 @@ public class WordController {
     @RequestMapping(path = "/analyze", method = RequestMethod.GET)
     public List<InputValueDTO> analyze(@RequestParam("text") String text) {
         return wordFacade.analyze(text);
+    }
+
+    @RequestMapping(path = "/find-words-by-patterns", method = RequestMethod.GET)
+    public List<String> findWordsByPatterns(@RequestParam("pattern") List<String> patterns) {
+        return wordFacade.findAllWordsByPatterns(patterns);
     }
 
 

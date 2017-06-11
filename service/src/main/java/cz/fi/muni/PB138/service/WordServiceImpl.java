@@ -6,10 +6,14 @@ import cz.fi.muni.PB138.enums.GrammaticalCase;
 import cz.fi.muni.PB138.enums.GrammaticalGender;
 import cz.fi.muni.PB138.enums.WordClass;
 import cz.fi.muni.PB138.service.utils.EnumConverter;
+import cz.fi.muni.PB138.utils.WordConverter;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  * Created by Martin on 7.6.2017.
@@ -82,6 +86,20 @@ public class WordServiceImpl implements WordService {
     public List<GrammaticalGender> findGrammaticalGenders(String infinitive, String pattern) {
         return wordDao.findGrammaticalGenders(infinitive, pattern);
     }
+
+    @Override
+    public List<String> findAllWordsByPatterns(List<String> patterns) {
+        SortedSet<String> infinitives = new TreeSet<>();
+        for (String pattern : patterns) {
+            if (infinitives.isEmpty()) {
+                infinitives.addAll(wordDao.findInfinitivesByPattern(pattern));
+            } else {
+                infinitives.retainAll(wordDao.findInfinitivesByPattern(pattern));
+            }
+        }
+        return new ArrayList<>(infinitives);
+    }
+
 
 
 

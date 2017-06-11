@@ -89,6 +89,21 @@ public interface WordFacade {
      */
     List<InputValueDTO> analyze(String text);
 
+    /**
+     * Finds all words represented by given patterns
+     *
+     * @param patterns to be searched
+     * @return list of word or empty list if none exists
+     */
+    List<String> findAllWordsByPatterns(List<String> patterns);
+
+
+
+
+
+
+
+
 
     /**
      * Finds words by given word class

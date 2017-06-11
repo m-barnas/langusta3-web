@@ -4,6 +4,8 @@ import cz.fi.muni.PB138.enums.GrammaticalGender;
 
 /**
  * Created by Martin on 10.6.2017.
+ *
+ * @author Martin Barnas 433523
  */
 public class EnumConverter {
 
