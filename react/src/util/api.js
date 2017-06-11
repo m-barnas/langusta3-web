@@ -2,6 +2,25 @@ export const fetchPattern = (pattern) => {
   return fetch(`langusta3/pattern/${pattern}`);
 }
 
+export const fetchPatternsNames = () => {
+  console.log('Fetching patterns names');
+  console.time('fetchPatternsNames');
+
+  return fetch(`PB138/langusta3/pattern/findall`).then((res) => {
+    if (res.ok) {
+      console.timeEnd('fetchPatternsNames');
+      return res.json();
+    }
+    throw new Error('Not ok');
+  }, (err) => {
+    console.log('fetch problem');
+    throw err;
+  }).catch((err) => {
+    console.log('problem parsing response');
+    throw err;
+  })
+}
+
 export const fetchPatterns = (word) => {
   console.log('Fetching patterns for word');
   console.time('fetchPatterns');

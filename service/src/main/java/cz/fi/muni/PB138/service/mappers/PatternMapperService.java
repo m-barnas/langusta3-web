@@ -2,6 +2,7 @@ package cz.fi.muni.PB138.service.mappers;
 
 import cz.fi.muni.PB138.dto.*;
 import cz.fi.muni.PB138.entity.xml.Pattern;
+import cz.fi.muni.PB138.entity.xml.PatternBase;
 import cz.fi.muni.PB138.entity.xml.util.BaseChange;
 import cz.fi.muni.PB138.entity.xml.util.ConditionList;
 import cz.fi.muni.PB138.entity.xml.util.Form;
@@ -21,5 +22,6 @@ public interface PatternMapperService {
     public FormInfoDTO convertToDTO(FormInfo entity);
     public FormDTO convertToDTO(Form entity);
     public PatternDTO convertToDTO(Pattern entity);
-    public List<PatternDTO> convertToDTO(List<Pattern> entity);
+    public PatternBaseDTO convertToDTO(PatternBase entity);
+    public List<PatternBaseDTO> convertToDTO(List<PatternBase> entities);
 }

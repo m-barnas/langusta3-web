@@ -28,7 +28,7 @@ export default class PatternSearch extends Component {
 
     data.then((data) => {
       for (let obj of data) {
-        patterns.push(obj.id);
+        patterns.push(obj);
       }
       this.state = {
         patterns: patterns

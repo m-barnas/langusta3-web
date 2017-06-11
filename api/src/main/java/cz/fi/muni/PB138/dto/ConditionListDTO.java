@@ -1,9 +1,8 @@
 package cz.fi.muni.PB138.dto;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by Erik Macej 433744 , on 29.5.17.
@@ -13,7 +12,7 @@ import java.util.Map;
 public class ConditionListDTO {
 
     private String conditionString;
-    private Map<Integer, List<BaseChangeDTO>> basechanges = new HashMap<>();
+    private Set<Integer> basechanges;
     private Boolean lemma;
 
     public String getConditionString() {
@@ -24,11 +23,11 @@ public class ConditionListDTO {
         this.conditionString = conditionString;
     }
 
-    public Map<Integer, List<BaseChangeDTO>> getBasechanges() {
-        return Collections.unmodifiableMap(basechanges);
+    public Set<Integer> getBasechanges() {
+        return Collections.unmodifiableSet(basechanges);
     }
 
-    public void setBasechanges(Map<Integer, List<BaseChangeDTO>> basechanges) {
+    public void setBasechanges(Set<Integer> basechanges) {
         this.basechanges = basechanges;
     }
 
