@@ -5,7 +5,9 @@ import cz.fi.muni.PB138.enums.GrammaticalCase;
 import cz.fi.muni.PB138.enums.GrammaticalGender;
 import cz.fi.muni.PB138.enums.WordClass;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.SortedSet;
 
 /**
  * Created by Martin on 26.5.2017.
@@ -100,7 +102,7 @@ public interface WordDao {
      * Finds infinitive for given declined value
      *
      * @param declinedValue to be searched
-     * @return list of infinitives or null if does not exist
+     * @return list of infinitives or empty list if does not exist
      */
     List<String> findInfinitivesByDeclinedValue(String declinedValue);
 
@@ -109,11 +111,17 @@ public interface WordDao {
      *
      * @param infinitive to be searched
      * @param pattern to be searched
-     * @return list of grammatical genders or null if none exists
+     * @return list of grammatical genders or empty list if none exists
      */
     List<GrammaticalGender> findGrammaticalGenders(String infinitive, String pattern);
 
-
+    /**
+     * Finds all words represented by given patterns
+     *
+     * @param patterns to be searched
+     * @return sorted set of word or empty list if none exists
+     */
+    SortedSet<Word> findAllWordsByPatterns(List<String> patterns);
 
 
 

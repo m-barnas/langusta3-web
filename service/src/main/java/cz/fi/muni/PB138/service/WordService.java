@@ -6,6 +6,7 @@ import cz.fi.muni.PB138.enums.GrammaticalGender;
 import cz.fi.muni.PB138.enums.WordClass;
 
 import java.util.List;
+import java.util.SortedSet;
 
 /**
  * Created by Martin on 7.6.2017.
@@ -111,6 +112,17 @@ public interface WordService {
      * @return list of grammatical genders or null if none exists
      */
     List<GrammaticalGender> findGrammaticalGenders(String infinitive, String pattern);
+
+    /**
+     * Finds all words represented by given patterns
+     *
+     * @param patterns to be searched
+     * @return list of word or empty list if none exists
+     */
+    List<String> findAllWordsByPatterns(List<String> patterns);
+
+
+
 
 
 

@@ -25,7 +25,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories
+@EnableJpaRepositories("cz.fi.muni.PB138.repository")
 @ComponentScan("cz.fi.muni.PB138.dao")
 public class PersistenceApplicationContext {
 

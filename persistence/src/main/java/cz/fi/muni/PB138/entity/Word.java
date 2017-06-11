@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "word")
-public class Word {
+public class Word implements Comparable<Word> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -137,5 +137,10 @@ public class Word {
                 ", number=" + number +
                 ", grammaticalCase=" + grammaticalCase +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Word o) {
+        return infinitive.compareTo(o.infinitive);
     }
 }
