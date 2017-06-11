@@ -36,7 +36,6 @@ class App extends Component {
             <Route path="/pattern-count-search" component={PatternCountSearchContainer}/>
             <Route path="/about" component={AboutContainer}/>
             <Route path="/contact" component={ContactContainer}/>
-            <Route path="/pattern" component={PatternContainer}/>
           </div>
 
           <Footer />
