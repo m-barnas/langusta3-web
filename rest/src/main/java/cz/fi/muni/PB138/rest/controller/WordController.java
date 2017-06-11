@@ -2,6 +2,10 @@ package cz.fi.muni.PB138.rest.controller;
 
 import cz.fi.muni.PB138.dto.WordDTO;
 import cz.fi.muni.PB138.dto.InputValueDTO;
+import cz.fi.muni.PB138.enums.GrammaticalCase;
+import cz.fi.muni.PB138.enums.GrammaticalGender;
+import cz.fi.muni.PB138.enums.Number;
+import cz.fi.muni.PB138.enums.WordClass;
 import cz.fi.muni.PB138.facade.WordFacade;
 import cz.fi.muni.PB138.rest.Uri;
 import org.springframework.http.MediaType;
@@ -60,6 +64,17 @@ public class WordController {
     @RequestMapping(path = "/find-words-by-patterns", method = RequestMethod.GET)
     public List<String> findWordsByPatterns(@RequestParam("pattern") List<String> patterns) {
         return wordFacade.findAllWordsByPatterns(patterns);
+    }
+
+    @RequestMapping(path = "/filter", method = RequestMethod.GET)
+    public List<String> findFiltered(
+            @RequestParam("matches") String matches,
+            @RequestParam(value = "pattern", required = false) String pattern,
+            @RequestParam(value = "word-class", required = false) WordClass wordClass,
+            @RequestParam(value = "grammatical-gender", required = false) GrammaticalGender grammaticalGender,
+            @RequestParam(value = "number", required = false) Number number,
+            @RequestParam(value = "grammatical-case", required = false) GrammaticalCase grammaticalCase) {
+        return wordFacade.findFiltered(matches, pattern, wordClass, grammaticalGender, number, grammaticalCase);
     }
 
 

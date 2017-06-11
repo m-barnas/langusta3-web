@@ -4,8 +4,8 @@ import cz.fi.muni.PB138.entity.Word;
 import cz.fi.muni.PB138.enums.GrammaticalCase;
 import cz.fi.muni.PB138.enums.GrammaticalGender;
 import cz.fi.muni.PB138.enums.WordClass;
+import cz.fi.muni.PB138.enums.Number;
 import cz.fi.muni.PB138.repository.WordRepository;
-import cz.fi.muni.PB138.utils.WordConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Repository;
@@ -13,11 +13,8 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
-import static cz.fi.muni.PB138.specifications.WordSpecifications.isNotPresentInInfinitives;
-import static cz.fi.muni.PB138.specifications.WordSpecifications.isNotRepresentedByPattern;
+import static cz.fi.muni.PB138.specifications.WordSpecifications.*;
 import static org.springframework.data.jpa.domain.Specifications.where;
 
 /**
@@ -156,18 +153,25 @@ public class WordDaoImpl implements WordDao {
     }
 
     @Override
-    public SortedSet<Word> findAllWordsByPatterns(List<String> patterns) {
-        Specifications<Word> specifications = null;
-        for (String p : patterns) {
-            if(specifications == null) {
-                specifications = where(isNotRepresentedByPattern(p));
-            } else {
-                specifications = specifications.or(isNotRepresentedByPattern(p));
-            }
+    public List<Word> findFiltered(String declinedValue, String pattern, WordClass wordClass,
+                                   GrammaticalGender grammaticalGender, Number number, GrammaticalCase grammaticalCase) {
+        Specifications<Word> specifications = where(hasDeclinedValue(declinedValue));
+        if (pattern != null) {
+            specifications = specifications.and(hasPattern(pattern));
         }
-        return new TreeSet<Word>(wordRepository
-                .findAll(isNotPresentInInfinitives(WordConverter.wordToInfinitive(new TreeSet<>(wordRepository
-                        .findAll(specifications))))));
+        if (wordClass != null) {
+            specifications = specifications.and(hasWordClass(wordClass));
+        }
+        if (grammaticalGender != null) {
+            specifications = specifications.and(hasGrammaticalGender(grammaticalGender));
+        }
+        if (number != null) {
+            specifications = specifications.and(hasNumber(number));
+        }
+        if (grammaticalCase != null) {
+            specifications = specifications.and(hasGrammaticalCase(grammaticalCase));
+        }
+        return wordRepository.findAll(specifications);
     }
 
     @Override
