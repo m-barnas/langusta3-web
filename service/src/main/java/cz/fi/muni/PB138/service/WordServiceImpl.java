@@ -4,9 +4,10 @@ import cz.fi.muni.PB138.dao.WordDao;
 import cz.fi.muni.PB138.entity.Word;
 import cz.fi.muni.PB138.enums.GrammaticalCase;
 import cz.fi.muni.PB138.enums.GrammaticalGender;
+import cz.fi.muni.PB138.enums.Number;
 import cz.fi.muni.PB138.enums.WordClass;
 import cz.fi.muni.PB138.service.utils.EnumConverter;
-import cz.fi.muni.PB138.utils.WordConverter;
+import cz.fi.muni.PB138.service.utils.WordConverter;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -74,7 +75,7 @@ public class WordServiceImpl implements WordService {
     @Override
     public List<Word> findAllForms(String infinitive, String pattern, GrammaticalGender grammaticalGender) {
         return wordDao.findAllForms(infinitive, pattern,
-                EnumConverter.grammaticalGenderToString(grammaticalGender));
+                EnumConverter.grammaticalGenderToStr(grammaticalGender));
     }
 
     @Override
@@ -100,6 +101,37 @@ public class WordServiceImpl implements WordService {
         return new ArrayList<>(infinitives);
     }
 
+    @Override
+    public List<String> findFiltered(String declinedValue, String pattern, WordClass wordClass,
+                              GrammaticalGender grammaticalGender, Number number, GrammaticalCase grammaticalCase) {
+        /*
+        String wordClassStr = null;
+        if (wordClass != null) {
+            wordClassStr = wordClass.name();
+            System.err.println(wordClass.name());
+        }
+        String grammaticalGenderStr = null;
+        if (grammaticalGender != null) {
+            grammaticalGenderStr = grammaticalGender.name();
+            System.err.println(grammaticalGender.name());
+        }
+        String numberStr = null;
+        if (number != null) {
+            numberStr = number.name();
+            System.err.println(number.name());
+        }
+        String grammaticalCaseStr = null;
+        if (grammaticalCase != null) {
+            grammaticalCaseStr = grammaticalCase.name();
+            System.err.println(grammaticalCase.name());
+        }
+        List<Word> words = wordDao.findFiltered(declinedValue, pattern, wordClassStr, grammaticalGenderStr,
+                numberStr, grammaticalCaseStr);
+        */
+        List<Word> words = wordDao.findFiltered(declinedValue, pattern, wordClass, grammaticalGender,
+                number, grammaticalCase);
+        return WordConverter.wordToDeclinedValue(words);
+    }
 
 
 

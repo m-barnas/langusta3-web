@@ -1,4 +1,4 @@
-package cz.fi.muni.PB138.utils;
+package cz.fi.muni.PB138.service.utils;
 
 import cz.fi.muni.PB138.entity.Word;
 
@@ -14,11 +14,20 @@ import java.util.SortedSet;
  */
 public class WordConverter {
 
-    public static List<String> wordToInfinitive(SortedSet<Word> words) {
+    public static List<String> wordToInfinitive(Collection<Word> words) {
         List<String> infinitives = new ArrayList<>();
         for(Word w : words) {
             infinitives.add(w.getInfinitive());
         }
         return infinitives;
     }
+
+    public static List<String> wordToDeclinedValue(Collection<Word> words) {
+        List<String> declinedValues = new ArrayList<>();
+        for(Word w : words) {
+            declinedValues.add(w.getDeclinedValue());
+        }
+        return declinedValues;
+    }
+
 }
