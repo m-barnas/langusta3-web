@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 import WordAnalysis from './WordAnalysis';
 import WordForms from './WordForms';
 import Highlighter from './Highlighter';
-import {MdRefresh, MdMailOutline} from 'react-icons/lib/md';
+import {MdRefresh} from 'react-icons/lib/md';
 import { fetchAnalyzedWords } from './../util/api';
 // import { getGrammaticalCases } from './../util/enums';
-import { getWords } from './../util/data.js';
+// import { getWords } from './../util/data.js';
 
 class Analysis extends Component {
   constructor(props) {
@@ -102,7 +102,7 @@ class Analysis extends Component {
               <div className="fl-ns w-50-ns pr2-ns mb2 mb0-ns">
                 <textarea className={"AnalysisInput FormControl" + (this.state.isLoading ? " is-loading" : "")}
                  rows="3" onChange={this.handleChange} value={this.state.value}
-                 disabled={this.state.isLoading} maxLength="255"/>
+                 disabled={this.state.isLoading} maxLength="255" required/>
               </div>
               <div className="fl-ns w-50-ns pl2-ns">
                 <div className={"AnalysisResult FormControl overflow-y-auto bg-near-white" + (this.state.isLoading ? " is-loading" : "")}>
@@ -134,9 +134,9 @@ class Analysis extends Component {
             </div>
           </div>
 
-          <div className="mw6 center tc mt5 f6">
+          {/*<div className="mw6 center tc mt5 f6">
             <a className="link gray underline-hover" href="#"><MdMailOutline className="Button-icon" /> Nahlásit chybu/požádat o doplnění</a>
-          </div>
+          </div>*/}
         </div>
       </main>
     );

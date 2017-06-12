@@ -1,3 +1,5 @@
+import { getFilterKeys } from './enums';
+
 export const fetchBasePattern= (pattern) => {
   console.log(`Fetching base info for pattern: ${pattern}`);
   console.time('fetchBasePattern');
@@ -176,7 +178,7 @@ export const fetchWordsByPatterns = (patterns) => {
   let patternsStr = "";
   let str = "";
 
-  patterns.map((item, index) => {
+  patterns.forEach((item, index) => {
     str = `pattern=${item}`;
     if (index < patterns.length - 1) {
       str += "&";
@@ -184,8 +186,6 @@ export const fetchWordsByPatterns = (patterns) => {
 
     patternsStr += str;
   })
-
-  console.log(patternsStr);
 
   return fetch(`PB138/langusta3/word/find-words-by-patterns?${patternsStr}`).then((res) => {
     if (res.ok) {
@@ -198,6 +198,39 @@ export const fetchWordsByPatterns = (patterns) => {
     throw err;
   }).catch((err) => {
     console.log('problem parsing response');
+    throw err;
+  })
+}
+
+// possible filters are: pattern, wordClass, gender, number, grammaticalCase
+export const fetchWordsByFilters = (match, filters) => {
+  console.log('Fetching words by filters');
+  console.time('fetchWordsByFilters');
+
+  let filtersStr = "";
+
+  if (typeof filters !== 'undefined') {
+    const filterKeys = getFilterKeys();
+
+    for (const key of filterKeys) {
+      filtersStr += (filters[key] !== null && filters[key].length) ? `&${key}=${filters[key]}` : "";
+    }
+  }
+
+  // console.log(filtersStr);
+
+  // &pattern=${pattern}&word-class=${wordClass}&grammatical-gender=${gender}&number=${number}&grammatical-case=${grammaticalCase}
+  return fetch(`/PB138/langusta3/word/filter?matches=${encodeURIComponent(match)}${filtersStr}`).then((res) => {
+    if (res.ok) {
+      console.timeEnd('fetchWordsByFilters');
+      return res.json();
+    }
+    throw new Error('Not ok');
+  }, (err) => {
+    console.log('fetch problem');
+    throw err;
+  }).catch((err) => {
+    console.log('problem parsing response: ');
     throw err;
   })
 }

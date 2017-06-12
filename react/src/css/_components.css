@@ -1,5 +1,17 @@
 @import 'react-dd-menu/dist/react-dd-menu.css';
 
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -10%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .Container {
     max-width: 64rem;
     margin-right: auto;
@@ -26,6 +38,7 @@
     padding: .5em 0 ;
 }
 .FormControl {
+    position: relative;
     display: block;
     padding: .5em .75em;
     width: 100%;
@@ -39,6 +52,7 @@
 }
 .FormControl:focus,
 .FormControl.is-focused {
+    z-index: 1;
     outline: none;
     border-color: var(--black);
     /*outline: 1px dotted currentColor;*/
@@ -61,7 +75,7 @@
  */
 .Button {
     padding: .5em 1em;
-    border: 1px solid #ccc;
+    border: 1px solid var(--moon-gray);
     border-radius: 3px;
     background: var(--near-white);
 
@@ -75,7 +89,8 @@
 .Button:hover,
 .Button:focus {
     /*outline: 1px dotted currentColor;*/
-    background: var(--moon-gray);
+    background: var(--near-white);
+    border-color: var(--black);
 }
 .Button-icon {
     margin-top: -3px;
@@ -100,6 +115,22 @@
 }
 .Button--primary.is-loading {
     background: #555555;
+}
+
+/**
+ * Input Group
+ */
+.InputGroup .FormControl {
+    width: 1%;
+    border-radius: 3px 0 0 3px;
+}
+.InputGroup-btn {
+    position: relative;
+    padding: .5em .75em;
+    border: 1px solid var(--moon-gray);
+    /*border-left: none;*/
+    border-radius: 0 3px 3px 0;
+    margin-left: -1px;
 }
 
 /**
@@ -300,6 +331,7 @@
     top: 50%;
     right: 0.25rem;
     margin-top: -0.5em;
+    pointer-events: none;
 }
 .Select-info {
     position: absolute;
@@ -372,21 +404,42 @@
     background: var(--light-gray);
 }
 
-/**
- * Dropdown Menu
- */
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translate3d(0, -10%, 0);
-  }
 
-  to {
-    opacity: 1;
-    transform: none;
-  }
+
+/**
+* Modal
+*/
+.ModalOverlay {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    display: flex;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    background: rgba(0, 0, 0, .5);
+
+    transition: all 150ms;
 }
-/*.dd-menu .dd-menu-items ul,
-.dd-menu .dd-menu-items ol {
-    animation: 150ms linear 0s fadeInDown;
-}*/
+.Modal {
+    position: relative;
+    max-width: 48rem;
+    /*padding: 2rem;*/
+    margin: auto;
+    background: #fff;
+    box-shadow: 0 0 32px rgba(0, 0, 0, .2);
+}
+.Modal-close {
+    /*position: absolute;*/
+    /*top: 2rem;*/
+    /*right: 2rem;*/
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+}

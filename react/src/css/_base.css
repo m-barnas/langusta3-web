@@ -14,7 +14,8 @@ html {
     -moz-font-feature-settings: "liga" on;
 }
 
-.link[type="button"] {
+.link[type="button"],
+a[type="button"] {
     appearance: none;
     cursor: pointer;
 }

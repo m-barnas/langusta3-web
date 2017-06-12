@@ -3,9 +3,9 @@ import TagsInput from 'react-tagsinput';
 // import 'react-tagsinput/react-tagsinput.css';
 import AutosizeInput from 'react-input-autosize';
 import Autosuggest from 'react-autosuggest';
-import ReactTooltip from 'react-tooltip';
+// import ReactTooltip from 'react-tooltip';
 import { MdClose, MdRefresh } from 'react-icons/lib/md';
-import { fetchAllPatterns, fetchWordsByPatterns, fetchBasePattern } from '../util/api';
+import { fetchAllPatterns, fetchWordsByPatterns } from '../util/api';
 
 export default class PatternSearch extends Component {
   constructor(props) {
@@ -66,33 +66,11 @@ export default class PatternSearch extends Component {
   autosizingRenderInput ({addTag, ...props}) {
     let {onChange, value, ...other} = props
     return (
-      <AutosizeInput ref={props.ref} type='text' onChange={onChange} value={value} {...other} />
+      <AutosizeInput ref={props.ref} type='text' onChange={onChange} value={value} {...other}/>
     )
   }
   renderTag (props) {
     let {tag, key, disabled, onRemove, classNameRemove, getTagDisplayValue, ...other} = props
-    // let patternTooltipContent = "";
-
-    // fetchBasePattern(getTagDisplayValue(tag)).then((data) => {
-    //   let wordClass = data.wordClass;
-    //   let id = data.id;
-    //   let parent = data.parent;
-
-    //   patternTooltipContent = `<table><tbody>` + 
-    //     `<tr>` +
-    //       `<th class="normal">Slovný druh:</th>` +
-    //       `<td class="pl2 b">${wordClass}</td>` +
-    //     `</tr>` + 
-    //     `<tr>` +
-    //       `<th class="normal">ID:</th>` +
-    //       `<td class="pl2 b">${id}</td>` +
-    //     `</tr>` + 
-    //     `<tr>` +
-    //       `<th class="normal">Rodič:</th>` +
-    //       `<td class="pl2 b">${parent}</td>` +
-    //     `</tr>` + 
-    //   `</tbody></table`;
-    // });
 
     return (
       <span key={key} {...other}>

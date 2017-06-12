@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ReactTooltip from 'react-tooltip';
 // import Pattern from './Pattern';
-import {MdArrowDropDown, MdInfoOutline, MdNavigateNext} from 'react-icons/lib/md';
+import {MdArrowDropDown, MdInfoOutline} from 'react-icons/lib/md';
 import { fetchBasePattern } from '../util/api';
 
 class WordAnalysis extends Component {
