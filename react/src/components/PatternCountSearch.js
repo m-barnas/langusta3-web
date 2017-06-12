@@ -53,7 +53,7 @@ export default class PatternCountSearch extends Component {
               </div>
               <button className={"Button Button--primary ml3" + (this.state.isLoading ? " is-loading" : "")}
                type="submit" disabled={this.state.isLoading}>
-                <MdRefresh className="Button-icon" /> Search
+                <MdRefresh className="Button-icon mr1" />Hľadať
               </button>
             </form>
           </div>

@@ -81,8 +81,8 @@ export default class RegexForm extends Component {
               disabled={this.props.isLoading} pattern="([^\W\d]|%|[Á-ž])+"/>
               <a className="InputGroup-btn Button nowrap inline-flex items-center" type="button"
               onClick={this.handleModalOpen}>
-                <MdInfoOutline className="dib mr1" />
-                <span>Nápoveda</span>
+                <MdInfoOutline className="dib mr1-ns" />
+                <span className="dn di-ns">Nápoveda</span>
               </a>
             </label>
           </div>
@@ -92,46 +92,58 @@ export default class RegexForm extends Component {
           </button>
         </div>
 
-        <div className="dt-row">
-          <label className="dtc pv1-ns pr3 nowrap" htmlFor="wordClass">Slovný druh:</label>
-          <div className="dtc w-50-ns pr2-ns">
-            <Select items={this.state.wordClasses} id="wordClass" onChange={(value) => {
-             this.setState({wordClass: value})}
-            } />
+        <div className="cf">
+          <div className="fl-ns w-50-ns pr2-ns">
+            <div className="dt-row-ns cf">
+              <label className="dtc-ns fl fn-ns w-third w-auto-ns pv1-ns pr3 nowrap" htmlFor="wordClass">Slovný druh:</label>
+              <div className="dtc-ns fl fn-ns w-two-thirds w-100-ns">
+                <Select items={this.state.wordClasses} id="wordClass" onChange={(value) => {
+                this.setState({wordClass: value})}
+                } />
+              </div>
+            </div>
+
+            <div className="dt-row-ns cf">
+              <label className="dtc-ns fl fn-ns w-third w-auto-ns pv1-ns pr3" htmlFor="pattern">Vzor:</label>
+              <div className="dtc-ns fl fn-ns w-two-thirds w-100-ns ">
+                <Select items={this.state.patterns} id="pattern" onChange={(value) => {
+                  this.setState({pattern: value})}
+                } />
+              </div>
+            </div>
+
+            <div className="dt-row-ns cf">
+              <label className="dtc-ns fl fn-ns w-third w-auto-ns pv1-ns pr3" htmlFor="grammaticalGender">Rod:</label>
+              <div className="dtc-ns fl fn-ns w-two-thirds w-100-ns">
+                <Select items={this.state.grammaticalGenders} id="grammaticalGender" onChange={(value) => {
+                this.setState({grammaticalGender: value})}
+                } />
+              </div>
+            </div>
           </div>
 
-          <label className="dtc pv1-ns pl2-ns pr3" htmlFor="pattern">Vzor:</label>
-          <div className="dtc w-50-ns">
-            <Select items={this.state.patterns} id="pattern" onChange={(value) => {
-              this.setState({pattern: value})}
-             } />
+          <div className="fl-ns w-50-ns pl2-ns">
+            <div className="dt-row-ns cf">
+              <label className="dtc-ns fl fn-ns w-third w-auto-ns pv1-ns pr3" htmlFor="number">Číslo:</label>
+              <div className="dtc-ns fl fn-ns w-two-thirds  w-100-ns">
+                <Select items={this.state.numbers} id="number" onChange={(value) => {
+                  this.setState({number: value})}
+                } />
+              </div>
+            </div>  
+            <div className="dt-row-ns cf">
+              <label className="dtc-ns fl fn-ns w-third w-auto-ns pv1-ns pr3" htmlFor="grammaticalCase">Pád:</label>
+              <div className="dtc-ns fl fn-ns w-two-thirds w-100-ns">
+                <Select items={this.state.grammaticalCases} id="grammaticalCase" onChange={(value) => {
+                 this.setState({grammaticalCase: value})}
+                } />
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="dt-row">
-          <label className="dtc pv1-ns pr3" htmlFor="grammaticalGender">Rod :</label>
-          <div className="dtc w-50-ns pr2-ns">
-            <Select items={this.state.grammaticalGenders} id="grammaticalGender" onChange={(value) => {
-             this.setState({grammaticalGender: value})}
-            } />
-          </div>
 
-          <label className="dtc pv1-ns pl2-ns pr3" htmlFor="number">Rod:</label>
-          <div className="dtc w-50-ns">
-            <Select items={this.state.numbers} id="number" onChange={(value) => {
-              this.setState({number: value})}
-             } />
-          </div>
-        </div>
-
-        <div className="dt-row mt">
-          <label className="dtc pv1-ns pr3" htmlFor="grammaticalCase">Pád:</label>
-          <div className="dtc w-50-ns pr2-ns">
-            <Select items={this.state.grammaticalCases} id="grammaticalCase" onChange={(value) => {
-             this.setState({grammaticalCase: value})}
-            } />
-          </div>
-        </div>
+        
         <ReactTooltip class="Tooltip" effect="solid" html={true}/>
 
         <Modal

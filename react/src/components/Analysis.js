@@ -119,7 +119,7 @@ class Analysis extends Component {
 
             <button className={"Button Button--primary fr" + (this.state.isLoading ? " is-loading" : "") } 
               type="submit" disabled={this.state.isLoading}>
-              <MdRefresh className="Button-icon" /> Analyze
+              <MdRefresh className="Button-icon" /> Analyzovať
             </button>
           </form>
 

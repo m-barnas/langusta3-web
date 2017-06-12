@@ -63,7 +63,7 @@ export default class Regex extends Component {
     return (
       <main className="Regex">
         <div className="Container pv5">
-          <h1 className="mt0 tc">Vyhľadávanie slov</h1>
+          <h1 className="mt0 tc">Vyhľadávanie slov podľa tvaru</h1>
 
           <div className="mw7 center cf mb4">
             <RegexForm onSubmit={this.handleSubmit} isLoading={this.state.isLoading}/>

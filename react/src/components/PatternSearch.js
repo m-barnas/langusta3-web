@@ -158,7 +158,7 @@ export default class PatternSearch extends Component {
       <main className="PatternSearch">
         <div className="Container pv5">
           <h1 className="tc mt0">Vyhľadávanie podľa vzorov</h1>
-          <form className="flex mw7 center" onSubmit={this.handleSubmit}>
+          <form className="flex-ns items-start mw7 center cf" onSubmit={this.handleSubmit}>
             <TagsInput 
               renderInput={this.autosuggestRenderInput}
               renderTag={this.renderTag}
@@ -179,13 +179,14 @@ export default class PatternSearch extends Component {
               ref={(input) => {this.input = input}}
               disabled={this.state.isLoading}
             />
-            <button className={"Button Button--primary ml3 nowrap" + (this.state.isLoading ? " is-loading" : "")} 
+            <button className={"TagPicker-button Button Button--primary fr fn-ns ml3 mt2 mt0-ns nowrap" + (this.state.isLoading ? " is-loading" : "")} 
             type="submit" disabled={this.state.isLoading}>
-              <MdRefresh className="Button-icon" /> Search
+              <MdRefresh className="Button-icon mr1" />Hľadať
             </button>
           </form>
           { words !== null && typeof words !== 'undefined' &&
             <div className="mw7 center mt3">
+              <div className="mb2">Počet slov: <strong>{words.length}</strong></div>
               <div className={"AnalysisResult AnalysisResult--lg FormControl overflow-y-auto bg-near-white" + (this.state.isLoading ? " is-loading" : "")}>
                 {words.map((item, index) => {
                   return <span className="mr2" key={index}>{item} </span>

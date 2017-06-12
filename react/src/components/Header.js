@@ -33,7 +33,7 @@ class Header extends Component {
     let menuOptions = {
       isOpen: this.state.isMenuOpen,
       close: this.close,
-      toggle: <a className="pv2 db link color-inherit underline-hover" href="#" onClick={this.toggle}>Hledat{menuIcon}</a>,
+      toggle: <a className="pv2 db link color-inherit underline-hover" href="#" onClick={this.toggle}>Hľadať{menuIcon}</a>,
       align: 'center',
       animate: false
     };
@@ -49,12 +49,12 @@ class Header extends Component {
                 <li className="dib mr3 mr4-l"><Link to="/" className="pv2 db link color-inherit underline-hover">Analýza</Link></li>
                 <li className="dib mr3 mr4-l">
                   <DropdownMenu {...menuOptions}>
-                    <li><Link to="/pattern-search">Podle vzoru</Link></li>
-                    <li><Link to="/regex">Regex</Link></li>
-                    <li><Link to="/pattern-count-search">Počet slov podle vzoru</Link></li>
+                    <li><Link to="/pattern-search">Slová podľa vzorov</Link></li>
+                    <li><Link to="/regex">Slová podľa tvaru</Link></li>
+                    <li><Link to="/pattern-count-search">Počet slov podľa vzoru</Link></li>
                   </DropdownMenu>
                 </li>
-                <li className="dib mr3 mr4-l"><Link to="/about" className="pv2 db link color-inherit underline-hover">O projektu</Link></li>
+                <li className="dib mr3 mr4-l"><Link to="/about" className="pv2 db link color-inherit underline-hover">O projekte</Link></li>
                 <li className="dib"><Link to="/contact" className="pv2 db link color-inherit underline-hover">Kontakt</Link></li>
               </ul>
             </div>

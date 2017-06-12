@@ -291,6 +291,10 @@
 .TagPicker.is-loading {
     cursor: wait;
 }
+.TagPicker-button {
+    padding-top: .75em;
+    padding-bottom: .75em;
+}
 
 /**
 * Select

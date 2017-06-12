@@ -129,7 +129,7 @@ class WordAnalysis extends Component {
                     <MdArrowDropDown className="Select-icon"/>
                   </div>
                   <div className="pv1 pr2 tr">
-                    <a className="f6 normal link gray underline-hover" href="#">
+                    <a className="f6 normal link gray underline-hover" href="#" data-tip={patternTooltipContent}>
                       <MdInfoOutline className="mr1"/>
                       <span>info o vzore</span>
                     </a>
