@@ -1,5 +1,6 @@
 package cz.fi.muni.PB138.service.facade;
 
+import cz.fi.muni.PB138.dto.PatternBaseDTO;
 import cz.fi.muni.PB138.dto.PatternDTO;
 import cz.fi.muni.PB138.facade.PatternFacade;
 import cz.fi.muni.PB138.service.PatternService;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import javax.xml.bind.JAXBException;
+import javax.xml.xpath.XPathExpressionException;
 import java.util.Collections;
 import java.util.List;
 
@@ -28,13 +30,23 @@ public class PatternFacadeImpl implements PatternFacade {
 
 
     @Override
-    public PatternDTO findByName(String name) {
+    public PatternDTO findByName(String name) throws JAXBException, XPathExpressionException {
         return patternMapperService.convertToDTO(patternService.findByName(name));
     }
 
     @Override
-    public List<PatternDTO> findAllPatterns() {
+    public List<String> findAllPatterns() throws XPathExpressionException {
+        return Collections.unmodifiableList(patternService.findAllPatterns());
+    }
+
+    @Override
+    public PatternBaseDTO findByNameBase(String name) throws JAXBException, XPathExpressionException {
+        return patternMapperService.convertToDTO(patternService.findByNameBase(name));
+    }
+
+    @Override
+    public List<PatternBaseDTO> findAllPaternBases() throws XPathExpressionException, JAXBException {
         return Collections.unmodifiableList(
-                patternMapperService.convertToDTO(patternService.findAllPatterns()));
+                patternMapperService.convertToDTO(patternService.findAllPaternBases()));
     }
 }

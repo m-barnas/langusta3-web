@@ -1,8 +1,10 @@
 package cz.fi.muni.PB138.dao;
 
 import cz.fi.muni.PB138.entity.xml.Pattern;
+import cz.fi.muni.PB138.entity.xml.PatternBase;
 
 import javax.xml.bind.JAXBException;
+import javax.xml.xpath.XPathExpressionException;
 import java.util.List;
 
 /**
@@ -18,12 +20,28 @@ public interface PatternDao {
      * @param name = name of pattern
      * @return pattern with given name
      */
-    Pattern findByName(String name);
+    Pattern findByName(String name) throws JAXBException, XPathExpressionException;
 
     /**
-     * Finds all patterns
+     * Finds all patterns ids
      *
-     * @return list of all patterns
+     * @return list of all patterns ids
      */
-    List<Pattern> findAllPatterns();
+    List<String> findAllPatterns() throws XPathExpressionException;
+
+    /**
+     * Find pattern by name
+     *
+     * @param name = name of pattern
+     * @return base info about pattern
+     */
+    PatternBase findByNameBase(String name) throws JAXBException, XPathExpressionException;
+
+    /**
+     * Find all pattern bases
+     *
+     * @return pattern bases
+     */
+    List<PatternBase> findAllPaternBases() throws XPathExpressionException, JAXBException;
+
 }

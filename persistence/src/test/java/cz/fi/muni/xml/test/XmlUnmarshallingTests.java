@@ -1,7 +1,6 @@
 package cz.fi.muni.xml.test;
 
 import cz.fi.muni.PB138.entity.xml.*;
-import cz.fi.muni.PB138.entity.xml.repository.PatternList;
 import cz.fi.muni.PB138.entity.xml.util.BaseChange;
 import cz.fi.muni.PB138.entity.xml.util.Condition;
 import cz.fi.muni.PB138.entity.xml.util.ConditionList;
@@ -68,16 +67,5 @@ public class XmlUnmarshallingTests {
 
         Pattern pattern = (Pattern) jaxbUnmarshaller.unmarshal(
                 new File(this.getClass().getClassLoader().getResource("patternTest.xml").getFile()) );
-    }
-
-    @Test
-    public void patternListTest() throws JAXBException
-    {
-        JAXBContext jaxbContext = JAXBContext.newInstance(PatternList.class);
-        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-
-        PatternList patternList = (PatternList) jaxbUnmarshaller.unmarshal(
-                new File(this.getClass().getClassLoader()
-                        .getResource("cz/fi/muni/dictionary/src/patterns-k1.xml").getFile()) );
     }
 }

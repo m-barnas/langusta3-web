@@ -1,0 +1,25 @@
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+
+    color: var(--black);
+    line-height: 1.5;
+
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -moz-font-feature-settings: "liga" on;
+}
+
+.link[type="button"],
+a[type="button"] {
+    appearance: none;
+    cursor: pointer;
+}
+
+button, html [type="button"], [type="reset"], [type="submit"] {
+    font-family: inherit;
+}

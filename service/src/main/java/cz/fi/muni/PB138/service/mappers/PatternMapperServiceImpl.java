@@ -2,6 +2,7 @@ package cz.fi.muni.PB138.service.mappers;
 
 import cz.fi.muni.PB138.dto.*;
 import cz.fi.muni.PB138.entity.xml.Pattern;
+import cz.fi.muni.PB138.entity.xml.PatternBase;
 import cz.fi.muni.PB138.entity.xml.util.*;
 import cz.fi.muni.PB138.service.utils.FormComparator;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,7 @@ public class PatternMapperServiceImpl implements PatternMapperService {
         ConditionListDTO dto = new ConditionListDTO();
 
         dto.setConditionString(extractConditionString(entity.getConditions()));
-        dto.setBasechanges(extractBasechanges(entity.getBaseChange()));
+        dto.setBasechanges(extractBasechangesIds(entity.getBaseChange()));
         dto.setLemma(entity.isLemma());
 
         return dto;
@@ -85,15 +86,28 @@ public class PatternMapperServiceImpl implements PatternMapperService {
     }
 
     @Override
-    public List<PatternDTO> convertToDTO(List<Pattern> entity) {
-        List<PatternDTO> result = new ArrayList<>();
+    public PatternBaseDTO convertToDTO(PatternBase entity) {
+        PatternBaseDTO dto = new PatternBaseDTO();
 
-        for (Pattern pattern : entity) {
-            result.add(convertToDTO(pattern));
+        dto.setId(entity.getId());
+        dto.setParent(entity.getParent());
+        dto.setWordClass(entity.getWordClass());
+
+        return dto;
+    }
+
+    @Override
+    public List<PatternBaseDTO> convertToDTO(List<PatternBase> entities) {
+
+        List<PatternBaseDTO> dtos = new ArrayList<>();
+
+        for (PatternBase entity : entities) {
+            dtos.add(convertToDTO(entity));
         }
 
-        return Collections.unmodifiableList(result);
+        return Collections.unmodifiableList(dtos);
     }
+
 
     private Map<Integer, List<BaseChangeDTO>> extractAllPossibleBaseChanges(Pattern entity){
 
@@ -149,6 +163,17 @@ public class PatternMapperServiceImpl implements PatternMapperService {
         for (int i = conditions.size() - 1; i >= 0; i--) {
             result = result.length() == 0 ?
                     conditions.get(i).getValue() : result + " + " + conditions.get(i).getValue();
+        }
+
+        return result;
+    }
+
+    private Set<Integer> extractBasechangesIds(List<BaseChange> basechanges){
+
+        Set<Integer> result = new HashSet<>();
+
+        for (BaseChange baseChange : basechanges){
+            result.add(baseChange.getNo());
         }
 
         return result;
