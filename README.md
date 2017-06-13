@@ -2,6 +2,10 @@
 
 _Convenient and easy to use UI for access to the morphological database_
 
+### Installation
+
+> git clone https://github.com/m-barnas/langusta3-web.git
+
 ### Functionality
 
 A user is allowed to enter [word / sentence / regex / pattern] and use various filters in order to view a morhological analysis.
