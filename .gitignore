@@ -31,3 +31,7 @@ buildNumber.properties
 
 # VSCode
 .vscode/
+
+**/.settings
+**/.classpath
+**/.project
