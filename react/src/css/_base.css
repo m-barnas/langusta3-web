@@ -23,3 +23,8 @@ a[type="button"] {
 button, html [type="button"], [type="reset"], [type="submit"] {
     font-family: inherit;
 }
+button:focus,
+a:focus {
+    /*outline: 1px dotted;*/
+    outline: none;
+}

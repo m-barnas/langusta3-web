@@ -54,7 +54,10 @@ export default class RegexForm extends Component {
     this.props.onSubmit(this.state.value, filters);
   }
 
-  handleModalOpen = () => this.setState({isModalOpen: true})
+  handleModalOpen = (event) => {
+    event.preventDefault();
+    this.setState({isModalOpen: true})
+  }
 
   handleModalClose = () => this.setState({isModalOpen: false})
 
@@ -75,11 +78,11 @@ export default class RegexForm extends Component {
         <div className="flex mb3">
           <div className="flex-auto">
             <label className="InputGroup flex">
-              <input className={"flex-auto FormControl RegexInput code" + (this.props.isLoading ? " is-Loading" : "")}
+              <input className={"flex-auto FormControl RegexInput code" + (this.props.isLoading ? " is-loading" : "")}
               type="text" placeholder="%a" required data-tip={tooltipContent}
               value={this.state.value} onChange={this.handleChange}
               disabled={this.props.isLoading} pattern="([^\W\d]|%|[Á-ž])+"/>
-              <a className="InputGroup-btn Button nowrap inline-flex items-center" type="button"
+              <a className="InputGroup-btn Button nowrap inline-flex items-center" type="button" href="#"
               onClick={this.handleModalOpen}>
                 <MdInfoOutline className="dib mr1-ns" />
                 <span className="dn di-ns">Nápoveda</span>
@@ -97,7 +100,9 @@ export default class RegexForm extends Component {
             <div className="dt-row-ns cf">
               <label className="dtc-ns fl fn-ns w-third w-auto-ns pv1-ns pr3 nowrap" htmlFor="wordClass">Slovný druh:</label>
               <div className="dtc-ns fl fn-ns w-two-thirds w-100-ns">
-                <Select items={this.state.wordClasses} id="wordClass" onChange={(value) => {
+                <Select items={this.state.wordClasses} 
+                isLoading={this.state.isLoading} id="wordClass" 
+                onChange={(value) => {
                 this.setState({wordClass: value})}
                 } />
               </div>
@@ -106,7 +111,9 @@ export default class RegexForm extends Component {
             <div className="dt-row-ns cf">
               <label className="dtc-ns fl fn-ns w-third w-auto-ns pv1-ns pr3" htmlFor="pattern">Vzor:</label>
               <div className="dtc-ns fl fn-ns w-two-thirds w-100-ns ">
-                <Select items={this.state.patterns} id="pattern" onChange={(value) => {
+                <Select items={this.state.patterns} 
+                isLoading={this.state.isLoading} id="pattern" 
+                onChange={(value) => {
                   this.setState({pattern: value})}
                 } />
               </div>
@@ -115,7 +122,8 @@ export default class RegexForm extends Component {
             <div className="dt-row-ns cf">
               <label className="dtc-ns fl fn-ns w-third w-auto-ns pv1-ns pr3" htmlFor="grammaticalGender">Rod:</label>
               <div className="dtc-ns fl fn-ns w-two-thirds w-100-ns">
-                <Select items={this.state.grammaticalGenders} id="grammaticalGender" onChange={(value) => {
+                <Select items={this.state.grammaticalGenders} isLoading={this.state.isLoading} id="grammaticalGender" 
+                onChange={(value) => {
                 this.setState({grammaticalGender: value})}
                 } />
               </div>
@@ -126,7 +134,9 @@ export default class RegexForm extends Component {
             <div className="dt-row-ns cf">
               <label className="dtc-ns fl fn-ns w-third w-auto-ns pv1-ns pr3" htmlFor="number">Číslo:</label>
               <div className="dtc-ns fl fn-ns w-two-thirds  w-100-ns">
-                <Select items={this.state.numbers} id="number" onChange={(value) => {
+                <Select items={this.state.numbers} 
+                isLoading={this.state.isLoading} id="number" 
+                onChange={(value) => {
                   this.setState({number: value})}
                 } />
               </div>
@@ -134,7 +144,8 @@ export default class RegexForm extends Component {
             <div className="dt-row-ns cf">
               <label className="dtc-ns fl fn-ns w-third w-auto-ns pv1-ns pr3" htmlFor="grammaticalCase">Pád:</label>
               <div className="dtc-ns fl fn-ns w-two-thirds w-100-ns">
-                <Select items={this.state.grammaticalCases} id="grammaticalCase" onChange={(value) => {
+                <Select items={this.state.grammaticalCases} isLoading={this.state.isLoading} id="grammaticalCase" 
+                onChange={(value) => {
                  this.setState({grammaticalCase: value})}
                 } />
               </div>
@@ -179,7 +190,7 @@ export default class RegexForm extends Component {
             <h3 className="mt4 mb2">Príklady</h3>
             <table className="collapse">
               <thead>
-                <tr>
+                <tr className="bb">
                   <th className="pl3 pr3 pv1 tl">Výraz</th>
                   <th className="pr3 pv1 tl">Význam</th>
                   <th className="pr3 pv1 tl">Slová</th>
