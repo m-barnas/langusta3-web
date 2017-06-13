@@ -31,3 +31,5 @@ buildNumber.properties
 
 # VSCode
 .vscode/
+
+tachyons/

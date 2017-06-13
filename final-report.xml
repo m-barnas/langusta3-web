@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "docbook-xml-4.5/docbookx.dtd">
+<book lang="sk">
+    <title>Záverečná správa</title>
+    <subtitle>Webová aplikácia pre prístup do morfologickej databázy</subtitle>
+    <bookinfo>
+        <authorgroup>
+        	<author>
+                <firstname>
+                    Martina
+                </firstname>
+                <surname>
+                    Fabianová
+                </surname>
+            </author>
+            <author>
+                <firstname>
+                    Martin
+                </firstname>
+                <surname>
+                    Barnáš
+                </surname>
+            </author>
+            <author>
+                <firstname>
+                    Peter
+                </firstname>
+                <surname>
+                    Solař
+                </surname>
+            </author>
+            <author>
+                <firstname>
+                    Erik
+                </firstname>
+                <surname>
+                    Macej
+                </surname>
+            </author>
+        </authorgroup>
+    </bookinfo>
+
+    <chapter>
+        <title>Zadanie projektu</title>
+        <section>
+            <para>Vytvorili sme free/slobodné dáta pre ohýbanie slov v češtine aj so systémom vzorov. Aktuálne máme označkované desiatky tisíc slov (XML+CSV), ale nemáme žiaden rozumný nástroj ako si tieto dáta prezerať, alebo s nimi štatisticky pracovať. Vašou úlohou bude po konzultácii s autormi projektu ho vymyslieť a implementovať.
+            </para>
+        </section>
+    </chapter>
+
+    <chapter>
+        <title>Rozdelenie práce</title>
+        <section>
+            <title>Martina Fabianová</title>
+            <para>UML Diagrams</para>
+            <para>UX backbone - wireframes</para>
+            <para>Functionality</para>
+        </section>
+        <section>
+            <title>Martin Barnáš</title>
+            <para>Github pages, Wiki</para>
+            <para>Backend and REST API for Word</para>
+            <para>PostgreSQL configuration</para>
+        </section>
+        <section>
+            <title>Peter Solař</title>
+            <para>Frontend in React JS</para>
+            <para>UI Design</para>
+            <para>Frontend Configuration</para>
+        </section>
+        <section>
+            <title>Erik Macej</title>
+            <para>Architecture of REST API and backend</para>
+            <para>Backend and REST API for Pattern</para>
+            <para>Hibernate and Spring Configuration</para>
+        </section>
+    </chapter>
+
+    <chapter>
+        <title>Jednotlivé záverečné správy</title>
+        <section>
+            <title>Martina Fabianová</title>
+            <para>Můj přínos projektu spočíval ve vymyšlení funkcionality a vizualizace uživatelského prostředí (UI) aplikace. S tvorbou webových stránek i projektem podobného typu jsem se v tomto předmětu setkala poprvé. Rozvrhnutí UI bylo jednou z prvních částí projektu. Od zadavatele (lingvistek) jsme v rámci popisu specifikace dostali požadavky na danou funkcionalitu, součástí níž byly filtry a statistiky, které by mělo UI obsahovat a vypisovat. Konkrétně se jednalo o: 
+            	- počet slov v daném jazyce (číslo)
+        		- ukázat slova, která končí na –a a umožnit další filtr k těmto slovům
+        		- určení rodu (tj. když slovo v genitivu končí na –a, tak bude ženský, ne mužský
+        		- pro jedno slovo vypsat všechny jeho tvary
+				- pro jedno slovo vypsat vzor/y
+				- kolik slov se skloňuje podle jednoho vzoru
+				- kolik slov se skloňuje podle více vzorů 
+				- všechny slova, které se skloňují podle daného vzoru 
+				- vyhledávání podle regex
+				- ideálně možnost pracovat s celou větou a každé slovo z ní umět někam zařadit 
+				- možnost si zvolit jazyk dat (CZ, SK, v budoucnosti PL)
+				- jazyk aplikace (CZ, EN)
+  				- zobrazit info o projektu 
+				- zobrazit různé nápovědy 
+				- nahlásit chybu ve skloňování 
+				- kontaktovat autora/zodpovědnou osobu 
+				- vše je read-only 
+			Pomocí těchto požadavků a vytvořeného Use Case diagramu bylo navrhnuto UI celé aplikace. K rozpracování návrhu byla využita dostupná aplikace wireframe.cc, ve které byly vytvořeny wireframes webové aplikace zachytávající celou její funkcionalitu. V návrhu byl kladen velký důraz na uživatelskou zkušenost. Obrázky byly prezentovány kolegům v týmu a po doplnění poznámek sloužily jako podklad pro další vývoj aplikace.
+			</para>
+        </section>
+        <section>
+            <title>Martin Barnáš</title>
+            <para>Nevyhnutná časť našej aplikácia sú dáta. Tie nám boli dané v textovom súbore. Pre jednoduchšiu prácu s nimi sme sa ich rozhodli uložiť do databázy, konktrétne PostgreSQL, pre ktorú som napísal konfiguráciu. Textový súbor som prekonvertoval do formátu .csv a ako oddeľovač použil znak '#'. V súbore boli použité rôzne kódy a značky, a tak som ho mierne zrefaktoroval do ľudsky čitateľnej podoby. Dáta som pomocou sciptu namapoval na stĺpce v tabulke Word. Každé slovo si o sebe uchováva informácie: ID, infinitív, vzor, vyskloňovaný tvar, slovný druh, rod, číslo a pád. Ako ORM nástroj som použil Hibernate. Architektúru vymyslel kolega Erik a ja som sa jej prispôsobil. Pre zredukovanie kódu potrebného pre prístup k dátam som požil modul Spring Data JPA, kde konkrétne rozširujem funkcionalitu JPARepository a JpaSpecificationExecutor interface. Rozšírenie v poradí druhej spomenutej triedy mi umožnilo dynamicky reťaziť, vytvárať a kombinovať predikáty, čo sa mi skvele hodilo pre implementáciu filtrov, ktoré sú volitelné a teda nie je dopredu známy počet ani typ, ktoré užívateľ použije. Čo prakticky znamená, že som nemusel vytvárať SQL Queries pre každú možnú kombináciu. REST API je taktiež implementovaný pomocou Springu a na frontend sa posiela DTO objekt serializovaný do formátu JSON. Prispel som taktiež vytvorením a udržiavaním GH Wiki a GH page.</para>
+        </section>
+        <section>
+            <title>Peter Solař</title>
+            <para>Ako javascriptovú knižnicu som si zvolil React, pre jeho veľkú popularitu, a teda aj veľké množstvo dostupných komponentov, ale aj dobrý výkon a osobné sympatie. Pre zvýrazňovanie slov v analýze som použil kód 'highlight-words-core', no implementáciu 'react-highlight-words' som musel pre naše potreby upraviť. 
+        	Taktiež som použil CSS knižnicu Tachyons, ktorá mi umožnila rýchle prototypovanie a návrh UI za behu, v prehliadači, a aj vďaka nej je aplikácia plne responzívna. Pri návrhu dizajnu som sa mierne inšpiroval Material Design od Google, ktorých voľne dostupné ikonky sa vyskytujú v aplikácii.</para>
+        </section>
+        <section>
+            <title>Erik Macej</title>
+            <para>Na našom projekte som pracoval na návrhu backendu a Rest Api a na implementácii Rest Api a backendu pre pattern. Backend som navyše rozdelil na 3 vrstvy a to na persistentnú, servisnú a fasádovú. Takéto riešenie som zvolil najmä preto lebo umožňuje jednuduchú rozšíteľnosť či prípadne zmenu funkcionality. Backend aj Rest Api sú postavené na frameworku Spring. Framework Spring som si vybral najmä kvôli tomu že s jeho pomocou sme schopný rýchlo  implementovať a navrhnúť takúto aplikáciu. Pre implemmentáciu backendu pre pattern som sa rozhodol využiť XPath a framework JAXB. Kombináciou týchto dvoch technológií som docielil jednuduché vyhľadávanie dát, a následnú transformáciu dát v xml súbore s patternami.</para>
+        </section>
+    </chapter>
+</book>
