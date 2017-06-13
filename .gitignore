@@ -32,4 +32,6 @@ buildNumber.properties
 # VSCode
 .vscode/
 
-tachyons/
+**/.settings
+**/.classpath
+**/.project
