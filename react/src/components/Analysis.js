@@ -81,7 +81,7 @@ class Analysis extends Component {
       genderData: patternData.genders[0]
     })
   }
-  
+
   handleGenderSelect(genderData) {
     this.setState({
       genderData: genderData
@@ -96,7 +96,7 @@ class Analysis extends Component {
     return (
       <main className="Analysis">
         <div className="Container pv5">
-          <h1 className="mt0 tc">Analýza</h1>
+          <h1 className="mt0 tc lh-title">Analýza</h1>
           <form className=" center cf mb3" onSubmit={this.handleSubmit}>
             <div className="cf mb2">
               <div className="fl-ns w-50-ns pr2-ns mb2 mb0-ns">
@@ -117,7 +117,7 @@ class Analysis extends Component {
               </div>
             </div>
 
-            <button className={"Button Button--primary fr" + (this.state.isLoading ? " is-loading" : "") } 
+            <button className={"Button Button--primary fr" + (this.state.isLoading ? " is-loading" : "") }
               type="submit" disabled={this.state.isLoading}>
               <MdRefresh className="Button-icon" /> Analyzovať
             </button>
@@ -125,8 +125,8 @@ class Analysis extends Component {
 
           <div className="center cf">
             <div className="fl-l w-40-l pr3-l mb4 mb0-l">
-              <WordAnalysis word={ this.state.word } patternData={this.state.patternData} 
-              genderData={this.state.genderData} onPatternSelect={this.handlePatternSelect} 
+              <WordAnalysis word={ this.state.word } patternData={this.state.patternData}
+              genderData={this.state.genderData} onPatternSelect={this.handlePatternSelect}
               onGenderSelect={this.handleGenderSelect}  isLoading={this.state.isLoading}/>
             </div>
             <div className="fl-l w-60-l pl3-l">

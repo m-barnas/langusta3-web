@@ -149,23 +149,23 @@
 
     margin-left: -4px;
  }*/
- .dd-menu .dd-menu-items ul, 
+ .dd-menu .dd-menu-items ul,
  .dd-menu .dd-menu-items ol {
      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
      /*box-shadow: none;*/
      border: 1px solid var(--moon-gray);
  }
- .dd-menu .dd-menu-items ul li:hover:not([role="separator"]):not(.separator), 
- .dd-menu .dd-menu-items ul li > *:focus, 
- .dd-menu .dd-menu-items ol li:hover:not([role="separator"]):not(.separator), 
+ .dd-menu .dd-menu-items ul li:hover:not([role="separator"]):not(.separator),
+ .dd-menu .dd-menu-items ul li > *:focus,
+ .dd-menu .dd-menu-items ol li:hover:not([role="separator"]):not(.separator),
  .dd-menu .dd-menu-items ol li > *:focus {
      background-color: var(--near-white);
  }
- .dd-menu .dd-menu-items ul li > *:focus, 
+ .dd-menu .dd-menu-items ul li > *:focus,
  .dd-menu .dd-menu-items ol li > *:focus {
      outline: 1px dotted;
  }
- .dd-menu .dd-menu-items ul li > *:not(.dd-item-ignore), 
+ .dd-menu .dd-menu-items ul li > *:not(.dd-item-ignore),
  .dd-menu .dd-menu-items ol li > *:not(.dd-item-ignore) {
      font-family: inherit;
  }
@@ -173,7 +173,9 @@
 /**
  * Analysis
  */
-
+.AnalysisInput {
+    height: 5.625em;
+}
 .AnalysisResult {
     box-sizing: content-box;
     width: auto;
@@ -234,7 +236,7 @@
      background: none;
      cursor: pointer;
 
-     
+
      color: inherit;
      font-weight: 700;
      line-height: inherit;
@@ -254,7 +256,7 @@
  }
  .Pattern .icon {
      margin-top: -.15em;
-     
+
      opacity: 0;
      transition: all 150ms;
  }
@@ -309,7 +311,7 @@
     bottom: 0;
     right: 0;
     left: 0;
-    
+
     border-bottom: 1px solid var(--moon-gray);
 }
 .Select select {
@@ -319,7 +321,7 @@
     border: none;
     border-radius: 0;
     background: none;
-    
+
     color: inherit;
     line-height: inherit;
     transition: all 150ms;

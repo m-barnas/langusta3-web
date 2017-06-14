@@ -53,7 +53,7 @@ export default class PatternSearch extends Component {
           words: data
         })
       })
-    } 
+    }
   }
   handleChange(tags) {
     this.setState({tags})
@@ -122,18 +122,18 @@ export default class PatternSearch extends Component {
           }
         }
       }
-      
+
       return true;
     }
-  
+
     const inputValue = (props.value && props.value.trim().toLowerCase()) || ''
     const inputLength = inputValue.length
-  
+
     let suggestions = this.state.patterns.filter((item) => {
       return (item.toLowerCase().slice(0, inputLength) === inputValue &&
         filterSelected(item))
     })
-  
+
     return (
       <Autosuggest
         ref={props.ref}
@@ -157,12 +157,12 @@ export default class PatternSearch extends Component {
     return (
       <main className="PatternSearch">
         <div className="Container pv5">
-          <h1 className="tc mt0">Vyhľadávanie podľa vzorov</h1>
+          <h1 className="tc mt0 lh-title">Vyhľadávanie podľa vzorov</h1>
           <form className="flex-ns items-start mw7 center cf" onSubmit={this.handleSubmit}>
-            <TagsInput 
+            <TagsInput
               renderInput={this.autosuggestRenderInput}
               renderTag={this.renderTag}
-              value={this.state.tags} 
+              value={this.state.tags}
               onChange={this.handleChange}
               className={"TagPicker FormControl flex-auto" + (this.state.isLoading ? " is-loading" : "")}
               focusedClassName="is-focused"
@@ -172,14 +172,14 @@ export default class PatternSearch extends Component {
                 onFocus: this.focus
               }}
               tagProps={{
-                className: 'Tag', 
+                className: 'Tag',
                 classNameRemove: 'Tag-remove'
               }}
               onlyUnique={true}
               ref={(input) => {this.input = input}}
               disabled={this.state.isLoading}
             />
-            <button className={"TagPicker-button Button Button--primary fr fn-ns ml3 mt2 mt0-ns nowrap" + (this.state.isLoading ? " is-loading" : "")} 
+            <button className={"TagPicker-button Button Button--primary fr fn-ns ml3 mt2 mt0-ns nowrap" + (this.state.isLoading ? " is-loading" : "")}
             type="submit" disabled={this.state.isLoading}>
               <MdRefresh className="Button-icon mr1" />Hľadať
             </button>
