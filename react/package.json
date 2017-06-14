@@ -23,7 +23,8 @@
     "react-modal": "^1.7.12",
     "react-router-dom": "^4.1.1",
     "react-tagsinput": "^3.16.1",
-    "react-tooltip": "^3.3.0"
+    "react-tooltip": "^3.3.0",
+    "tachyons": "^4.7.4"
   },
   "devDependencies": {
     "autoprefixer": "6.7.2",

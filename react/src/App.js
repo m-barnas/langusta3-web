@@ -10,7 +10,8 @@ import AboutContainer from './containers/AboutContainer';
 import ContactContainer from './containers/ContactContainer';
 // import PatternContainer from './containers/PatternContainer';
 
-import './../tachyons/css/tachyons.css';
+// import './../tachyons/css/tachyons.css';
+import 'tachyons';
 import './css/App.css';
 
 // const isReactComponent = (obj) => Boolean(obj && obj.prototype && Boolean(obj.prototype.isReactComponent));

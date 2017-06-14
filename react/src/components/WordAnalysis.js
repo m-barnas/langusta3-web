@@ -14,7 +14,7 @@ class WordAnalysis extends Component {
       genderData: null,
       patternInfo: null
     }
-    
+
     // this.handlePatternClick = this.handlePatternClick.bind(this);
     this.handlePatternChange = this.handlePatternChange.bind(this);
     this.handleGenderChange = this.handleGenderChange.bind(this);
@@ -65,7 +65,7 @@ class WordAnalysis extends Component {
     this.setState({
       patternData: patternData
     })
-    
+
     this.props.onPatternSelect(patternData);
   }
   handleGenderChange(event) {
@@ -93,23 +93,23 @@ class WordAnalysis extends Component {
         const id = patternInfo.id;
         let parent = patternInfo.parent !== null ? patternInfo.parent : "—";
 
-        patternTooltipContent = `<table><tbody>` + 
+        patternTooltipContent = `<table><tbody>` +
           `<tr>` +
             `<th class="normal">Slovný druh:</th>` +
             `<td class="pl2 b">${wordClass}</td>` +
-          `</tr>` + 
+          `</tr>` +
           `<tr>` +
             `<th class="normal">ID:</th>` +
             `<td class="pl2 b">${id}</td>` +
-          `</tr>` + 
+          `</tr>` +
           `<tr>` +
             `<th class="normal">Rodič:</th>` +
             `<td class="pl2 b">${parent}</td>` +
-          `</tr>` + 
+          `</tr>` +
         `</tbody></table`;
       }
-      
-    
+
+
       return (
         <div className={"WordAnalysis" + (this.props.isLoading ? " is-loading" : "")}>
           <table className="w-100 collapse tl mt4">
@@ -118,7 +118,7 @@ class WordAnalysis extends Component {
                 <th className=" v-top pv1 normal">Vzory:</th>
                 <td className="w-100 pl2 pv0 v-top b">
                   <div className="Select">
-                    <select className="pv1 pl2 pr3 b" onChange={this.handlePatternChange} 
+                    <select className="pv1 pl2 pr3 b" onChange={this.handlePatternChange}
                     data-tip={patternTooltipContent}>
                       {patterns.map((item, index) => (
                         <option key={index} value={index}>
@@ -138,7 +138,7 @@ class WordAnalysis extends Component {
                   {/*<ul className="list pl0 mv0 overflow-y-auto">
                     {patterns.map((item, index) => (
                       <li key={index}>
-                        <Pattern 
+                        <Pattern
                           className="Pattern ph2 pv1"
                           onClick={(selectedPattern) => {
                             this.handlePatternClick(selectedPattern);
@@ -177,7 +177,7 @@ class WordAnalysis extends Component {
             </tbody>
           </table>
           <div className="tr mt4">
-            
+
           </div>
           {/*<div className="cf">
             <dl className="fl w-50 lh-title mt0 mb3">
